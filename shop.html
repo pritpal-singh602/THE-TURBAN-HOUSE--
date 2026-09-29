@@ -1,0 +1,2083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Shop | THE TURBAN HOUSE</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+:root{
+    --black:#111;
+    --dark:#0b0b0b;
+    --gold:#d5aa45;
+    --gold-dark:#72520d;
+    --cream:#f7f3ea;
+    --card:#fff;
+    --muted:#777;
+    --green:#218c45;
+    --red:#c0392b;
+    --orange:#c27a00;
+}
+
+body{
+    background:var(--cream);
+    color:#17130d;
+}
+
+/* =========================
+   TOP BAR
+========================= */
+
+.topbar{
+    background:var(--dark);
+    color:#fff;
+    text-align:center;
+    padding:9px 12px;
+    font-size:12px;
+    letter-spacing:.5px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    background:var(--black);
+    color:#fff;
+    padding:18px 5%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:25px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 3px 15px rgba(0,0,0,.18);
+}
+
+.logo{
+    font-size:22px;
+    font-weight:900;
+    letter-spacing:2px;
+    white-space:nowrap;
+}
+
+.logo span{
+    color:var(--gold);
+}
+
+.nav{
+    display:flex;
+    gap:22px;
+    align-items:center;
+}
+
+.nav a{
+    color:#fff;
+    text-decoration:none;
+    font-size:14px;
+    transition:.2s;
+}
+
+.nav a:hover,
+.nav a.active{
+    color:var(--gold);
+}
+
+.cart{
+    color:#fff;
+    text-decoration:none;
+    border:1px solid var(--gold);
+    padding:9px 14px;
+    border-radius:8px;
+    white-space:nowrap;
+    transition:.2s;
+}
+
+.cart:hover{
+    background:var(--gold);
+    color:#111;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(213,170,69,.15),
+            transparent 30%
+        ),
+        linear-gradient(
+            120deg,
+            #111 0%,
+            #19140c 55%,
+            #30230d 100%
+        );
+    color:#fff;
+    padding:65px 5%;
+}
+
+.hero-inner{
+    max-width:1400px;
+    margin:auto;
+}
+
+.hero small{
+    color:var(--gold);
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.hero h1{
+    font-size:48px;
+    margin:15px 0;
+    line-height:1.1;
+}
+
+.hero p{
+    color:#ddd;
+    max-width:650px;
+    line-height:1.7;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.container{
+    max-width:1400px;
+    margin:auto;
+    padding:35px 5%;
+}
+
+.heading{
+    margin-bottom:25px;
+}
+
+.heading h2{
+    font-size:30px;
+}
+
+.heading p{
+    color:var(--muted);
+    margin-top:6px;
+}
+
+/* =========================
+   FILTERS
+========================= */
+
+.filters{
+    background:#fff;
+    padding:18px;
+    border-radius:14px;
+    display:flex;
+    gap:12px;
+    margin-bottom:25px;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+    align-items:center;
+}
+
+.search{
+    flex:1;
+}
+
+.search input,
+.filters select{
+    width:100%;
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    outline:none;
+    background:#fff;
+    color:#17130d;
+}
+
+.search input:focus,
+.filters select:focus{
+    border-color:var(--gold);
+    box-shadow:0 0 0 2px rgba(213,170,69,.12);
+}
+
+.filter-select{
+    width:210px;
+}
+
+.sort-select{
+    width:190px;
+}
+
+/* =========================
+   RESULT BAR
+========================= */
+
+.result-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:20px;
+    color:#666;
+    font-size:14px;
+}
+
+.clear-btn{
+    border:0;
+    background:transparent;
+    color:var(--gold-dark);
+    cursor:pointer;
+    font-weight:800;
+    display:none;
+}
+
+.clear-btn:hover{
+    text-decoration:underline;
+}
+
+/* =========================
+   PRODUCTS
+========================= */
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+}
+
+.card{
+    background:var(--card);
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,.07);
+    transition:.25s;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+}
+
+/* SALE BADGE */
+
+.sale-badge{
+    position:absolute;
+    left:12px;
+    top:12px;
+    z-index:3;
+    background:var(--gold);
+    color:#111;
+    padding:6px 9px;
+    border-radius:5px;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.5px;
+}
+
+/* WISHLIST */
+
+.wishlist{
+    position:absolute;
+    right:12px;
+    top:12px;
+    z-index:4;
+    width:38px;
+    height:38px;
+    border:0;
+    border-radius:50%;
+    background:#fff;
+    cursor:pointer;
+    font-size:19px;
+    box-shadow:0 3px 10px rgba(0,0,0,.12);
+    transition:.2s;
+}
+
+.wishlist:hover{
+    transform:scale(1.08);
+}
+
+.wishlist.active{
+    color:#b8860b;
+}
+
+/* IMAGE */
+
+.image{
+    height:260px;
+    background:#eee;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    cursor:pointer;
+}
+
+.image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.3s;
+}
+
+.card:hover .image img{
+    transform:scale(1.03);
+}
+
+.no-image{
+    color:#999;
+    font-size:13px;
+}
+
+/* INFO */
+
+.info{
+    padding:17px;
+    display:flex;
+    flex-direction:column;
+    flex:1;
+}
+
+.category{
+    color:#a27a22;
+    font-size:11px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.name{
+    font-size:18px;
+    font-weight:800;
+    margin:8px 0;
+    line-height:1.3;
+}
+
+.description{
+    color:#777;
+    font-size:13px;
+    line-height:1.5;
+    min-height:38px;
+}
+
+/* RATING */
+
+.product-rating{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    margin-top:10px;
+    min-height:20px;
+}
+
+.stars{
+    color:var(--gold);
+    letter-spacing:1px;
+    font-size:15px;
+}
+
+.rating-number{
+    font-size:12px;
+    font-weight:800;
+}
+
+.review-count{
+    color:#999;
+    font-size:11px;
+}
+
+/* PRICE */
+
+.price{
+    margin:13px 0 8px;
+}
+
+.main-price{
+    font-size:20px;
+    font-weight:900;
+}
+
+.old-price{
+    color:#999;
+    text-decoration:line-through;
+    font-size:13px;
+    margin-left:7px;
+}
+
+/* STOCK */
+
+.stock{
+    font-size:12px;
+    margin-bottom:12px;
+    font-weight:700;
+}
+
+.in-stock{
+    color:var(--green);
+}
+
+.low-stock{
+    color:var(--orange);
+}
+
+.out-stock{
+    color:var(--red);
+}
+
+/* BUTTONS */
+
+.buttons{
+    display:flex;
+    gap:8px;
+    margin-top:auto;
+}
+
+.btn{
+    flex:1;
+    padding:11px;
+    border:0;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:800;
+    transition:.2s;
+}
+
+.details{
+    background:#eee8dc;
+    color:#3c2c12;
+}
+
+.details:hover{
+    background:#dfd2ba;
+}
+
+.add{
+    background:#111;
+    color:#fff;
+}
+
+.add:hover{
+    background:#c49a3b;
+}
+
+.add:disabled{
+    background:#aaa;
+    cursor:not-allowed;
+}
+
+/* WHATSAPP */
+
+.whatsapp-btn{
+    margin-top:8px;
+    width:100%;
+    background:var(--green);
+    color:#fff;
+}
+
+.whatsapp-btn:hover{
+    background:#176f35;
+}
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+    grid-column:1/-1;
+    background:#fff;
+    padding:70px 30px;
+    text-align:center;
+    border-radius:14px;
+    color:#777;
+    box-shadow:0 5px 20px rgba(0,0,0,.05);
+}
+
+.empty-icon{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.empty h3{
+    color:#333;
+    margin-bottom:8px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    margin-top:50px;
+    background:#0b0b0b;
+    color:#fff;
+    padding:35px 5%;
+    text-align:center;
+}
+
+footer strong{
+    color:var(--gold);
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#111;
+    color:#fff;
+    padding:14px 18px;
+    border-radius:9px;
+    box-shadow:0 7px 25px rgba(0,0,0,.2);
+    z-index:5000;
+    opacity:0;
+    transform:translateY(15px);
+    pointer-events:none;
+    transition:.25s;
+    font-size:14px;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:1100px){
+
+    .products{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+@media(max-width:850px){
+
+    .nav{
+        display:none;
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .hero h1{
+        font-size:38px;
+    }
+
+    .filters{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .filter-select,
+    .sort-select{
+        width:100%;
+    }
+
+    .result-bar{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+}
+
+@media(max-width:500px){
+
+    .topbar{
+        font-size:10px;
+    }
+
+    .header{
+        padding:15px;
+    }
+
+    .logo{
+        font-size:16px;
+    }
+
+    .cart{
+        padding:8px 10px;
+        font-size:12px;
+    }
+
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .image{
+        height:280px;
+    }
+
+    .hero{
+        padding:45px 20px;
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+
+    .container{
+        padding:25px 15px;
+    }
+
+    .heading h2{
+        font-size:25px;
+    }
+
+    .filters{
+        padding:14px;
+    }
+
+    .empty{
+        padding:50px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     TOP BAR
+========================= -->
+
+<div class="topbar">
+    FREE SHIPPING • PREMIUM MEN'S COLLECTION • WHATSAPP ORDER SUPPORT
+</div>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <div class="logo">
+        THE <span>TURBAN</span> HOUSE
+    </div>
+
+
+    <nav class="nav">
+
+        <a href="welcome.html">
+            Home
+        </a>
+
+        <a href="index.html">
+            Main
+        </a>
+
+        <a href="shop.html" class="active">
+            Shop
+        </a>
+
+        <a href="admin.html">
+            Admin
+        </a>
+
+    </nav>
+
+
+    <a href="cart.html" class="cart">
+        🛒 Cart <span id="cartCount">0</span>
+    </a>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-inner">
+
+        <small>
+            THE MEN'S COLLECTION
+        </small>
+
+        <h1>
+            Royal Punjabi Style
+        </h1>
+
+        <p>
+            Discover premium turbans, kalgi, sehra, watches,
+            perfumes, oud, sunglasses, ties and men's accessories.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="container">
+
+    <div class="heading">
+
+        <h2>
+            Shop Men's Collection
+        </h2>
+
+        <p>
+            Premium products for the modern Punjabi gentleman.
+        </p>
+
+    </div>
+
+
+    <!-- FILTERS -->
+
+    <section class="filters">
+
+        <div class="search">
+
+            <input
+                id="search"
+                type="text"
+                placeholder="🔎 Search products, SKU..."
+                oninput="renderProducts()">
+
+        </div>
+
+
+        <div class="filter-select">
+
+            <select
+                id="category"
+                onchange="renderProducts()">
+
+                <option value="">
+                    All Categories
+                </option>
+
+                <option value="Turban">
+                    Turban
+                </option>
+
+                <option value="Kalgi">
+                    Kalgi
+                </option>
+
+                <option value="Sehra">
+                    Sehra
+                </option>
+
+                <option value="Watch">
+                    Watch
+                </option>
+
+                <option value="Perfume">
+                    Perfume
+                </option>
+
+                <option value="Oud">
+                    Oud
+                </option>
+
+                <option value="Sunglasses">
+                    Sunglasses
+                </option>
+
+                <option value="Tie">
+                    Tie
+                </option>
+
+                <option value="Accessories">
+                    Accessories
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="sort-select">
+
+            <select
+                id="sort"
+                onchange="renderProducts()">
+
+                <option value="default">
+                    Sort: Featured
+                </option>
+
+                <option value="low">
+                    Price: Low to High
+                </option>
+
+                <option value="high">
+                    Price: High to Low
+                </option>
+
+                <option value="name">
+                    Name: A to Z
+                </option>
+
+                <option value="rating">
+                    Top Rated
+                </option>
+
+            </select>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESULT BAR -->
+
+    <div class="result-bar">
+
+        <span id="resultCount">
+            Loading products...
+        </span>
+
+        <button
+            id="clearFilters"
+            class="clear-btn"
+            onclick="clearFilters()">
+
+            Clear Filters
+
+        </button>
+
+    </div>
+
+
+    <!-- PRODUCTS -->
+
+    <section
+        class="products"
+        id="products">
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <strong>
+        THE TURBAN HOUSE
+    </strong>
+
+    <p style="margin-top:8px;color:#aaa;">
+        Royal Style • Punjabi Heritage • Premium Men's Collection
+    </p>
+
+</footer>
+
+
+<!-- TOAST -->
+
+<div
+    id="toast"
+    class="toast">
+</div>
+
+
+<script src="/api-sync.js"></script>
+<script>
+
+/* =====================================================
+   STORAGE
+===================================================== */
+
+let products = loadJSON("TH_PRODUCTS", []);
+
+let wishlist = loadJSON("TH_WISHLIST", []);
+
+let cart = loadJSON("TH_CART", []);
+
+let reviews = loadJSON("TH_REVIEWS", []);
+
+
+/* =====================================================
+   STORAGE HELPER
+===================================================== */
+
+function loadJSON(key, fallback){
+
+    try{
+
+        const value =
+            localStorage.getItem(key);
+
+        if(!value){
+            return fallback;
+        }
+
+        const parsed =
+            JSON.parse(value);
+
+        return parsed ?? fallback;
+
+    }catch(error){
+
+        console.warn(
+            "Storage error:",
+            key,
+            error
+        );
+
+        return fallback;
+    }
+}
+
+
+/* =====================================================
+   SAVE STORAGE
+===================================================== */
+
+function saveJSON(key, value){
+
+    localStorage.setItem(
+        key,
+        JSON.stringify(value)
+    );
+
+}
+
+
+/* =====================================================
+   NORMALIZE ID
+   Handles 1 vs "1"
+===================================================== */
+
+function sameId(a,b){
+
+    return String(a) === String(b);
+
+}
+
+
+/* =====================================================
+   REFRESH STORAGE
+===================================================== */
+
+function refreshStorage(){
+
+    products =
+        loadJSON("TH_PRODUCTS", []);
+
+    wishlist =
+        loadJSON("TH_WISHLIST", []);
+
+    cart =
+        loadJSON("TH_CART", []);
+
+    reviews =
+        loadJSON("TH_REVIEWS", []);
+
+}
+
+
+/* =====================================================
+   APPROVED REVIEWS
+===================================================== */
+
+function getApprovedReviews(productId){
+
+    return reviews.filter(review => {
+
+        return (
+            sameId(review.productId, productId) &&
+            String(review.status || "")
+                .toLowerCase() === "approved"
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   PRODUCT RATING
+===================================================== */
+
+function getProductRating(productId){
+
+    const approved =
+        getApprovedReviews(productId);
+
+
+    if(!approved.length){
+
+        return {
+            average:0,
+            count:0
+        };
+
+    }
+
+
+    const total =
+        approved.reduce(
+            (sum,review) =>
+                sum +
+                Number(review.rating || 0),
+            0
+        );
+
+
+    return {
+
+        average:
+            total / approved.length,
+
+        count:
+            approved.length
+
+    };
+
+}
+
+
+/* =====================================================
+   STAR DISPLAY
+===================================================== */
+
+function getStars(rating){
+
+    const rounded =
+        Math.round(
+            Number(rating) || 0
+        );
+
+
+    let stars = "";
+
+
+    for(let i = 1; i <= 5; i++){
+
+        stars +=
+            i <= rounded
+            ? "★"
+            : "☆";
+
+    }
+
+
+    return stars;
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHtml(text){
+
+    return String(text ?? "")
+
+        .replace(/&/g,"&amp;")
+
+        .replace(/</g,"&lt;")
+
+        .replace(/>/g,"&gt;")
+
+        .replace(/"/g,"&quot;")
+
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   GET PRODUCT PRICE
+===================================================== */
+
+function getPrice(product){
+
+    return Number(
+        product.salePrice ||
+        product.price ||
+        0
+    );
+
+}
+
+
+/* =====================================================
+   RENDER PRODUCTS
+===================================================== */
+
+function renderProducts(){
+
+    refreshStorage();
+
+
+    const searchInput =
+        document.getElementById("search");
+
+
+    const categoryInput =
+        document.getElementById("category");
+
+
+    const sortInput =
+        document.getElementById("sort");
+
+
+    const search =
+        searchInput
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    const category =
+        categoryInput.value;
+
+
+    const sort =
+        sortInput.value;
+
+
+    /* =========================
+       FILTER
+    ========================= */
+
+    let filtered =
+        products.filter(product => {
+
+            const name =
+                String(product.name || "")
+                    .toLowerCase();
+
+
+            const description =
+                String(product.description || "")
+                    .toLowerCase();
+
+
+            const sku =
+                String(product.sku || "")
+                    .toLowerCase();
+
+
+            const productCategory =
+                String(product.category || "")
+                    .toLowerCase();
+
+
+            const matchesSearch =
+                !search ||
+                name.includes(search) ||
+                description.includes(search) ||
+                sku.includes(search) ||
+                productCategory.includes(search);
+
+
+            const matchesCategory =
+                !category ||
+                String(product.category || "")
+                    .toLowerCase() ===
+                category.toLowerCase();
+
+
+            const active =
+                String(product.status || "active")
+                    .toLowerCase() === "active";
+
+
+            return (
+                matchesSearch &&
+                matchesCategory &&
+                active
+            );
+
+        });
+
+
+    /* =========================
+       SORT
+    ========================= */
+
+    if(sort === "low"){
+
+        filtered.sort(
+            (a,b) =>
+                getPrice(a) -
+                getPrice(b)
+        );
+
+    }
+
+
+    else if(sort === "high"){
+
+        filtered.sort(
+            (a,b) =>
+                getPrice(b) -
+                getPrice(a)
+        );
+
+    }
+
+
+    else if(sort === "name"){
+
+        filtered.sort(
+            (a,b) =>
+                String(a.name || "")
+                    .localeCompare(
+                        String(b.name || "")
+                    )
+        );
+
+    }
+
+
+    else if(sort === "rating"){
+
+        filtered.sort(
+            (a,b) =>
+                getProductRating(b.id).average -
+                getProductRating(a.id).average
+        );
+
+    }
+
+
+    /* =========================
+       RESULT COUNT
+    ========================= */
+
+    document.getElementById(
+        "resultCount"
+    ).innerText =
+        filtered.length +
+        (
+            filtered.length === 1
+            ? " product found"
+            : " products found"
+        );
+
+
+    const hasFilters =
+        search ||
+        category ||
+        sort !== "default";
+
+
+    document.getElementById(
+        "clearFilters"
+    ).style.display =
+        hasFilters
+        ? "block"
+        : "none";
+
+
+    /* =========================
+       EMPTY
+    ========================= */
+
+    const container =
+        document.getElementById("products");
+
+
+    if(!filtered.length){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    🛍️
+                </div>
+
+                <h3>
+                    No products available
+                </h3>
+
+                <p>
+                    Try another search or category.
+                </p>
+
+                <button
+                    class="btn"
+                    style="
+                        max-width:180px;
+                        margin-top:18px;
+                        background:#111;
+                        color:#fff;
+                    "
+                    onclick="clearFilters()">
+
+                    View All Products
+
+                </button>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* =========================
+       PRODUCT CARDS
+    ========================= */
+
+    container.innerHTML =
+        filtered
+            .map(createProductCard)
+            .join("");
+
+}
+
+
+/* =====================================================
+   CREATE PRODUCT CARD
+===================================================== */
+
+function createProductCard(product){
+
+    const id =
+        product.id;
+
+
+    const isWishlisted =
+        wishlist.some(
+            item => {
+
+                if(
+                    item &&
+                    typeof item === "object"
+                ){
+
+                    return sameId(
+                        item.id,
+                        id
+                    );
+
+                }
+
+                return sameId(
+                    item,
+                    id
+                );
+
+            }
+        );
+
+
+    const stock =
+        Number(product.stock || 0);
+
+
+    let stockText = "";
+    let stockClass = "";
+
+
+    if(stock <= 0){
+
+        stockText =
+            "Out of Stock";
+
+        stockClass =
+            "out-stock";
+
+    }
+
+    else if(stock <= 3){
+
+        stockText =
+            `Only ${stock} left`;
+
+        stockClass =
+            "low-stock";
+
+    }
+
+    else{
+
+        stockText =
+            "In Stock";
+
+        stockClass =
+            "in-stock";
+
+    }
+
+
+    const price =
+        getPrice(product);
+
+
+    const oldPrice =
+        Number(product.price || 0);
+
+
+    const onSale =
+        product.salePrice &&
+        oldPrice > price;
+
+
+    const rating =
+        getProductRating(id);
+
+
+    const image =
+        product.image;
+
+
+    return `
+
+        <article class="card">
+
+            ${
+                onSale
+                ?
+                `
+                <div class="sale-badge">
+                    SALE
+                </div>
+                `
+                :
+                ""
+            }
+
+
+            <button
+                class="wishlist ${
+                    isWishlisted
+                    ? "active"
+                    : ""
+                }"
+                onclick="toggleWishlist('${escapeHtml(String(id))}')"
+                aria-label="Wishlist">
+
+                ${
+                    isWishlisted
+                    ? "♥"
+                    : "♡"
+                }
+
+            </button>
+
+
+            <div
+                class="image"
+                onclick="viewProduct('${escapeHtml(String(id))}')">
+
+                ${
+                    image
+
+                    ?
+
+                    `
+                    <img
+                        src="${escapeHtml(image)}"
+                        alt="${escapeHtml(product.name || "Product")}"
+                        onerror="this.style.display='none';this.parentElement.innerHTML='<span class=&quot;no-image&quot;>Product Image</span>';">
+                    `
+
+                    :
+
+                    `
+                    <span class="no-image">
+                        Product Image
+                    </span>
+                    `
+                }
+
+            </div>
+
+
+            <div class="info">
+
+                <div class="category">
+                    ${escapeHtml(
+                        product.category ||
+                        "Men's Collection"
+                    )}
+                </div>
+
+
+                <div class="name">
+                    ${escapeHtml(
+                        product.name ||
+                        "Product"
+                    )}
+                </div>
+
+
+                <div class="description">
+
+                    ${escapeHtml(
+                        product.description ||
+                        "Premium men's product from THE TURBAN HOUSE."
+                    )}
+
+                </div>
+
+
+                <div class="product-rating">
+
+                    <span class="stars">
+                        ${getStars(rating.average)}
+                    </span>
+
+                    ${
+                        rating.count
+                        ?
+                        `
+                        <span class="rating-number">
+                            ${rating.average.toFixed(1)}
+                        </span>
+
+                        <span class="review-count">
+                            (${rating.count})
+                        </span>
+                        `
+                        :
+                        `
+                        <span class="review-count">
+                            No reviews
+                        </span>
+                        `
+                    }
+
+                </div>
+
+
+                <div class="price">
+
+                    <span class="main-price">
+                        ₹${price.toLocaleString("en-IN")}
+                    </span>
+
+
+                    ${
+                        onSale
+
+                        ?
+
+                        `
+                        <span class="old-price">
+                            ₹${oldPrice.toLocaleString("en-IN")}
+                        </span>
+                        `
+
+                        :
+
+                        ""
+                    }
+
+                </div>
+
+
+                <div class="stock ${stockClass}">
+                    ${stockText}
+                </div>
+
+
+                <div class="buttons">
+
+                    <button
+                        class="btn details"
+                        onclick="viewProduct('${escapeHtml(String(id))}')">
+
+                        View
+
+                    </button>
+
+
+                    <button
+                        class="btn add"
+                        onclick="addToCart('${escapeHtml(String(id))}')"
+                        ${
+                            stock <= 0
+                            ? "disabled"
+                            : ""
+                        }>
+
+                        🛒 Add
+
+                    </button>
+
+                </div>
+
+
+                <button
+                    class="btn whatsapp-btn"
+                    onclick="whatsappOrder('${escapeHtml(String(id))}')">
+
+                    WhatsApp Order
+
+                </button>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* =====================================================
+   ADD TO CART
+===================================================== */
+
+function addToCart(id){
+
+    refreshStorage();
+
+
+    const product =
+        products.find(
+            p => sameId(p.id,id)
+        );
+
+
+    if(!product){
+
+        showToast(
+            "Product not found."
+        );
+
+        return;
+
+    }
+
+
+    const stock =
+        Number(product.stock || 0);
+
+
+    if(stock <= 0){
+
+        showToast(
+            "This product is out of stock."
+        );
+
+        return;
+
+    }
+
+
+    let existing =
+        cart.find(
+            item => sameId(item.id,id)
+        );
+
+
+    if(existing){
+
+        const currentQuantity =
+            Number(
+                existing.quantity || 0
+            );
+
+
+        if(currentQuantity >= stock){
+
+            showToast(
+                "Maximum available stock reached."
+            );
+
+            return;
+
+        }
+
+
+        existing.quantity =
+            currentQuantity + 1;
+
+    }
+
+    else{
+
+        cart.push({
+
+            id:product.id,
+
+            name:
+                product.name || "Product",
+
+            price:
+                getPrice(product),
+
+            image:
+                product.image || "",
+
+            quantity:1
+
+        });
+
+    }
+
+
+    saveJSON(
+        "TH_CART",
+        cart
+    );
+
+
+    updateCartCount();
+
+
+    showToast(
+        "✓ Product added to cart!"
+    );
+
+}
+
+
+/* =====================================================
+   TOGGLE WISHLIST
+===================================================== */
+
+function toggleWishlist(id){
+
+    refreshStorage();
+
+
+    const index =
+        wishlist.findIndex(
+            item => {
+
+                if(
+                    item &&
+                    typeof item === "object"
+                ){
+
+                    return sameId(
+                        item.id,
+                        id
+                    );
+
+                }
+
+                return sameId(
+                    item,
+                    id
+                );
+
+            }
+        );
+
+
+    if(index === -1){
+
+        wishlist.push(id);
+
+        showToast(
+            "♡ Added to wishlist"
+        );
+
+    }
+
+    else{
+
+        wishlist.splice(
+            index,
+            1
+        );
+
+        showToast(
+            "Removed from wishlist"
+        );
+
+    }
+
+
+    saveJSON(
+        "TH_WISHLIST",
+        wishlist
+    );
+
+
+    renderProducts();
+
+}
+
+
+/* =====================================================
+   VIEW PRODUCT
+===================================================== */
+
+function viewProduct(id){
+
+    refreshStorage();
+
+
+    const product =
+        products.find(
+            p => sameId(p.id,id)
+        );
+
+
+    if(!product){
+
+        showToast(
+            "Product not found."
+        );
+
+        return;
+
+    }
+
+
+    saveJSON(
+        "TH_SELECTED_PRODUCT",
+        product
+    );
+
+
+    window.location.href =
+        "product.html";
+
+}
+
+
+/* =====================================================
+   WHATSAPP ORDER
+===================================================== */
+
+function whatsappOrder(id){
+
+    refreshStorage();
+
+
+    const product =
+        products.find(
+            p => sameId(p.id,id)
+        );
+
+
+    if(!product){
+
+        showToast(
+            "Product not found."
+        );
+
+        return;
+
+    }
+
+
+    const stock =
+        Number(product.stock || 0);
+
+
+    if(stock <= 0){
+
+        showToast(
+            "This product is out of stock."
+        );
+
+        return;
+
+    }
+
+
+    const price =
+        getPrice(product);
+
+
+    const message =
+`Hello THE TURBAN HOUSE,
+
+I want to order:
+
+Product: ${product.name || "Product"}
+Category: ${product.category || "Men's Collection"}
+SKU: ${product.sku || "N/A"}
+Quantity: 1
+Price: ₹${price.toLocaleString("en-IN")}
+
+Please confirm my order.`;
+
+
+    /*
+       IMPORTANT:
+       Replace this number with your real
+       WhatsApp business number.
+    */
+
+    const phone =
+        "91XXXXXXXXXX";
+
+
+    window.open(
+        "https://wa.me/" +
+        phone +
+        "?text=" +
+        encodeURIComponent(message),
+        "_blank"
+    );
+
+}
+
+
+/* =====================================================
+   CART COUNT
+===================================================== */
+
+function updateCartCount(){
+
+    cart =
+        loadJSON(
+            "TH_CART",
+            []
+        );
+
+
+    const count =
+        cart.reduce(
+            (total,item) =>
+                total +
+                Number(
+                    item.quantity || 0
+                ),
+            0
+        );
+
+
+    document.getElementById(
+        "cartCount"
+    ).innerText = count;
+
+}
+
+
+/* =====================================================
+   CLEAR FILTERS
+===================================================== */
+
+function clearFilters(){
+
+    document.getElementById(
+        "search"
+    ).value = "";
+
+
+    document.getElementById(
+        "category"
+    ).value = "";
+
+
+    document.getElementById(
+        "sort"
+    ).value = "default";
+
+
+    renderProducts();
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+let toastTimer;
+
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.innerText =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            2200
+        );
+
+}
+
+
+/* =====================================================
+   STORAGE CHANGE
+   Keeps shop synced if another tab changes data
+===================================================== */
+
+window.addEventListener(
+    "storage",
+    function(event){
+
+        if(
+            [
+                "TH_PRODUCTS",
+                "TH_CART",
+                "TH_WISHLIST",
+                "TH_REVIEWS"
+            ].includes(event.key)
+        ){
+
+            renderProducts();
+
+            updateCartCount();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   START
+===================================================== */
+
+renderProducts();
+
+updateCartCount();
+
+</script>
+
+</body>
+</html>

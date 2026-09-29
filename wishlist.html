@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Wishlist | THE TURBAN HOUSE</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f7f1e3;
+    color:#171717;
+}
+
+header{
+    background:#0b0b0b;
+    color:#fff;
+    padding:18px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.logo{
+    color:#d4af37;
+    font-size:24px;
+    font-weight:bold;
+}
+
+nav{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+nav a{
+    color:#fff;
+    text-decoration:none;
+    padding:9px 13px;
+    border-radius:6px;
+    font-size:14px;
+}
+
+nav a:hover{
+    background:#d4af37;
+    color:#000;
+}
+
+.container{
+    max-width:1150px;
+    margin:35px auto;
+    padding:0 18px;
+}
+
+.page-head{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.page-head h1{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.page-head h1 span{
+    color:#c9a227;
+}
+
+.page-head p{
+    color:#777;
+}
+
+.wishlist-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.product-card{
+    background:#fff;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 7px 22px rgba(0,0,0,.09);
+    position:relative;
+    transition:.2s;
+}
+
+.product-card:hover{
+    transform:translateY(-4px);
+}
+
+.product-image{
+    width:100%;
+    height:230px;
+    object-fit:cover;
+    background:#eee;
+    display:block;
+    cursor:pointer;
+}
+
+.product-info{
+    padding:16px;
+}
+
+.category{
+    color:#a27d12;
+    font-size:12px;
+    font-weight:bold;
+    text-transform:uppercase;
+    margin-bottom:7px;
+}
+
+.product-name{
+    font-size:17px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.price{
+    font-size:18px;
+    font-weight:bold;
+}
+
+.old-price{
+    color:#999;
+    text-decoration:line-through;
+    font-size:13px;
+    margin-left:7px;
+}
+
+.stock{
+    margin-top:8px;
+    font-size:13px;
+}
+
+.in-stock{
+    color:#16833b;
+}
+
+.out-stock{
+    color:#b00000;
+}
+
+.actions{
+    display:flex;
+    gap:8px;
+    margin-top:14px;
+}
+
+.cart-btn,
+.remove-btn{
+    flex:1;
+    border:none;
+    padding:11px 8px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.cart-btn{
+    background:#d4af37;
+    color:#000;
+}
+
+.cart-btn:hover{
+    background:#b18b1f;
+}
+
+.remove-btn{
+    background:#111;
+    color:#fff;
+}
+
+.remove-btn:hover{
+    background:#333;
+}
+
+.heart{
+    position:absolute;
+    right:12px;
+    top:12px;
+    width:36px;
+    height:36px;
+    border:none;
+    border-radius:50%;
+    background:#fff;
+    color:#c00000;
+    font-size:19px;
+    cursor:pointer;
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
+}
+
+.empty{
+    background:#fff;
+    border-radius:15px;
+    padding:55px 20px;
+    text-align:center;
+    box-shadow:0 7px 22px rgba(0,0,0,.08);
+}
+
+.empty-icon{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.empty h2{
+    margin-bottom:8px;
+}
+
+.empty p{
+    color:#777;
+    margin-bottom:20px;
+}
+
+.shop-btn{
+    display:inline-block;
+    background:#d4af37;
+    color:#000;
+    padding:13px 24px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.shop-btn:hover{
+    background:#b18b1f;
+}
+
+footer{
+    margin-top:50px;
+    background:#0b0b0b;
+    color:#aaa;
+    text-align:center;
+    padding:23px;
+}
+
+@media(max-width:950px){
+    .wishlist-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+@media(max-width:700px){
+    .wishlist-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .product-image{
+        height:200px;
+    }
+}
+
+@media(max-width:500px){
+    header{
+        padding:15px;
+    }
+
+    .wishlist-grid{
+        grid-template-columns:1fr;
+    }
+
+    .product-image{
+        height:260px;
+    }
+
+    .page-head h1{
+        font-size:26px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        THE TURBAN HOUSE
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="my-orders.html">My Orders</a>
+        <a href="profile.html">Profile</a>
+        <a href="account.html">Account</a>
+    </nav>
+
+</header>
+
+
+<div class="container">
+
+    <div class="page-head">
+
+        <h1>
+            My <span>Wishlist</span> ❤️
+        </h1>
+
+        <p>
+            Your favourite products saved for later.
+        </p>
+
+    </div>
+
+
+    <div id="wishlistContainer"></div>
+
+</div>
+
+
+<footer>
+    © 2026 THE TURBAN HOUSE — Premium Men's Collection
+</footer>
+
+
+<script src="/api-sync.js"></script>
+<script>
+
+/* =========================
+   DATA
+========================= */
+
+let wishlist =
+    JSON.parse(
+        localStorage.getItem("TH_WISHLIST")
+    ) || [];
+
+let products =
+    JSON.parse(
+        localStorage.getItem("TH_PRODUCTS")
+    ) || [];
+
+let cart =
+    JSON.parse(
+        localStorage.getItem("TH_CART")
+    ) || [];
+
+
+const container =
+    document.getElementById(
+        "wishlistContainer"
+    );
+
+
+/* =========================
+   DISPLAY
+========================= */
+
+function renderWishlist(){
+
+    wishlist =
+        JSON.parse(
+            localStorage.getItem("TH_WISHLIST")
+        ) || [];
+
+    products =
+        JSON.parse(
+            localStorage.getItem("TH_PRODUCTS")
+        ) || [];
+
+
+    if(wishlist.length === 0){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    ❤️
+                </div>
+
+                <h2>
+                    Your Wishlist is Empty
+                </h2>
+
+                <p>
+                    Save your favourite products here
+                    and shop them anytime.
+                </p>
+
+                <a
+                    href="shop.html"
+                    class="shop-btn"
+                >
+                    🛍️ Start Shopping
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    const wishlistProducts =
+        wishlist
+        .map(item => {
+
+            /*
+              Supports both:
+              TH_WISHLIST = ["id1","id2"]
+              and
+              TH_WISHLIST = [{id:"id1"}]
+            */
+
+            const id =
+                typeof item === "object"
+                ? item.id
+                : item;
+
+            return products.find(
+                product =>
+                String(product.id) === String(id)
+            );
+
+        })
+        .filter(product => product);
+
+
+    if(wishlistProducts.length === 0){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    ❤️
+                </div>
+
+                <h2>
+                    No Saved Products Found
+                </h2>
+
+                <p>
+                    Browse our men's collection
+                    and add products to your wishlist.
+                </p>
+
+                <a
+                    href="shop.html"
+                    class="shop-btn"
+                >
+                    Shop Now
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML = `
+
+        <div class="wishlist-grid">
+
+            ${wishlistProducts.map(product => {
+
+                const salePrice =
+                    Number(product.salePrice || 0);
+
+                const regularPrice =
+                    Number(product.price || 0);
+
+                const finalPrice =
+                    salePrice > 0 &&
+                    salePrice < regularPrice
+                    ? salePrice
+                    : regularPrice;
+
+
+                const hasSale =
+                    salePrice > 0 &&
+                    salePrice < regularPrice;
+
+
+                const stock =
+                    Number(product.stock || 0);
+
+
+                return `
+
+                    <div class="product-card">
+
+                        <button
+                            class="heart"
+                            onclick="removeWishlist('${escapeAttr(product.id)}')"
+                            title="Remove from wishlist"
+                        >
+                            ♥
+                        </button>
+
+
+                        <img
+                            class="product-image"
+                            src="${product.image || placeholderImage()}"
+                            alt="${escapeAttr(product.name)}"
+                            onclick="viewProduct('${escapeAttr(product.id)}')"
+                        >
+
+
+                        <div class="product-info">
+
+                            <div class="category">
+                                ${escapeHtml(product.category || "Product")}
+                            </div>
+
+
+                            <div class="product-name">
+                                ${escapeHtml(product.name || "Product")}
+                            </div>
+
+
+                            <div class="price">
+
+                                ₹${finalPrice.toLocaleString("en-IN")}
+
+                                ${
+                                    hasSale
+                                    ? `
+                                        <span class="old-price">
+                                            ₹${regularPrice.toLocaleString("en-IN")}
+                                        </span>
+                                      `
+                                    : ""
+                                }
+
+                            </div>
+
+
+                            ${
+                                stock > 0
+                                ? `
+                                    <div class="stock in-stock">
+                                        ✓ In Stock
+                                    </div>
+                                  `
+                                : `
+                                    <div class="stock out-stock">
+                                        ✕ Out of Stock
+                                    </div>
+                                  `
+                            }
+
+
+                            <div class="actions">
+
+                                <button
+                                    class="cart-btn"
+                                    onclick="addToCart('${escapeAttr(product.id)}')"
+                                    ${stock <= 0 ? "disabled style='opacity:.5;cursor:not-allowed;'" : ""}
+                                >
+                                    🛒 Add to Cart
+                                </button>
+
+
+                                <button
+                                    class="remove-btn"
+                                    onclick="removeWishlist('${escapeAttr(product.id)}')"
+                                >
+                                    Remove
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }).join("")}
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
+   VIEW PRODUCT
+========================= */
+
+function viewProduct(id){
+
+    const product =
+        products.find(
+            p => String(p.id) === String(id)
+        );
+
+    if(!product){
+        return;
+    }
+
+    localStorage.setItem(
+        "TH_SELECTED_PRODUCT",
+        JSON.stringify(product)
+    );
+
+    window.location.href =
+        "product.html";
+
+}
+
+
+/* =========================
+   REMOVE WISHLIST
+========================= */
+
+function removeWishlist(id){
+
+    wishlist =
+        wishlist.filter(item => {
+
+            const itemId =
+                typeof item === "object"
+                ? item.id
+                : item;
+
+            return String(itemId) !== String(id);
+
+        });
+
+
+    localStorage.setItem(
+        "TH_WISHLIST",
+        JSON.stringify(wishlist)
+    );
+
+
+    renderWishlist();
+
+}
+
+
+/* =========================
+   ADD TO CART
+========================= */
+
+function addToCart(id){
+
+    const product =
+        products.find(
+            p => String(p.id) === String(id)
+        );
+
+
+    if(!product){
+        alert("Product not found.");
+        return;
+    }
+
+
+    const stock =
+        Number(product.stock || 0);
+
+
+    if(stock <= 0){
+
+        alert("This product is currently out of stock.");
+
+        return;
+    }
+
+
+    cart =
+        JSON.parse(
+            localStorage.getItem("TH_CART")
+        ) || [];
+
+
+    const existing =
+        cart.find(
+            item =>
+            String(item.id) === String(product.id)
+        );
+
+
+    if(existing){
+
+        if(Number(existing.quantity || 1) >= stock){
+
+            alert(
+                "You cannot add more than available stock."
+            );
+
+            return;
+        }
+
+        existing.quantity =
+            Number(existing.quantity || 1) + 1;
+
+    }else{
+
+        cart.push({
+
+            id:product.id,
+
+            name:product.name,
+
+            category:product.category,
+
+            sku:product.sku || "",
+
+            price:Number(product.price || 0),
+
+            salePrice:Number(product.salePrice || 0),
+
+            image:product.image || "",
+
+            quantity:1,
+
+            stock:stock
+
+        });
+
+    }
+
+
+    localStorage.setItem(
+        "TH_CART",
+        JSON.stringify(cart)
+    );
+
+
+    alert(
+        product.name +
+        " added to cart."
+    );
+
+}
+
+
+/* =========================
+   PLACEHOLDER
+========================= */
+
+function placeholderImage(){
+
+    return "data:image/svg+xml;charset=UTF-8," +
+        encodeURIComponent(`
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="600"
+                 height="600"
+                 viewBox="0 0 600 600">
+
+                <rect width="600"
+                      height="600"
+                      fill="#eee"/>
+
+                <text
+                    x="50%"
+                    y="50%"
+                    text-anchor="middle"
+                    dominant-baseline="middle"
+                    font-size="28"
+                    fill="#777">
+                    THE TURBAN HOUSE
+                </text>
+
+            </svg>
+        `);
+
+}
+
+
+/* =========================
+   SECURITY HELPERS
+========================= */
+
+function escapeHtml(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttr(value){
+
+    return String(value)
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/"/g,"&quot;");
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+renderWishlist();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Customers | THE TURBAN HOUSE</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#0b0b0b;
+    color:#f5ead2;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+    background:#111;
+    border-right:1px solid #3a2a0c;
+    padding:25px 18px;
+    z-index:10;
+}
+
+.logo{
+    text-align:center;
+    color:#d4af37;
+    font-size:20px;
+    font-weight:bold;
+    letter-spacing:2px;
+    margin-bottom:35px;
+}
+
+.menu-title{
+    color:#777;
+    font-size:11px;
+    margin:20px 10px 8px;
+    letter-spacing:1px;
+}
+
+.sidebar a{
+    display:block;
+    color:#ccc;
+    text-decoration:none;
+    padding:12px 14px;
+    border-radius:8px;
+    margin-bottom:5px;
+    transition:.2s;
+}
+
+.sidebar a:hover,
+.sidebar a.active{
+    background:#2a210e;
+    color:#d4af37;
+}
+
+
+/* MAIN */
+
+.main{
+    margin-left:250px;
+    padding:30px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.heading h1{
+    font-size:30px;
+    color:#d4af37;
+}
+
+.heading p{
+    color:#999;
+    margin-top:6px;
+}
+
+.admin-badge{
+    border:1px solid #5b4716;
+    color:#d4af37;
+    padding:9px 15px;
+    border-radius:20px;
+    font-size:13px;
+}
+
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.stat{
+    background:#141414;
+    border:1px solid #29200d;
+    border-radius:12px;
+    padding:20px;
+}
+
+.stat span{
+    color:#888;
+    font-size:12px;
+}
+
+.stat strong{
+    display:block;
+    color:#d4af37;
+    font-size:27px;
+    margin-top:10px;
+}
+
+
+/* TOOLBAR */
+
+.toolbar{
+    background:#141414;
+    border:1px solid #29200d;
+    border-radius:12px;
+    padding:18px;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+
+.search{
+    flex:1;
+    min-width:250px;
+}
+
+input{
+    width:100%;
+    background:#0d0d0d;
+    color:#eee;
+    border:1px solid #3a2f17;
+    padding:12px;
+    border-radius:8px;
+    outline:none;
+}
+
+input:focus{
+    border-color:#d4af37;
+}
+
+button{
+    border:0;
+    border-radius:8px;
+    padding:11px 16px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.refresh{
+    background:#d4af37;
+    color:#111;
+}
+
+
+/* TABLE */
+
+.table-box{
+    background:#141414;
+    border:1px solid #29200d;
+    border-radius:12px;
+    overflow:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:900px;
+}
+
+th{
+    background:#1c180e;
+    color:#d4af37;
+    text-align:left;
+    padding:15px;
+    font-size:12px;
+}
+
+td{
+    padding:15px;
+    border-top:1px solid #282828;
+    color:#ddd;
+    font-size:13px;
+}
+
+.customer-name{
+    color:#fff;
+    font-weight:bold;
+}
+
+.mobile{
+    color:#999;
+    font-size:12px;
+}
+
+.amount{
+    color:#d4af37;
+    font-weight:bold;
+}
+
+
+/* EMPTY */
+
+.empty{
+    text-align:center;
+    padding:70px 20px;
+    color:#777;
+}
+
+.empty-icon{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.empty h3{
+    color:#ccc;
+    margin-bottom:8px;
+}
+
+
+/* MODAL */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.82);
+    z-index:100;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal-box{
+    width:100%;
+    max-width:700px;
+    max-height:90vh;
+    overflow:auto;
+    background:#141414;
+    border:1px solid #5a4615;
+    border-radius:15px;
+    padding:25px;
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.modal-header h2{
+    color:#d4af37;
+}
+
+.close{
+    background:#2a1717;
+    color:#ff9999;
+}
+
+.detail{
+    background:#0d0d0d;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:12px;
+}
+
+.detail label{
+    display:block;
+    color:#777;
+    font-size:11px;
+    margin-bottom:5px;
+}
+
+.detail p{
+    color:#eee;
+}
+
+.order-card{
+    border:1px solid #29200d;
+    background:#111;
+    padding:15px;
+    border-radius:10px;
+    margin-top:10px;
+}
+
+.order-card-top{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:8px;
+}
+
+.order-id{
+    color:#d4af37;
+    font-weight:bold;
+}
+
+.status{
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:10px;
+}
+
+.pending{
+    background:#332b14;
+    color:#f0c84b;
+}
+
+.confirmed{
+    background:#102c3a;
+    color:#63c8f5;
+}
+
+.packed{
+    background:#29204a;
+    color:#b69cff;
+}
+
+.shipped{
+    background:#123625;
+    color:#67df9a;
+}
+
+.delivered{
+    background:#123c24;
+    color:#62e69a;
+}
+
+.cancelled{
+    background:#3b1717;
+    color:#ff8585;
+}
+
+.whatsapp{
+    background:#25d366;
+    color:white;
+}
+
+.view{
+    background:#d4af37;
+    color:#111;
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+        border-right:0;
+        border-bottom:1px solid #3a2a0c;
+    }
+
+    .sidebar a{
+        display:inline-block;
+        margin-right:5px;
+    }
+
+    .main{
+        margin-left:0;
+        padding:18px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .topbar{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+}
+
+@media(max-width:500px){
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .heading h1{
+        font-size:25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        THE TURBAN HOUSE
+    </div>
+
+    <div class="menu-title">MAIN</div>
+
+    <a href="admin.html">Dashboard</a>
+    <a href="products.html">Products</a>
+    <a href="orders.html">Orders</a>
+    <a href="customers.html" class="active">Customers</a>
+
+    <div class="menu-title">STORE</div>
+
+    <a href="#">Reviews</a>
+    <a href="#">Coupons</a>
+    <a href="#">Banners</a>
+
+    <div class="menu-title">REPORTS</div>
+
+    <a href="#">Sales Reports</a>
+
+    <div class="menu-title">SYSTEM</div>
+
+    <a href="#">Settings</a>
+    <a href="welcome.html">View Website</a>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+    <div class="topbar">
+
+        <div class="heading">
+
+            <h1>Customers</h1>
+
+            <p>
+                Manage customer information and order history.
+            </p>
+
+        </div>
+
+        <div class="admin-badge">
+            ● ADMIN ONLINE
+        </div>
+
+    </div>
+
+
+    <!-- STATS -->
+
+    <section class="stats">
+
+        <div class="stat">
+
+            <span>TOTAL CUSTOMERS</span>
+
+            <strong id="totalCustomers">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span>TOTAL ORDERS</span>
+
+            <strong id="totalOrders">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span>TOTAL SALES</span>
+
+            <strong id="totalSales">
+                ₹0
+            </strong>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span>ACTIVE CUSTOMERS</span>
+
+            <strong id="activeCustomers">
+                0
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- SEARCH -->
+
+    <section class="toolbar">
+
+        <div class="search">
+
+            <input
+                type="text"
+                id="search"
+                placeholder="Search customer name or mobile..."
+                oninput="renderCustomers()"
+            >
+
+        </div>
+
+
+        <button
+            class="refresh"
+            onclick="loadCustomers()"
+        >
+            ↻ Refresh
+        </button>
+
+    </section>
+
+
+    <!-- CUSTOMER TABLE -->
+
+    <section class="table-box">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>CUSTOMER</th>
+                    <th>MOBILE</th>
+                    <th>TOTAL ORDERS</th>
+                    <th>TOTAL SPENDING</th>
+                    <th>LAST ORDER</th>
+                    <th>ACTION</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="customersTable"></tbody>
+
+        </table>
+
+
+        <div
+            id="emptyState"
+            class="empty"
+            style="display:none;"
+        >
+
+            <div class="empty-icon">
+                👥
+            </div>
+
+            <h3>
+                No Customers Found
+            </h3>
+
+            <p>
+                Customers will appear here after they place an order.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- CUSTOMER DETAILS MODAL -->
+
+<div
+    class="modal"
+    id="customerModal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>
+                Customer Details
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeModal()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+
+        <div id="customerDetails"></div>
+
+
+    </div>
+
+</div>
+
+
+<script src="/api-sync.js"></script>
+<script>
+
+let orders = [];
+
+let customers = [];
+
+let selectedCustomer = null;
+
+
+/* LOAD ORDERS */
+
+function loadCustomers(){
+
+    const saved =
+        localStorage.getItem("TH_ORDERS");
+
+
+    try{
+
+        orders =
+            saved
+            ?
+            JSON.parse(saved)
+            :
+            [];
+
+    }catch(error){
+
+        orders = [];
+
+    }
+
+
+    buildCustomers();
+
+    updateStats();
+
+    renderCustomers();
+
+}
+
+
+/* BUILD CUSTOMER LIST */
+
+function buildCustomers(){
+
+    const customerMap = {};
+
+
+    orders.forEach(order => {
+
+        const customer =
+            order.customer || {};
+
+
+        const mobile =
+            String(
+                customer.mobile || ""
+            ).replace(/\D/g,"");
+
+
+        if(!mobile) return;
+
+
+        if(!customerMap[mobile]){
+
+            customerMap[mobile] = {
+
+                name:
+                    customer.name ||
+                    "Customer",
+
+                mobile:
+                    mobile,
+
+                address:
+                    customer.address ||
+                    "",
+
+                city:
+                    customer.city ||
+                    "",
+
+                state:
+                    customer.state ||
+                    "",
+
+                pincode:
+                    customer.pincode ||
+                    "",
+
+                orders: []
+
+            };
+
+        }
+
+
+        customerMap[mobile]
+            .orders
+            .push(order);
+
+    });
+
+
+    customers =
+        Object.values(customerMap);
+
+}
+
+
+/* STATS */
+
+function updateStats(){
+
+    document.getElementById(
+        "totalCustomers"
+    ).textContent =
+        customers.length;
+
+
+    document.getElementById(
+        "totalOrders"
+    ).textContent =
+        orders.length;
+
+
+    const sales =
+        orders.reduce(
+            (sum,order) =>
+                sum + Number(order.total || 0),
+            0
+        );
+
+
+    document.getElementById(
+        "totalSales"
+    ).textContent =
+        "₹" +
+        sales.toLocaleString("en-IN");
+
+
+    const active =
+        customers.filter(
+            customer =>
+                customer.orders.length > 0
+        ).length;
+
+
+    document.getElementById(
+        "activeCustomers"
+    ).textContent =
+        active;
+
+}
+
+
+/* RENDER CUSTOMERS */
+
+function renderCustomers(){
+
+    const table =
+        document.getElementById(
+            "customersTable"
+        );
+
+
+    const empty =
+        document.getElementById(
+            "emptyState"
+        );
+
+
+    const search =
+        document.getElementById(
+            "search"
+        )
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const filtered =
+        customers.filter(customer => {
+
+            return (
+
+                customer.name
+                    .toLowerCase()
+                    .includes(search)
+
+                ||
+
+                customer.mobile
+                    .includes(search)
+
+            );
+
+        });
+
+
+    table.innerHTML = "";
+
+
+    if(filtered.length === 0){
+
+        empty.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    empty.style.display =
+        "none";
+
+
+    filtered.forEach(customer => {
+
+        const customerOrders =
+            customer.orders;
+
+
+        const totalOrders =
+            customerOrders.length;
+
+
+        const totalSpending =
+            customerOrders.reduce(
+                (sum,order) =>
+                    sum +
+                    Number(order.total || 0),
+                0
+            );
+
+
+        const sortedOrders =
+            customerOrders
+                .slice()
+                .sort(
+                    (a,b) =>
+                        new Date(b.createdAt)
+                        -
+                        new Date(a.createdAt)
+                );
+
+
+        const lastOrder =
+            sortedOrders[0];
+
+
+        const tr =
+            document.createElement("tr");
+
+
+        tr.innerHTML = `
+
+            <td>
+
+                <div class="customer-name">
+
+                    ${escapeHTML(
+                        customer.name
+                    )}
+
+                </div>
+
+            </td>
+
+
+            <td>
+
+                <div class="mobile">
+
+                    +91 ${escapeHTML(
+                        customer.mobile
+                    )}
+
+                </div>
+
+            </td>
+
+
+            <td>
+
+                ${totalOrders}
+
+            </td>
+
+
+            <td>
+
+                <span class="amount">
+
+                    ₹${totalSpending
+                        .toLocaleString(
+                            "en-IN"
+                        )}
+
+                </span>
+
+            </td>
+
+
+            <td>
+
+                ${
+                    lastOrder
+                    ?
+                    formatDate(
+                        lastOrder.createdAt
+                    )
+                    :
+                    "-"
+                }
+
+            </td>
+
+
+            <td>
+
+                <button
+                    class="view"
+                    onclick="viewCustomer('${escapeJS(customer.mobile)}')"
+                >
+                    View
+                </button>
+
+            </td>
+
+        `;
+
+
+        table.appendChild(tr);
+
+    });
+
+}
+
+
+/* VIEW CUSTOMER */
+
+function viewCustomer(mobile){
+
+    selectedCustomer =
+        customers.find(
+            customer =>
+                customer.mobile === mobile
+        );
+
+
+    if(!selectedCustomer)
+        return;
+
+
+    const customer =
+        selectedCustomer;
+
+
+    const customerOrders =
+        customer.orders
+            .slice()
+            .sort(
+                (a,b) =>
+                    new Date(b.createdAt)
+                    -
+                    new Date(a.createdAt)
+            );
+
+
+    const totalSpending =
+        customerOrders.reduce(
+            (sum,order) =>
+                sum +
+                Number(order.total || 0),
+            0
+        );
+
+
+    let ordersHTML = "";
+
+
+    customerOrders.forEach(order => {
+
+        ordersHTML += `
+
+            <div class="order-card">
+
+                <div class="order-card-top">
+
+                    <span class="order-id">
+
+                        ${escapeHTML(
+                            order.id || "-"
+                        )}
+
+                    </span>
+
+
+                    <span class="status ${
+                        statusClass(
+                            order.status
+                        )
+                    }">
+
+                        ${escapeHTML(
+                            order.status ||
+                            "Pending"
+                        )}
+
+                    </span>
+
+                </div>
+
+
+                <div
+                    style="
+                        color:#aaa;
+                        font-size:12px;
+                    "
+                >
+
+                    Date:
+                    ${formatDate(
+                        order.createdAt
+                    )}
+
+                    <br>
+
+                    Total:
+                    <strong
+                        style="color:#d4af37;"
+                    >
+                        ₹${Number(
+                            order.total || 0
+                        ).toLocaleString(
+                            "en-IN"
+                        )}
+                    </strong>
+
+                    <br>
+
+                    Payment:
+                    ${escapeHTML(
+                        order.paymentMode ||
+                        "-"
+                    )}
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
+    document.getElementById(
+        "customerDetails"
+    ).innerHTML = `
+
+
+        <div class="detail">
+
+            <label>
+                CUSTOMER NAME
+            </label>
+
+            <p>
+                ${escapeHTML(
+                    customer.name
+                )}
+            </p>
+
+        </div>
+
+
+        <div class="detail">
+
+            <label>
+                MOBILE
+            </label>
+
+            <p>
+                +91 ${escapeHTML(
+                    customer.mobile
+                )}
+            </p>
+
+        </div>
+
+
+        <div class="detail">
+
+            <label>
+                DELIVERY ADDRESS
+            </label>
+
+            <p>
+
+                ${escapeHTML(
+                    customer.address ||
+                    "-"
+                )}
+
+                <br>
+
+                ${escapeHTML(
+                    customer.city ||
+                    ""
+                )},
+
+                ${escapeHTML(
+                    customer.state ||
+                    ""
+                )}
+
+                -
+
+                ${escapeHTML(
+                    customer.pincode ||
+                    ""
+                )}
+
+            </p>
+
+        </div>
+
+
+        <div class="detail">
+
+            <label>
+                TOTAL ORDERS
+            </label>
+
+            <p>
+                ${customerOrders.length}
+            </p>
+
+        </div>
+
+
+        <div class="detail">
+
+            <label>
+                TOTAL SPENDING
+            </label>
+
+            <p
+                style="
+                    color:#d4af37;
+                    font-size:22px;
+                    font-weight:bold;
+                "
+            >
+                ₹${totalSpending.toLocaleString(
+                    "en-IN"
+                )}
+            </p>
+
+        </div>
+
+
+        <div class="detail">
+
+            <label>
+                ORDER HISTORY
+            </label>
+
+            ${
+                ordersHTML ||
+                "<p>No orders found.</p>"
+            }
+
+        </div>
+
+
+        <div
+            style="
+                display:flex;
+                gap:10px;
+                margin-top:20px;
+            "
+        >
+
+            <button
+                class="whatsapp"
+                onclick="whatsappCustomer()"
+            >
+                WhatsApp Customer
+            </button>
+
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "customerModal"
+    ).style.display =
+        "flex";
+
+}
+
+
+/* WHATSAPP */
+
+function whatsappCustomer(){
+
+    if(!selectedCustomer)
+        return;
+
+
+    const message =
+        "Hello " +
+        selectedCustomer.name +
+        ",%0A%0A" +
+
+        "THE TURBAN HOUSE se aapka contact hai.%0A" +
+
+        "Total Orders: " +
+        selectedCustomer.orders.length +
+        "%0A%0A" +
+
+        "Thank you for shopping with THE TURBAN HOUSE.";
+
+
+    window.open(
+
+        "https://wa.me/91" +
+        selectedCustomer.mobile +
+        "?text=" +
+        message,
+
+        "_blank"
+
+    );
+
+}
+
+
+/* CLOSE MODAL */
+
+function closeModal(){
+
+    document.getElementById(
+        "customerModal"
+    ).style.display =
+        "none";
+
+    selectedCustomer = null;
+
+}
+
+
+/* DATE */
+
+function formatDate(date){
+
+    if(!date)
+        return "-";
+
+
+    const d =
+        new Date(date);
+
+
+    if(isNaN(d.getTime()))
+        return "-";
+
+
+    return d.toLocaleDateString(
+        "en-IN",
+        {
+            day:"2-digit",
+            month:"short",
+            year:"numeric"
+        }
+    );
+
+}
+
+
+/* STATUS CLASS */
+
+function statusClass(status){
+
+    if(!status)
+        return "pending";
+
+
+    return String(status)
+        .toLowerCase()
+        .replace(/\s+/g,"");
+
+}
+
+
+/* SECURITY */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeJS(value){
+
+    return String(value ?? "")
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/"/g,'\\"');
+
+}
+
+
+/* START */
+
+loadCustomers();
+
+</script>
+
+</body>
+</html>

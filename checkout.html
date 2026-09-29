@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Checkout | THE TURBAN HOUSE</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#0b0b0b;
+    color:#f5f0e6;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+header{
+    background:#111;
+    border-bottom:1px solid #c9a227;
+}
+
+.navbar{
+    max-width:1250px;
+    margin:auto;
+    min-height:75px;
+    padding:0 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    color:#d4af37;
+    font-size:22px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.cart-link{
+    color:#ddd;
+    font-size:14px;
+}
+
+.page-header{
+    max-width:1250px;
+    margin:40px auto 25px;
+    padding:0 20px;
+}
+
+.page-header span{
+    color:#d4af37;
+    font-size:12px;
+    letter-spacing:2px;
+}
+
+.page-header h1{
+    margin-top:8px;
+    font-size:36px;
+}
+
+.checkout-layout{
+    max-width:1250px;
+    margin:0 auto 70px;
+    padding:0 20px;
+    display:grid;
+    grid-template-columns:1fr 390px;
+    gap:25px;
+}
+
+.box{
+    background:#121212;
+    border:1px solid #292929;
+    border-radius:18px;
+    padding:25px;
+}
+
+.box h2{
+    font-size:21px;
+    margin-bottom:22px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group.full{
+    grid-column:1 / -1;
+}
+
+label{
+    color:#cfcfcf;
+    font-size:13px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    background:#0d0d0d;
+    border:1px solid #3a3a3a;
+    color:#fff;
+    padding:13px 14px;
+    border-radius:9px;
+    outline:none;
+    font-size:14px;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#d4af37;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+
+/* PAYMENT */
+
+.payment-options{
+    display:grid;
+    gap:12px;
+}
+
+.payment-option{
+    border:1px solid #383838;
+    background:#0d0d0d;
+    border-radius:10px;
+    padding:15px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.payment-option:hover{
+    border-color:#d4af37;
+}
+
+.payment-option input{
+    width:auto;
+    accent-color:#d4af37;
+}
+
+.payment-title{
+    font-weight:bold;
+    font-size:14px;
+}
+
+.payment-description{
+    color:#888;
+    font-size:11px;
+    margin-top:4px;
+}
+
+
+/* ORDER */
+
+.order-item{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:13px 0;
+    border-bottom:1px solid #292929;
+}
+
+.order-item-name{
+    font-size:13px;
+}
+
+.order-item-qty{
+    color:#888;
+    font-size:11px;
+    margin-top:4px;
+}
+
+.order-item-price{
+    color:#d4af37;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+
+/* COUPON */
+
+.coupon-box{
+    margin-top:20px;
+    padding:16px;
+    background:#0d0d0d;
+    border:1px solid #342a13;
+    border-radius:12px;
+}
+
+.coupon-title{
+    color:#fff;
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.coupon-row{
+    display:flex;
+    gap:8px;
+}
+
+.coupon-row input{
+    flex:1;
+}
+
+.apply-coupon{
+    padding:0 16px;
+    border:none;
+    border-radius:8px;
+    background:#d4af37;
+    color:#111;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.apply-coupon:hover{
+    background:#f0cf55;
+}
+
+.remove-coupon{
+    margin-top:9px;
+    background:transparent;
+    border:none;
+    color:#ff7777;
+    font-size:12px;
+    cursor:pointer;
+    display:none;
+}
+
+.coupon-message{
+    margin-top:10px;
+    font-size:12px;
+    line-height:1.5;
+}
+
+.coupon-success{
+    color:#6ddd8c;
+}
+
+.coupon-error{
+    color:#ff7777;
+}
+
+
+/* SUMMARY */
+
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    padding:12px 0;
+    color:#bbb;
+}
+
+.discount-row{
+    color:#69d989;
+}
+
+.summary-total{
+    border-top:1px solid #444;
+    margin-top:5px;
+    padding-top:18px;
+    font-size:20px;
+    font-weight:bold;
+    color:#fff;
+}
+
+.summary-total strong{
+    color:#d4af37;
+}
+
+
+/* ORDER BUTTON */
+
+.place-order{
+    width:100%;
+    margin-top:20px;
+    padding:16px;
+    border:none;
+    border-radius:10px;
+    background:#d4af37;
+    color:#111;
+    font-weight:800;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.place-order:hover{
+    background:#f0cf55;
+}
+
+
+/* NOTE */
+
+.secure-note{
+    margin-top:15px;
+    padding:12px;
+    background:#18140a;
+    border:1px solid #594b20;
+    border-radius:9px;
+    color:#d8c986;
+    font-size:11px;
+    line-height:1.5;
+}
+
+
+/* EMPTY */
+
+.empty{
+    max-width:700px;
+    margin:80px auto;
+    padding:30px;
+    text-align:center;
+}
+
+.empty h2{
+    margin-bottom:12px;
+}
+
+.empty p{
+    color:#888;
+    margin-bottom:20px;
+}
+
+.shop-btn{
+    display:inline-block;
+    background:#d4af37;
+    color:#111;
+    padding:13px 25px;
+    border-radius:9px;
+    font-weight:bold;
+}
+
+
+/* FOOTER */
+
+footer{
+    border-top:1px solid #292929;
+    padding:30px 20px;
+    text-align:center;
+    color:#777;
+    font-size:12px;
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:850px){
+
+    .checkout-layout{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .navbar{
+        min-height:65px;
+    }
+
+    .logo{
+        font-size:16px;
+    }
+
+    .page-header h1{
+        font-size:29px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .box{
+        padding:17px;
+    }
+
+    .coupon-row{
+        flex-direction:column;
+    }
+
+    .apply-coupon{
+        padding:13px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="navbar">
+
+        <a href="index.html" class="logo">
+            THE TURBAN HOUSE
+        </a>
+
+        <a href="cart.html" class="cart-link">
+            ← Back to Cart
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<section class="page-header">
+
+    <span>SECURE CHECKOUT</span>
+
+    <h1>Complete Your Order</h1>
+
+</section>
+
+
+
+<main id="checkoutArea">
+
+    <div class="checkout-layout">
+
+
+        <!-- CUSTOMER DETAILS -->
+
+        <section>
+
+            <div class="box">
+
+                <h2>Customer Details</h2>
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label for="customerName">
+                            Full Name *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customerName"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="mobile">
+                            Mobile Number *
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="mobile"
+                            maxlength="10"
+                            placeholder="10 digit mobile number"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group full">
+
+                        <label for="address">
+                            Full Address *
+                        </label>
+
+                        <textarea
+                            id="address"
+                            placeholder="House / Shop No., Street, Area, Landmark"
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="state">
+                            State *
+                        </label>
+
+                        <select id="state" required>
+
+                            <option value="">
+                                Select State
+                            </option>
+
+                            <option>Punjab</option>
+                            <option>Haryana</option>
+                            <option>Delhi</option>
+                            <option>Chandigarh</option>
+                            <option>Uttar Pradesh</option>
+                            <option>Rajasthan</option>
+                            <option>Himachal Pradesh</option>
+                            <option>Uttarakhand</option>
+                            <option>Jammu & Kashmir</option>
+                            <option>Maharashtra</option>
+                            <option>Gujarat</option>
+                            <option>Madhya Pradesh</option>
+                            <option>Bihar</option>
+                            <option>West Bengal</option>
+                            <option>Other</option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="city">
+                            City *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            placeholder="Enter city"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="pincode">
+                            Pincode *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="pincode"
+                            maxlength="6"
+                            placeholder="6 digit pincode"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PAYMENT -->
+
+            <div class="box" style="margin-top:20px;">
+
+                <h2>Payment Method</h2>
+
+                <div class="payment-options">
+
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="Cash on Delivery"
+                            checked
+                        >
+
+                        <div>
+
+                            <div class="payment-title">
+                                Cash on Delivery
+                            </div>
+
+                            <div class="payment-description">
+                                Pay when your order is delivered.
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="WhatsApp Confirmation"
+                        >
+
+                        <div>
+
+                            <div class="payment-title">
+                                WhatsApp Confirmation
+                            </div>
+
+                            <div class="payment-description">
+                                Confirm your order through WhatsApp.
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ORDER SUMMARY -->
+
+        <aside>
+
+            <div class="box">
+
+                <h2>Your Order</h2>
+
+
+                <div id="orderItems"></div>
+
+
+
+                <!-- COUPON -->
+
+                <div class="coupon-box">
+
+                    <div class="coupon-title">
+                        🎟 Have a Coupon?
+                    </div>
+
+                    <div class="coupon-row">
+
+                        <input
+                            type="text"
+                            id="couponCode"
+                            placeholder="Enter coupon code"
+                            maxlength="30"
+                        >
+
+                        <button
+                            type="button"
+                            class="apply-coupon"
+                            onclick="applyCoupon()"
+                        >
+                            APPLY
+                        </button>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="removeCouponBtn"
+                        class="remove-coupon"
+                        onclick="removeCoupon()"
+                    >
+                        Remove Coupon
+                    </button>
+
+
+                    <div
+                        id="couponMessage"
+                        class="coupon-message"
+                    ></div>
+
+                </div>
+
+
+
+                <!-- SUBTOTAL -->
+
+                <div class="summary-row">
+
+                    <span>Subtotal</span>
+
+                    <strong id="subtotal">
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+
+                <!-- DISCOUNT -->
+
+                <div
+                    class="summary-row discount-row"
+                    id="discountRow"
+                    style="display:none;"
+                >
+
+                    <span id="discountLabel">
+                        Coupon Discount
+                    </span>
+
+                    <strong id="discountAmount">
+                        -₹0
+                    </strong>
+
+                </div>
+
+
+
+                <!-- SHIPPING -->
+
+                <div class="summary-row">
+
+                    <span>Shipping</span>
+
+                    <strong>
+                        FREE
+                    </strong>
+
+                </div>
+
+
+
+                <!-- TOTAL -->
+
+                <div class="summary-row summary-total">
+
+                    <span>Total</span>
+
+                    <strong id="grandTotal">
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+
+                <button
+                    class="place-order"
+                    onclick="placeOrder()"
+                >
+                    PLACE ORDER
+                </button>
+
+
+
+                <div class="secure-note">
+
+                    🔒 Your order details will be securely prepared
+                    for confirmation. Online payment gateway will be
+                    connected in the backend stage.
+
+                </div>
+
+
+            </div>
+
+        </aside>
+
+
+    </div>
+
+</main>
+
+
+
+<footer>
+
+    © 2026 THE TURBAN HOUSE • Premium Punjabi Men's Collection
+
+</footer>
+
+
+
+<script src="/api-sync.js"></script>
+<script>
+
+
+/* =========================================
+   CART
+========================================= */
+
+let cart = JSON.parse(
+    localStorage.getItem("TH_CART") || "[]"
+);
+
+
+/* =========================================
+   COUPON
+========================================= */
+
+let appliedCoupon = null;
+
+
+/* =========================================
+   MONEY
+========================================= */
+
+function money(value){
+
+    return "₹" +
+        Number(value || 0).toLocaleString("en-IN");
+
+}
+
+
+/* =========================================
+   PRODUCT PRICE
+========================================= */
+
+function getPrice(product){
+
+    if(
+        product.salePrice !== null &&
+        product.salePrice !== "" &&
+        Number(product.salePrice) > 0
+    ){
+
+        return Number(product.salePrice);
+
+    }
+
+    return Number(product.price || 0);
+
+}
+
+
+/* =========================================
+   SECURITY
+========================================= */
+
+function escapeHtml(value){
+
+    return String(value || "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================
+   CART SUBTOTAL
+========================================= */
+
+function calculateSubtotal(){
+
+    return cart.reduce(
+
+        (total,item)=>
+
+            total +
+            getPrice(item) *
+            Number(item.quantity || 1),
+
+        0
+
+    );
+
+}
+
+
+/* =========================================
+   COUPON DISCOUNT
+========================================= */
+
+function calculateCouponDiscount(){
+
+    if(!appliedCoupon){
+
+        return 0;
+
+    }
+
+
+    const subtotal = calculateSubtotal();
+
+
+    let discount =
+        subtotal *
+        Number(appliedCoupon.discount || 0) /
+        100;
+
+
+    /*
+       Maximum discount limit
+    */
+
+    if(
+        Number(appliedCoupon.maxDiscount || 0) > 0 &&
+        discount > Number(appliedCoupon.maxDiscount)
+    ){
+
+        discount =
+            Number(appliedCoupon.maxDiscount);
+
+    }
+
+
+    /*
+       Discount cannot exceed subtotal
+    */
+
+    if(discount > subtotal){
+
+        discount = subtotal;
+
+    }
+
+
+    return Math.round(discount);
+
+}
+
+
+/* =========================================
+   GRAND TOTAL
+========================================= */
+
+function calculateGrandTotal(){
+
+    const subtotal =
+        calculateSubtotal();
+
+    const discount =
+        calculateCouponDiscount();
+
+    return Math.max(
+        0,
+        subtotal - discount
+    );
+
+}
+
+
+/* =========================================
+   RENDER ORDER
+========================================= */
+
+function renderOrder(){
+
+    const container =
+        document.getElementById("orderItems");
+
+
+    if(!cart.length){
+
+        document.getElementById("checkoutArea").innerHTML = `
+
+            <div class="empty">
+
+                <h2>Your Cart is Empty</h2>
+
+                <p>
+                    Please add products before proceeding to checkout.
+                </p>
+
+                <a href="shop.html" class="shop-btn">
+                    SHOP NOW
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = cart.map(item=>{
+
+        const quantity =
+            Number(item.quantity || 1);
+
+        const price =
+            getPrice(item) * quantity;
+
+        return `
+
+            <div class="order-item">
+
+                <div>
+
+                    <div class="order-item-name">
+                        ${escapeHtml(item.name)}
+                    </div>
+
+                    <div class="order-item-qty">
+                        Qty: ${quantity}
+                    </div>
+
+                </div>
+
+                <div class="order-item-price">
+                    ${money(price)}
+                </div>
+
+            </div>
+
+        `;
+
+    }).join("");
+
+
+    updateSummary();
+
+}
+
+
+/* =========================================
+   UPDATE SUMMARY
+========================================= */
+
+function updateSummary(){
+
+    const subtotal =
+        calculateSubtotal();
+
+    const discount =
+        calculateCouponDiscount();
+
+    const total =
+        calculateGrandTotal();
+
+
+    document.getElementById("subtotal")
+        .textContent = money(subtotal);
+
+
+    document.getElementById("grandTotal")
+        .textContent = money(total);
+
+
+    const discountRow =
+        document.getElementById("discountRow");
+
+
+    if(discount > 0 && appliedCoupon){
+
+        discountRow.style.display = "flex";
+
+
+        document.getElementById("discountLabel")
+            .textContent =
+            "Coupon Discount (" +
+            appliedCoupon.code +
+            ")";
+
+
+        document.getElementById("discountAmount")
+            .textContent =
+            "-" + money(discount);
+
+    }else{
+
+        discountRow.style.display = "none";
+
+    }
+
+}
+
+
+/* =========================================
+   GET COUPONS
+========================================= */
+
+function getCoupons(){
+
+    return JSON.parse(
+        localStorage.getItem("TH_COUPONS") || "[]"
+    );
+
+}
+
+
+/* =========================================
+   APPLY COUPON
+========================================= */
+
+function applyCoupon(){
+
+    const input =
+        document.getElementById("couponCode");
+
+    const message =
+        document.getElementById("couponMessage");
+
+
+    const code =
+        input.value
+        .trim()
+        .toUpperCase();
+
+
+    message.className =
+        "coupon-message";
+
+
+    message.textContent = "";
+
+
+    if(!code){
+
+        message.classList.add("coupon-error");
+
+        message.textContent =
+            "Please enter a coupon code.";
+
+        return;
+
+    }
+
+
+    const coupons =
+        getCoupons();
+
+
+    const coupon =
+        coupons.find(
+            c =>
+                String(c.code || "")
+                .toUpperCase() === code
+        );
+
+
+    if(!coupon){
+
+        appliedCoupon = null;
+
+        message.classList.add("coupon-error");
+
+        message.textContent =
+            "Invalid coupon code.";
+
+        updateSummary();
+
+        return;
+
+    }
+
+
+    /* STATUS CHECK */
+
+    if(coupon.status === "Inactive"){
+
+        appliedCoupon = null;
+
+        message.classList.add("coupon-error");
+
+        message.textContent =
+            "This coupon is currently inactive.";
+
+        updateSummary();
+
+        return;
+
+    }
+
+
+    /* EXPIRY CHECK */
+
+    const today = new Date();
+
+    today.setHours(
+        0,
+        0,
+        0,
+        0
+    );
+
+
+    const expiry =
+        new Date(
+            coupon.expiryDate +
+            "T23:59:59"
+        );
+
+
+    if(expiry < today){
+
+        appliedCoupon = null;
+
+        message.classList.add("coupon-error");
+
+        message.textContent =
+            "This coupon has expired.";
+
+        updateSummary();
+
+        return;
+
+    }
+
+
+    /* MINIMUM ORDER CHECK */
+
+    const subtotal =
+        calculateSubtotal();
+
+
+    const minimumOrder =
+        Number(coupon.minOrder || 0);
+
+
+    if(subtotal < minimumOrder){
+
+        appliedCoupon = null;
+
+        message.classList.add("coupon-error");
+
+        message.textContent =
+            "Minimum order amount is " +
+            money(minimumOrder) +
+            " for this coupon.";
+
+        updateSummary();
+
+        return;
+
+    }
+
+
+    /* SUCCESS */
+
+    appliedCoupon = coupon;
+
+
+    const discount =
+        calculateCouponDiscount();
+
+
+    message.classList.add("coupon-success");
+
+    message.textContent =
+        "Coupon applied successfully! You saved " +
+        money(discount) +
+        ".";
+
+
+    document.getElementById("removeCouponBtn")
+        .style.display = "block";
+
+
+    input.value = coupon.code;
+
+
+    updateSummary();
+
+}
+
+
+/* =========================================
+   REMOVE COUPON
+========================================= */
+
+function removeCoupon(){
+
+    appliedCoupon = null;
+
+
+    document.getElementById("couponCode")
+        .value = "";
+
+
+    const message =
+        document.getElementById("couponMessage");
+
+
+    message.className =
+        "coupon-message";
+
+
+    message.textContent =
+        "Coupon removed.";
+
+
+    document.getElementById("removeCouponBtn")
+        .style.display = "none";
+
+
+    updateSummary();
+
+}
+
+
+/* =========================================
+   VALIDATE FORM
+========================================= */
+
+function validateForm(){
+
+    const name =
+        document
+        .getElementById("customerName")
+        .value
+        .trim();
+
+
+    const mobile =
+        document
+        .getElementById("mobile")
+        .value
+        .trim();
+
+
+    const address =
+        document
+        .getElementById("address")
+        .value
+        .trim();
+
+
+    const state =
+        document
+        .getElementById("state")
+        .value;
+
+
+    const city =
+        document
+        .getElementById("city")
+        .value
+        .trim();
+
+
+    const pincode =
+        document
+        .getElementById("pincode")
+        .value
+        .trim();
+
+
+    if(name.length < 2){
+
+        alert("Please enter your full name.");
+
+        return false;
+
+    }
+
+
+    if(
+        !/^[6-9][0-9]{9}$/
+        .test(mobile)
+    ){
+
+        alert(
+            "Please enter a valid 10-digit mobile number."
+        );
+
+        return false;
+
+    }
+
+
+    if(address.length < 10){
+
+        alert(
+            "Please enter your complete address."
+        );
+
+        return false;
+
+    }
+
+
+    if(!state){
+
+        alert(
+            "Please select your state."
+        );
+
+        return false;
+
+    }
+
+
+    if(city.length < 2){
+
+        alert(
+            "Please enter your city."
+        );
+
+        return false;
+
+    }
+
+
+    if(
+        !/^[0-9]{6}$/
+        .test(pincode)
+    ){
+
+        alert(
+            "Please enter a valid 6-digit pincode."
+        );
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =========================================
+   ORDER ID
+========================================= */
+
+function createOrderId(){
+
+    const now =
+        new Date();
+
+
+    const date =
+
+        now
+        .getFullYear()
+        .toString()
+        .slice(-2) +
+
+        String(
+            now.getMonth() + 1
+        ).padStart(2,"0") +
+
+        String(
+            now.getDate()
+        ).padStart(2,"0");
+
+
+    const random =
+        Math.floor(
+            1000 +
+            Math.random() *
+            9000
+        );
+
+
+    return "TH-" +
+        date +
+        "-" +
+        random;
+
+}
+
+
+/* =========================================
+   PLACE ORDER
+========================================= */
+
+async function placeOrder(){
+
+    // Server-side annual service gate: once the 1-year service expires,
+    // checkout is disabled until the service is renewed by the admin.
+    try {
+        const serviceResponse = await fetch('/api/service-status', {cache:'no-store'});
+        const serviceData = await serviceResponse.json();
+        if(!serviceResponse.ok || !serviceData.success || !serviceData.service || !serviceData.service.active){
+            alert('THE TURBAN HOUSE service has expired. Checkout and new orders are temporarily disabled. Please contact the store/admin for renewal.');
+            return;
+        }
+    } catch (error) {
+        alert('Unable to verify store service status. Please check your internet connection and try again.');
+        return;
+    }
+
+    if(!cart.length){
+
+        alert(
+            "Your cart is empty."
+        );
+
+        return;
+
+    }
+
+
+    if(!validateForm()){
+
+        return;
+
+    }
+
+
+    /*
+       Re-check coupon at order time.
+       This prevents an invalid/expired coupon
+       from being saved accidentally.
+    */
+
+    if(appliedCoupon){
+
+        const coupons =
+            getCoupons();
+
+
+        const freshCoupon =
+            coupons.find(
+                c =>
+                    String(c.code || "")
+                    .toUpperCase() ===
+                    String(appliedCoupon.code || "")
+                    .toUpperCase()
+            );
+
+
+        if(!freshCoupon){
+
+            alert(
+                "The selected coupon is no longer available."
+            );
+
+            removeCoupon();
+
+            return;
+
+        }
+
+
+        if(freshCoupon.status === "Inactive"){
+
+            alert(
+                "The selected coupon is inactive."
+            );
+
+            removeCoupon();
+
+            return;
+
+        }
+
+
+        const today =
+            new Date();
+
+
+        today.setHours(
+            0,
+            0,
+            0,
+            0
+        );
+
+
+        const expiry =
+            new Date(
+                freshCoupon.expiryDate +
+                "T23:59:59"
+            );
+
+
+        if(expiry < today){
+
+            alert(
+                "The selected coupon has expired."
+            );
+
+            removeCoupon();
+
+            return;
+
+        }
+
+
+        if(
+            calculateSubtotal() <
+            Number(freshCoupon.minOrder || 0)
+        ){
+
+            alert(
+                "Your order no longer meets the minimum amount for this coupon."
+            );
+
+            removeCoupon();
+
+            return;
+
+        }
+
+
+        appliedCoupon =
+            freshCoupon;
+
+    }
+
+
+    /* CUSTOMER */
+
+    const customer = {
+
+        name:
+            document
+            .getElementById("customerName")
+            .value
+            .trim(),
+
+        mobile:
+            document
+            .getElementById("mobile")
+            .value
+            .trim(),
+
+        address:
+            document
+            .getElementById("address")
+            .value
+            .trim(),
+
+        state:
+            document
+            .getElementById("state")
+            .value,
+
+        city:
+            document
+            .getElementById("city")
+            .value
+            .trim(),
+
+        pincode:
+            document
+            .getElementById("pincode")
+            .value
+            .trim()
+
+    };
+
+
+    /* PAYMENT */
+
+    const payment =
+        document.querySelector(
+            'input[name="payment"]:checked'
+        ).value;
+
+
+    /* TOTALS */
+
+    const subtotal =
+        calculateSubtotal();
+
+
+    const discount =
+        calculateCouponDiscount();
+
+
+    const total =
+        calculateGrandTotal();
+
+
+    const orderId =
+        createOrderId();
+
+
+    /* PRODUCTS */
+
+    const products =
+        cart.map(item => ({
+
+            id:
+                item.id,
+
+            name:
+                item.name,
+
+            category:
+                item.category,
+
+            price:
+                getPrice(item),
+
+            quantity:
+                Number(
+                    item.quantity || 1
+                ),
+
+            total:
+                getPrice(item) *
+                Number(
+                    item.quantity || 1
+                )
+
+        }));
+
+
+    /* ORDER */
+
+    const order = {
+
+        id:
+            orderId,
+
+        customer:
+            customer,
+
+        products:
+            products,
+
+        subtotal:
+            subtotal,
+
+        coupon:
+            appliedCoupon
+            ? {
+
+                code:
+                    appliedCoupon.code,
+
+                discount:
+                    Number(
+                        appliedCoupon.discount || 0
+                    ),
+
+                discountAmount:
+                    discount,
+
+                minOrder:
+                    Number(
+                        appliedCoupon.minOrder || 0
+                    ),
+
+                maxDiscount:
+                    Number(
+                        appliedCoupon.maxDiscount || 0
+                    )
+
+            }
+            : null,
+
+        discount:
+            discount,
+
+        total:
+            total,
+
+        paymentMode:
+            payment,
+
+        status:
+            "Pending",
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    /*
+       TEMPORARY FRONTEND STORAGE
+
+       Later this will be replaced
+       with permanent backend/database.
+    */
+
+    const existingOrders =
+        JSON.parse(
+            localStorage.getItem(
+                "TH_ORDERS"
+            ) || "[]"
+        );
+
+
+    existingOrders.push(order);
+
+
+    localStorage.setItem(
+        "TH_ORDERS",
+        JSON.stringify(
+            existingOrders
+        )
+    );
+
+
+    /*
+       SAVE LATEST ORDER
+    */
+
+    localStorage.setItem(
+        "TH_LAST_ORDER",
+        JSON.stringify(order)
+    );
+
+
+    /*
+       CLEAR CART
+    */
+
+    localStorage.removeItem(
+        "TH_CART"
+    );
+
+
+    /*
+       CLEAR APPLIED COUPON
+    */
+
+    appliedCoupon = null;
+
+
+    /*
+       GO TO SUCCESS PAGE
+    */
+
+    window.location.href =
+        "order-success.html";
+
+}
+
+
+/* =========================================
+   INITIAL LOAD
+========================================= */
+
+renderOrder();
+
+</script>
+
+</body>
+</html>

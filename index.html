@@ -1,0 +1,2145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>THE TURBAN HOUSE | Men's Collection</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f5eddf;
+    color:#17130d;
+    font-family:Arial,sans-serif;
+}
+
+/* ================= TOP BAR ================= */
+
+.topbar{
+    background:#090909;
+    color:#d8ad57;
+    text-align:center;
+    padding:9px;
+    font-size:12px;
+    letter-spacing:1.5px;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    background:#111;
+    color:white;
+
+    display:flex;
+    align-items:center;
+    gap:28px;
+
+    padding:20px 5%;
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-family:Georgia,serif;
+    font-size:23px;
+    color:#d8ad57;
+    letter-spacing:1px;
+    margin-right:auto;
+}
+
+.navbar a{
+    color:#eee;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.navbar a:hover{
+    color:#d8ad57;
+}
+
+.cart-link{
+    border:1px solid #d8ad57;
+    padding:9px 13px;
+    border-radius:6px;
+}
+
+
+/* ================= HERO ================= */
+
+.hero{
+    margin:25px 5%;
+
+    min-height:430px;
+
+    border-radius:20px;
+
+    display:flex;
+    align-items:center;
+
+    padding:60px;
+
+    color:white;
+
+    background:
+    radial-gradient(
+        circle at 80% 50%,
+        #604a28,
+        #2a2114 35%,
+        #0b0b0b 75%
+    );
+
+    overflow:hidden;
+}
+
+.hero-content{
+    max-width:650px;
+}
+
+.small-title{
+    color:#d8ad57;
+    letter-spacing:3px;
+    font-size:13px;
+    margin-bottom:15px;
+}
+
+.hero h1{
+    font-family:Georgia,serif;
+    font-size:clamp(45px,6vw,75px);
+    line-height:.95;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    color:#d8ad57;
+}
+
+.hero p{
+    color:#d8d0c3;
+    line-height:1.7;
+    max-width:550px;
+}
+
+.shop-btn{
+    display:inline-block;
+
+    margin-top:25px;
+
+    padding:14px 27px;
+
+    background:#d8ad57;
+    color:#111;
+
+    text-decoration:none;
+
+    font-weight:bold;
+    letter-spacing:1px;
+
+    border-radius:5px;
+}
+
+.shop-btn:hover{
+    background:#f0ca75;
+}
+
+
+/* ================= SECTION ================= */
+
+.section{
+    padding:20px 5% 45px;
+}
+
+.section-title{
+    font-family:Georgia,serif;
+    font-size:32px;
+    margin-bottom:22px;
+}
+
+
+/* ================= CATEGORIES ================= */
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.category{
+    background:white;
+
+    border:1px solid #dfd0b4;
+
+    border-radius:15px;
+
+    padding:28px;
+
+    min-height:125px;
+
+    transition:.25s;
+
+    cursor:pointer;
+}
+
+.category:hover{
+    transform:translateY(-4px);
+    border-color:#d8ad57;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.category.active{
+    background:#111;
+    color:white;
+    border-color:#d8ad57;
+}
+
+.category h3{
+    font-family:Georgia,serif;
+    font-size:21px;
+}
+
+.category p{
+    margin-top:8px;
+    color:#806d4f;
+    font-size:13px;
+}
+
+.category.active p{
+    color:#d8c59e;
+}
+
+
+/* ================= PRODUCTS ================= */
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+
+/* ================= PRODUCT ================= */
+
+.product{
+    background:white;
+
+    border:1px solid #dfd0b4;
+
+    border-radius:15px;
+
+    padding:15px;
+
+    overflow:hidden;
+
+    transition:.25s;
+}
+
+.product:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(0,0,0,.10);
+}
+
+
+/* ================= PRODUCT IMAGE ================= */
+
+.product-image{
+    height:220px;
+
+    width:100%;
+
+    border-radius:10px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #17130e,
+        #725a31,
+        #222
+    );
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:#d8ad57;
+
+    font-family:Georgia,serif;
+    font-size:20px;
+
+    overflow:hidden;
+
+    cursor:pointer;
+}
+
+.product-image img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:.35s;
+}
+
+.product-image:hover img{
+    transform:scale(1.04);
+}
+
+.product h3{
+    margin-top:15px;
+    font-family:Georgia,serif;
+}
+
+.product p{
+    color:#806d4f;
+    font-size:13px;
+    margin:7px 0;
+}
+
+.price{
+    color:#9b701e;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.old-price{
+    color:#999;
+    text-decoration:line-through;
+    font-size:13px;
+    margin-right:7px;
+}
+
+.sale-price{
+    color:#b52828;
+}
+
+
+/* ================= STOCK ================= */
+
+.stock{
+    color:#218c45;
+    font-size:12px;
+    font-weight:bold;
+    margin-top:8px;
+}
+
+.out-stock{
+    color:#c0392b;
+}
+
+
+/* ================= BUTTONS ================= */
+
+.product-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:12px;
+}
+
+.add-btn,
+.view-btn{
+    width:100%;
+
+    padding:11px;
+
+    border-radius:5px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    font-size:12px;
+}
+
+.add-btn{
+    background:#111;
+    color:#d8ad57;
+    border:1px solid #d8ad57;
+}
+
+.add-btn:hover{
+    background:#d8ad57;
+    color:#111;
+}
+
+.view-btn{
+    background:#eee5d2;
+    color:#60470e;
+    border:1px solid #d6c39c;
+}
+
+.view-btn:hover{
+    background:#d8ad57;
+    color:#111;
+}
+
+.buy-btn{
+    grid-column:1/-1;
+
+    width:100%;
+
+    padding:11px;
+
+    background:#218c45;
+    color:white;
+
+    border:0;
+
+    border-radius:5px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+.buy-btn:hover{
+    background:#176b34;
+}
+
+.disabled-btn{
+    width:100%;
+
+    padding:11px;
+
+    background:#999;
+    color:white;
+
+    border:0;
+
+    border-radius:5px;
+
+    cursor:not-allowed;
+}
+
+
+/* ================= LOADING ================= */
+
+.loading{
+    text-align:center;
+    padding:45px 20px;
+    color:#806d4f;
+}
+
+
+/* ================= EMPTY ================= */
+
+.empty-products{
+    grid-column:1/-1;
+
+    background:white;
+
+    border:1px solid #dfd0b4;
+
+    border-radius:15px;
+
+    padding:50px 20px;
+
+    text-align:center;
+
+    color:#777;
+}
+
+
+/* ================= ERROR ================= */
+
+.api-error{
+    display:none;
+
+    background:#fff0f0;
+
+    color:#a52b2b;
+
+    border:1px solid #edbcbc;
+
+    padding:15px;
+
+    border-radius:8px;
+
+    margin-bottom:20px;
+
+    text-align:center;
+}
+
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+
+    bottom:25px;
+    right:25px;
+
+    background:#111;
+    color:white;
+
+    border:1px solid #d8ad57;
+
+    padding:14px 20px;
+
+    border-radius:8px;
+
+    z-index:5000;
+
+    opacity:0;
+
+    transform:translateY(100px);
+
+    transition:.3s;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+
+/* ================= FOOTER ================= */
+
+.footer{
+    background:#111;
+    color:#ccc;
+
+    padding:40px 5%;
+
+    text-align:center;
+
+    margin-top:30px;
+}
+
+.footer strong{
+    color:#d8ad57;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+    .navbar{
+        gap:15px;
+        flex-wrap:wrap;
+    }
+
+    .navbar a{
+        font-size:12px;
+    }
+
+    .categories{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .hero{
+        padding:40px 28px;
+    }
+
+}
+
+
+@media(max-width:550px){
+
+    .navbar{
+        padding:15px;
+    }
+
+    .logo{
+        width:100%;
+        text-align:center;
+        margin-bottom:5px;
+    }
+
+    .navbar{
+        justify-content:center;
+    }
+
+    .categories,
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        min-height:400px;
+        margin:15px;
+        padding:40px 25px;
+    }
+
+    .hero h1{
+        font-size:43px;
+    }
+
+    .section{
+        padding-left:20px;
+        padding-right:20px;
+    }
+
+    .toast{
+        left:15px;
+        right:15px;
+        bottom:15px;
+        text-align:center;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= TOP BAR ================= -->
+
+<div class="topbar">
+    FREE SHIPPING • PREMIUM MEN'S COLLECTION • WHATSAPP ORDER SUPPORT
+</div>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        THE TURBAN HOUSE
+    </div>
+
+    <a href="index.html">
+        Home
+    </a>
+
+    <a href="#categories">
+        Categories
+    </a>
+
+    <a href="#products">
+        Products
+    </a>
+
+    <a href="#">
+        Wishlist ♡
+    </a>
+
+    <a href="cart.html" class="cart-link">
+        Cart 🛒
+        <span id="cartCount">0</span>
+    </a>
+
+    <a href="#">
+        Account 👤
+    </a>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="small-title">
+            THE MEN'S COLLECTION
+        </div>
+
+        <h1>
+            Royal
+            <span>Punjabi</span>
+            Style
+        </h1>
+
+        <p>
+            Premium men's fashion and traditional accessories
+            for weddings, celebrations and everyday royal style.
+        </p>
+
+        <a href="#products" class="shop-btn">
+            SHOP NOW
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CATEGORIES ================= -->
+
+<section class="section" id="categories">
+
+    <h2 class="section-title">
+        Shop Categories
+    </h2>
+
+
+    <div class="categories">
+
+
+        <div
+            class="category active"
+            data-category="all"
+            onclick="filterCategory('all')">
+
+            <h3>
+                All Products
+            </h3>
+
+            <p>
+                Complete collection
+            </p>
+
+        </div>
+
+
+        <div
+            class="category"
+            data-category="Turban"
+            onclick="filterCategory('Turban')">
+
+            <h3>
+                Turban
+            </h3>
+
+            <p>
+                Premium royal turbans
+            </p>
+
+        </div>
+
+
+        <div
+            class="category"
+            data-category="Kalgi"
+            onclick="filterCategory('Kalgi')">
+
+            <h3>
+                Kalgi
+            </h3>
+
+            <p>
+                Royal turban accessories
+            </p>
+
+        </div>
+
+
+        <div
+            class="category"
+            data-category="Sehra"
+            onclick="filterCategory('Sehra')">
+
+            <h3>
+                Sehra
+            </h3>
+
+            <p>
+                Wedding sehra collection
+            </p>
+
+        </div>
+
+
+        <div
+            class="category"
+            data-category="Watch"
+            onclick="filterCategory('Watch')">
+
+            <h3>
+                Watch
+            </h3>
+
+            <p>
+                Premium men's watches
+            </p>
+
+        </div>
+
+
+        <div
+            class="category"
+            data-category="Perfume"
+            onclick="filterCategory('Perfume')">
+
+            <h3>
+                Perfume
+            </h3>
+
+            <p>
+                Luxury fragrances
+            </p>
+
+        </div>
+
+
+        <div
+            class="category"
+            data-category="Oud"
+            onclick="filterCategory('Oud')">
+
+            <h3>
+                Oud
+            </h3>
+
+            <p>
+                Premium oud collection
+            </p>
+
+        </div>
+
+
+        <div
+            class="category"
+            data-category="Sunglasses"
+            onclick="filterCategory('Sunglasses')">
+
+            <h3>
+                Sunglasses
+            </h3>
+
+            <p>
+                Men's stylish sunglasses
+            </p>
+
+        </div>
+
+
+        <div
+            class="category"
+            data-category="Tie"
+            onclick="filterCategory('Tie')">
+
+            <h3>
+                Tie
+            </h3>
+
+            <p>
+                Formal men's collection
+            </p>
+
+        </div>
+
+
+        <div
+            class="category"
+            data-category="Accessories"
+            onclick="filterCategory('Accessories')">
+
+            <h3>
+                Accessories
+            </h3>
+
+            <p>
+                Complete your royal look
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<section class="section" id="products">
+
+    <h2 class="section-title">
+        Featured Products
+    </h2>
+
+
+    <div
+        id="apiError"
+        class="api-error">
+    </div>
+
+
+    <div
+        id="productsLoading"
+        class="loading">
+
+        Loading products...
+
+    </div>
+
+
+    <div
+        class="products"
+        id="productsGrid">
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <strong>
+        THE TURBAN HOUSE
+    </strong>
+
+    <p style="margin-top:10px">
+        Premium Men's Collection • Punjabi Heritage • Royal Style
+    </p>
+
+    <p style="margin-top:18px;font-size:13px">
+        © 2026 THE TURBAN HOUSE. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<!-- ================= TOAST ================= -->
+
+<div
+    id="toast"
+    class="toast">
+</div>
+
+
+<script src="/api-sync.js"></script>
+<script>
+
+/* =========================================================
+   THE TURBAN HOUSE
+   PRODUCT SYSTEM
+========================================================= */
+
+let websiteProducts = [];
+
+let selectedCategory = "all";
+
+
+/* =========================================================
+   GET LOCAL PRODUCTS
+========================================================= */
+
+function getLocalProducts(){
+
+    try{
+
+        const saved =
+            localStorage.getItem("TH_PRODUCTS");
+
+        if(!saved){
+            return [];
+        }
+
+        const data =
+            JSON.parse(saved);
+
+        return Array.isArray(data)
+            ? data
+            : [];
+
+    }catch(error){
+
+        console.error(
+            "Local products error:",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+/* =========================================================
+   NORMALIZE PRODUCT
+   This makes old/new product formats compatible.
+========================================================= */
+
+function normalizeProduct(product){
+
+    return {
+
+        id:
+            product.id ??
+            product._id ??
+            Date.now(),
+
+        name:
+            product.name ??
+            product.title ??
+            "Product",
+
+        category:
+            product.category ??
+            product.Category ??
+            "",
+
+        sku:
+            product.sku ??
+            product.SKU ??
+            "",
+
+        price:
+            Number(
+                product.price ??
+                0
+            ),
+
+        salePrice:
+            product.salePrice !== undefined &&
+            product.salePrice !== null &&
+            product.salePrice !== ""
+
+                ? Number(product.salePrice)
+
+                : null,
+
+        stock:
+            Number(
+                product.stock ??
+                product.quantity ??
+                0
+            ),
+
+        size:
+            product.size ??
+            "",
+
+        colour:
+            product.colour ??
+            product.color ??
+            "",
+
+        description:
+            product.description ??
+            product.desc ??
+            "Premium men's collection.",
+
+        image:
+            product.image ??
+            product.imageUrl ??
+            product.photo ??
+            "",
+
+        active:
+            product.active !== false,
+
+        status:
+            product.status ??
+            "active"
+
+    };
+
+}
+
+
+/* =========================================================
+   LOAD PRODUCTS
+   First localStorage.
+   Then API if available.
+========================================================= */
+
+async function loadProducts(){
+
+    const loading =
+        document.getElementById(
+            "productsLoading"
+        );
+
+    const grid =
+        document.getElementById(
+            "productsGrid"
+        );
+
+    const errorBox =
+        document.getElementById(
+            "apiError"
+        );
+
+
+    loading.style.display =
+        "block";
+
+    errorBox.style.display =
+        "none";
+
+
+    /*
+       FIRST:
+       Load products from admin localStorage.
+       This is important because your admin page
+       currently saves products into TH_PRODUCTS.
+    */
+
+    let localProducts =
+        getLocalProducts();
+
+
+    if(localProducts.length){
+
+        websiteProducts =
+            localProducts
+            .map(normalizeProduct)
+            .filter(function(product){
+
+                return product.active &&
+                       product.status !== "inactive";
+
+            });
+
+    }
+
+
+    /*
+       SECOND:
+       Try API.
+
+       If server/API exists and returns products,
+       use API data.
+
+       If API does not exist,
+       localStorage products remain visible.
+    */
+
+    try{
+
+        const response =
+            await fetch(
+                "/api/products",
+                {
+                    method:"GET",
+                    headers:{
+                        "Accept":
+                            "application/json"
+                    }
+                }
+            );
+
+
+        if(response.ok){
+
+            const data =
+                await response.json();
+
+
+            let apiProducts = [];
+
+
+            if(Array.isArray(data)){
+
+                apiProducts =
+                    data;
+
+            }else if(
+                data &&
+                Array.isArray(data.products)
+            ){
+
+                apiProducts =
+                    data.products;
+
+            }
+
+
+            if(apiProducts.length){
+
+                websiteProducts =
+                    apiProducts
+                    .map(normalizeProduct)
+                    .filter(function(product){
+
+                        return product.active &&
+                               product.status !== "inactive";
+
+                    });
+
+            }
+
+        }
+
+    }catch(error){
+
+        /*
+           API unavailable is NOT a fatal error.
+
+           LocalStorage products continue working.
+        */
+
+        console.log(
+            "API unavailable. Using local products."
+        );
+
+    }
+
+
+    displayProducts();
+
+
+    loading.style.display =
+        "none";
+
+
+    /*
+       Only show error if absolutely
+       no products are available.
+    */
+
+    if(
+        websiteProducts.length === 0
+    ){
+
+        errorBox.innerText =
+            "Abhi koi product available nahi hai. Admin panel se product add karein.";
+
+        errorBox.style.display =
+            "block";
+
+    }
+
+}
+
+
+/* =========================================================
+   CATEGORY FILTER
+========================================================= */
+
+function filterCategory(category){
+
+    selectedCategory =
+        category;
+
+
+    document
+        .querySelectorAll(".category")
+        .forEach(function(card){
+
+            card.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    const selected =
+        document.querySelector(
+            '.category[data-category="' +
+            CSS.escape(category) +
+            '"]'
+        );
+
+
+    if(selected){
+
+        selected.classList.add(
+            "active"
+        );
+
+    }
+
+
+    displayProducts();
+
+
+    document
+        .getElementById("products")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* =========================================================
+   DISPLAY PRODUCTS
+========================================================= */
+
+function displayProducts(){
+
+    const grid =
+        document.getElementById(
+            "productsGrid"
+        );
+
+
+    let filtered =
+        websiteProducts;
+
+
+    if(
+        selectedCategory !== "all"
+    ){
+
+        filtered =
+            websiteProducts.filter(
+                function(product){
+
+                    return String(
+                        product.category
+                    )
+                    .trim()
+                    .toLowerCase()
+                    ===
+                    selectedCategory
+                    .trim()
+                    .toLowerCase();
+
+                }
+            );
+
+    }
+
+
+    if(filtered.length === 0){
+
+        grid.innerHTML = `
+
+            <div class="empty-products">
+
+                <h3>
+                    No products found
+                </h3>
+
+                <p style="margin-top:10px;">
+                    Is category mein abhi product available nahi hai.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    grid.innerHTML =
+        filtered
+        .map(function(product){
+
+            return createProductCard(
+                product
+            );
+
+        })
+        .join("");
+
+}
+
+
+/* =========================================================
+   PRODUCT CARD
+========================================================= */
+
+function createProductCard(product){
+
+    const price =
+        Number(
+            product.price || 0
+        );
+
+
+    const salePrice =
+        product.salePrice &&
+        Number(product.salePrice) > 0
+            ? Number(product.salePrice)
+            : null;
+
+
+    const finalPrice =
+        salePrice || price;
+
+
+    const stock =
+        Number(
+            product.stock || 0
+        );
+
+
+    /* ================= IMAGE ================= */
+
+    let imageHTML;
+
+
+    if(
+        product.image &&
+        String(product.image).trim() !== ""
+    ){
+
+        /*
+           IMPORTANT:
+
+           Admin page saves uploaded images
+           as base64 data URLs.
+
+           Example:
+           data:image/jpeg;base64,...
+
+           Those work directly in <img>.
+        */
+
+        imageHTML = `
+
+            <img
+                src="${escapeHTML(product.image)}"
+                alt="${escapeHTML(product.name)}"
+                loading="lazy"
+                onerror="imageError(this)"
+            >
+
+        `;
+
+    }else{
+
+        imageHTML = `
+
+            <div>
+                ${escapeHTML(
+                    product.category ||
+                    "PRODUCT"
+                )}
+            </div>
+
+        `;
+
+    }
+
+
+    /* ================= PRICE ================= */
+
+    let priceHTML;
+
+
+    if(salePrice){
+
+        priceHTML = `
+
+            <div class="price">
+
+                <span class="old-price">
+                    ₹${price.toLocaleString("en-IN")}
+                </span>
+
+                <span class="sale-price">
+                    ₹${salePrice.toLocaleString("en-IN")}
+                </span>
+
+            </div>
+
+        `;
+
+    }else{
+
+        priceHTML = `
+
+            <div class="price">
+                ₹${finalPrice.toLocaleString("en-IN")}
+            </div>
+
+        `;
+
+    }
+
+
+    /* ================= STOCK ================= */
+
+    const stockHTML =
+        stock > 0
+
+        ? `
+
+            <div class="stock">
+                ✓ In Stock (${stock})
+            </div>
+
+        `
+
+        : `
+
+            <div class="stock out-stock">
+                Out of Stock
+            </div>
+
+        `;
+
+
+    /* ================= BUTTONS ================= */
+
+    let buttonsHTML;
+
+
+    if(stock > 0){
+
+        buttonsHTML = `
+
+            <div class="product-buttons">
+
+                <button
+                    class="view-btn"
+                    onclick="viewProduct('${escapeJS(product.id)}')">
+
+                    VIEW PRODUCT
+
+                </button>
+
+
+                <button
+                    class="add-btn"
+                    onclick="addToCart('${escapeJS(product.id)}')">
+
+                    ADD TO CART
+
+                </button>
+
+
+                <button
+                    class="buy-btn"
+                    onclick="buyProduct('${escapeJS(product.id)}')">
+
+                    WHATSAPP ORDER
+
+                </button>
+
+            </div>
+
+        `;
+
+    }else{
+
+        buttonsHTML = `
+
+            <div class="product-buttons">
+
+                <button
+                    class="disabled-btn"
+                    disabled>
+
+                    OUT OF STOCK
+
+                </button>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* ================= CARD ================= */
+
+    return `
+
+        <div class="product">
+
+
+            <div
+                class="product-image"
+                onclick="viewProduct('${escapeJS(product.id)}')">
+
+                ${imageHTML}
+
+            </div>
+
+
+            <h3>
+                ${escapeHTML(product.name)}
+            </h3>
+
+
+            <p>
+                ${escapeHTML(
+                    product.description ||
+                    "Premium men's collection."
+                )}
+            </p>
+
+
+            ${priceHTML}
+
+
+            ${stockHTML}
+
+
+            ${buttonsHTML}
+
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   IMAGE ERROR FALLBACK
+========================================================= */
+
+function imageError(img){
+
+    const box =
+        img.parentElement;
+
+
+    box.innerHTML = `
+
+        <div style="
+            color:#d8ad57;
+            font-family:Georgia,serif;
+            font-size:18px;
+            text-align:center;
+            padding:20px;
+        ">
+
+            PRODUCT IMAGE
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   VIEW PRODUCT
+========================================================= */
+
+function viewProduct(id){
+
+    const product =
+        websiteProducts.find(
+            function(item){
+
+                return String(item.id)
+                ===
+                String(id);
+
+            }
+        );
+
+
+    if(!product){
+
+        showToast(
+            "Product not found"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Product detail page can read
+       this same selected product.
+    */
+
+    localStorage.setItem(
+        "TH_SELECTED_PRODUCT",
+        JSON.stringify(product)
+    );
+
+
+    window.location.href =
+        "product.html";
+
+}
+
+
+/* =========================================================
+   ADD TO CART
+========================================================= */
+
+function addToCart(id){
+
+    const product =
+        websiteProducts.find(
+            function(item){
+
+                return String(item.id)
+                ===
+                String(id);
+
+            }
+        );
+
+
+    if(!product){
+
+        showToast(
+            "Product not found"
+        );
+
+        return;
+
+    }
+
+
+    const stock =
+        Number(
+            product.stock || 0
+        );
+
+
+    if(stock <= 0){
+
+        showToast(
+            "Product is out of stock"
+        );
+
+        return;
+
+    }
+
+
+    const price =
+        product.salePrice &&
+        Number(product.salePrice) > 0
+
+            ? Number(product.salePrice)
+
+            : Number(product.price || 0);
+
+
+    let cart = [];
+
+
+    try{
+
+        cart =
+            JSON.parse(
+                localStorage.getItem(
+                    "TH_CART"
+                )
+            ) || [];
+
+    }catch(error){
+
+        cart = [];
+
+    }
+
+
+    if(!Array.isArray(cart)){
+
+        cart = [];
+
+    }
+
+
+    const existing =
+        cart.find(
+            function(item){
+
+                return String(item.id)
+                ===
+                String(product.id);
+
+            }
+        );
+
+
+    if(existing){
+
+        const currentQty =
+            Number(
+                existing.quantity || 0
+            );
+
+
+        if(
+            currentQty + 1 > stock
+        ){
+
+            showToast(
+                "Available stock limit reached"
+            );
+
+            return;
+
+        }
+
+
+        existing.quantity =
+            currentQty + 1;
+
+
+        /*
+           Update latest price/image
+           in case admin changed them.
+        */
+
+        existing.price =
+            price;
+
+        existing.image =
+            product.image || "";
+
+    }else{
+
+        cart.push({
+
+            id:
+                product.id,
+
+            name:
+                product.name || "",
+
+            price:
+                price,
+
+            image:
+                product.image || "",
+
+            category:
+                product.category || "",
+
+            sku:
+                product.sku || "",
+
+            size:
+                product.size || "",
+
+            colour:
+                product.colour || "",
+
+            quantity:1
+
+        });
+
+    }
+
+
+    localStorage.setItem(
+        "TH_CART",
+        JSON.stringify(cart)
+    );
+
+
+    updateCartCount();
+
+
+    showToast(
+        product.name +
+        " added to cart ✓"
+    );
+
+}
+
+
+/* =========================================================
+   WHATSAPP ORDER
+========================================================= */
+
+function buyProduct(id){
+
+    const product =
+        websiteProducts.find(
+            function(item){
+
+                return String(item.id)
+                ===
+                String(id);
+
+            }
+        );
+
+
+    if(!product){
+
+        showToast(
+            "Product not found"
+        );
+
+        return;
+
+    }
+
+
+    const price =
+        product.salePrice &&
+        Number(product.salePrice) > 0
+
+            ? Number(product.salePrice)
+
+            : Number(product.price || 0);
+
+
+    const message =
+`Hello THE TURBAN HOUSE,
+
+I want to order:
+
+Product: ${product.name}
+Category: ${product.category || "-"}
+Quantity: 1
+Price: ₹${price.toLocaleString("en-IN")}
+SKU: ${product.sku || "-"}
+
+Please confirm my order.`;
+
+
+    window.open(
+        "https://wa.me/918307122212?text=" +
+        encodeURIComponent(message),
+        "_blank"
+    );
+
+}
+
+
+/* =========================================================
+   CART COUNT
+========================================================= */
+
+function updateCartCount(){
+
+    let cart = [];
+
+
+    try{
+
+        cart =
+            JSON.parse(
+                localStorage.getItem(
+                    "TH_CART"
+                )
+            ) || [];
+
+    }catch(error){
+
+        cart = [];
+
+    }
+
+
+    if(!Array.isArray(cart)){
+
+        cart = [];
+
+    }
+
+
+    const count =
+        cart.reduce(
+            function(total,item){
+
+                return total +
+                    Number(
+                        item.quantity || 0
+                    );
+
+            },
+            0
+        );
+
+
+    const cartCount =
+        document.getElementById(
+            "cartCount"
+        );
+
+
+    if(cartCount){
+
+        cartCount.innerText =
+            count;
+
+    }
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+
+function showToast(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.innerText =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(
+            function(){
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            2500
+        );
+
+}
+
+
+/* =========================================================
+   SECURITY
+========================================================= */
+
+function escapeHTML(value){
+
+    return String(
+        value ?? ""
+    )
+
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+
+    .replace(
+        /</g,
+        "&lt;"
+    )
+
+    .replace(
+        />/g,
+        "&gt;"
+    )
+
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+function escapeJS(value){
+
+    return String(
+        value ?? ""
+    )
+
+    .replace(
+        /\\/g,
+        "\\\\"
+    )
+
+    .replace(
+        /'/g,
+        "\\'"
+    )
+
+    .replace(
+        /\r?\n/g,
+        "\\n"
+    );
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        loadProducts();
+
+        updateCartCount();
+
+    }
+);
+
+
+/* =========================================================
+   UPDATE CART IF CHANGED
+========================================================= */
+
+window.addEventListener(
+    "storage",
+    function(){
+
+        updateCartCount();
+
+        /*
+           Reload products if admin changes them
+           in another browser tab.
+        */
+
+        websiteProducts =
+            getLocalProducts()
+            .map(normalizeProduct)
+            .filter(function(product){
+
+                return product.active &&
+                       product.status !== "inactive";
+
+            });
+
+        displayProducts();
+
+    }
+);
+
+
+/* =========================================================
+   REFRESH WHEN PAGE BECOMES VISIBLE
+========================================================= */
+
+document.addEventListener(
+    "visibilitychange",
+    function(){
+
+        if(
+            document.visibilityState ===
+            "visible"
+        ){
+
+            updateCartCount();
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>

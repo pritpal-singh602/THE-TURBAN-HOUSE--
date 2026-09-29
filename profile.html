@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile | THE TURBAN HOUSE</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  background:#f7f1e3;
+  color:#171717;
+}
+
+header{
+  background:#0b0b0b;
+  color:#fff;
+  padding:18px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:15px;
+}
+
+.logo{
+  color:#d4af37;
+  font-size:24px;
+  font-weight:bold;
+}
+
+nav{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+nav a{
+  color:#fff;
+  text-decoration:none;
+  padding:9px 13px;
+  border-radius:6px;
+}
+
+nav a:hover{
+  background:#d4af37;
+  color:#000;
+}
+
+.container{
+  max-width:1000px;
+  margin:35px auto;
+  padding:0 18px;
+}
+
+.page-title{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.page-title h1{
+  color:#111;
+  margin-bottom:8px;
+}
+
+.page-title p{
+  color:#666;
+}
+
+.profile-card{
+  background:#fff;
+  border-radius:15px;
+  padding:30px;
+  box-shadow:0 8px 25px rgba(0,0,0,.10);
+}
+
+.section-title{
+  color:#b28b18;
+  border-bottom:1px solid #ddd;
+  padding-bottom:10px;
+  margin-bottom:20px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+}
+
+.form-group.full{
+  grid-column:1/-1;
+}
+
+label{
+  font-weight:bold;
+  margin-bottom:7px;
+  font-size:14px;
+}
+
+input,
+select{
+  padding:13px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:15px;
+  outline:none;
+}
+
+input:focus,
+select:focus{
+  border-color:#d4af37;
+  box-shadow:0 0 0 2px rgba(212,175,55,.15);
+}
+
+input[readonly]{
+  background:#f2f2f2;
+}
+
+.password-section{
+  margin-top:30px;
+}
+
+.buttons{
+  display:flex;
+  gap:12px;
+  margin-top:25px;
+  flex-wrap:wrap;
+}
+
+button{
+  border:none;
+  padding:13px 22px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:15px;
+}
+
+.save-btn{
+  background:#d4af37;
+  color:#000;
+}
+
+.save-btn:hover{
+  background:#b99520;
+}
+
+.logout-btn{
+  background:#111;
+  color:#fff;
+}
+
+.logout-btn:hover{
+  background:#333;
+}
+
+.message{
+  margin-top:15px;
+  padding:12px;
+  border-radius:7px;
+  display:none;
+}
+
+.success{
+  display:block;
+  background:#e8f7e8;
+  color:#176b17;
+}
+
+.error{
+  display:block;
+  background:#ffe9e9;
+  color:#a00000;
+}
+
+.quick-links{
+  margin-top:25px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.quick-link{
+  background:#111;
+  color:#fff;
+  text-decoration:none;
+  text-align:center;
+  padding:16px;
+  border-radius:10px;
+  transition:.2s;
+}
+
+.quick-link:hover{
+  background:#d4af37;
+  color:#000;
+}
+
+footer{
+  margin-top:40px;
+  background:#0b0b0b;
+  color:#aaa;
+  text-align:center;
+  padding:22px;
+}
+
+@media(max-width:700px){
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .form-group.full{
+    grid-column:auto;
+  }
+
+  .quick-links{
+    grid-template-columns:1fr;
+  }
+
+  .profile-card{
+    padding:20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">THE TURBAN HOUSE</div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="my-orders.html">My Orders</a>
+    <a href="account.html">Account</a>
+  </nav>
+</header>
+
+<div class="container">
+
+  <div class="page-title">
+    <h1>My Profile</h1>
+    <p>Manage your personal information and account details</p>
+  </div>
+
+  <div class="profile-card">
+
+    <h2 class="section-title">Personal Information</h2>
+
+    <form id="profileForm">
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="name" required>
+        </div>
+
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" id="email" required>
+        </div>
+
+        <div class="form-group">
+          <label>Mobile Number</label>
+          <input type="tel" id="mobile" readonly>
+        </div>
+
+        <div class="form-group">
+          <label>State</label>
+          <select id="state">
+            <option value="">Select State</option>
+            <option>Punjab</option>
+            <option>Haryana</option>
+            <option>Delhi</option>
+            <option>Chandigarh</option>
+            <option>Himachal Pradesh</option>
+            <option>Uttar Pradesh</option>
+            <option>Rajasthan</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>City</label>
+          <input type="text" id="city">
+        </div>
+
+        <div class="form-group">
+          <label>Pincode</label>
+          <input
+            type="text"
+            id="pincode"
+            maxlength="6"
+            inputmode="numeric"
+          >
+        </div>
+
+        <div class="form-group full">
+          <label>Full Address</label>
+          <input type="text" id="address">
+        </div>
+
+      </div>
+
+      <div class="password-section">
+
+        <h2 class="section-title">Change Password</h2>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label>New Password</label>
+            <input
+              type="password"
+              id="newPassword"
+              placeholder="Leave blank to keep current password"
+            >
+          </div>
+
+          <div class="form-group">
+            <label>Confirm New Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm new password"
+            >
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id="message" class="message"></div>
+
+      <div class="buttons">
+        <button type="submit" class="save-btn">
+          💾 Save Profile
+        </button>
+
+        <button type="button" class="logout-btn" onclick="logout()">
+          🚪 Logout
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+  <div class="quick-links">
+
+    <a href="my-orders.html" class="quick-link">
+      📦 My Orders
+    </a>
+
+    <a href="shop.html" class="quick-link">
+      🛍️ Continue Shopping
+    </a>
+
+    <a href="account.html" class="quick-link">
+      👤 My Account
+    </a>
+
+  </div>
+
+</div>
+
+<footer>
+  © 2026 THE TURBAN HOUSE — Premium Men's Collection
+</footer>
+
+<script src="/api-sync.js"></script>
+<script>
+
+const currentCustomer =
+  JSON.parse(localStorage.getItem("TH_CURRENT_CUSTOMER"));
+
+if(!currentCustomer){
+
+  alert("Please login first.");
+
+  window.location.href = "login.html";
+
+}
+
+const customers =
+  JSON.parse(localStorage.getItem("TH_CUSTOMERS")) || [];
+
+let customer =
+  customers.find(c => c.id === currentCustomer.id);
+
+if(!customer){
+
+  customer =
+    customers.find(c =>
+      String(c.mobile || "") === String(currentCustomer.mobile || "")
+    );
+}
+
+if(!customer){
+
+  alert("Customer account not found.");
+
+  window.location.href = "login.html";
+
+}
+
+// Load profile
+document.getElementById("name").value =
+  customer.name || "";
+
+document.getElementById("email").value =
+  customer.email || "";
+
+document.getElementById("mobile").value =
+  customer.mobile || "";
+
+document.getElementById("address").value =
+  customer.address || "";
+
+document.getElementById("city").value =
+  customer.city || "";
+
+document.getElementById("state").value =
+  customer.state || "";
+
+document.getElementById("pincode").value =
+  customer.pincode || "";
+
+
+// Save profile
+document
+.getElementById("profileForm")
+.addEventListener("submit", function(e){
+
+  e.preventDefault();
+
+  const name =
+    document.getElementById("name").value.trim();
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const address =
+    document.getElementById("address").value.trim();
+
+  const city =
+    document.getElementById("city").value.trim();
+
+  const state =
+    document.getElementById("state").value;
+
+  const pincode =
+    document.getElementById("pincode").value.trim();
+
+  const newPassword =
+    document.getElementById("newPassword").value;
+
+  const confirmPassword =
+    document.getElementById("confirmPassword").value;
+
+
+  if(!name || !email){
+
+    showMessage(
+      "Please enter name and email.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  if(pincode && !/^\d{6}$/.test(pincode)){
+
+    showMessage(
+      "Pincode must be exactly 6 digits.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  if(newPassword){
+
+    if(newPassword.length < 6){
+
+      showMessage(
+        "New password must contain at least 6 characters.",
+        "error"
+      );
+
+      return;
+    }
+
+    if(newPassword !== confirmPassword){
+
+      showMessage(
+        "New password and confirm password do not match.",
+        "error"
+      );
+
+      return;
+    }
+
+  }
+
+
+  // Update customer
+  customer.name = name;
+  customer.email = email;
+  customer.address = address;
+  customer.city = city;
+  customer.state = state;
+  customer.pincode = pincode;
+
+  if(newPassword){
+    customer.password = newPassword;
+  }
+
+
+  // Save customers
+  const customerIndex =
+    customers.findIndex(c => c.id === customer.id);
+
+  if(customerIndex !== -1){
+
+    customers[customerIndex] = customer;
+
+  }else{
+
+    customers.push(customer);
+
+  }
+
+  localStorage.setItem(
+    "TH_CUSTOMERS",
+    JSON.stringify(customers)
+  );
+
+
+  // Update current customer session
+  const updatedCurrentCustomer = {
+
+    id: customer.id,
+
+    name: customer.name,
+
+    email: customer.email,
+
+    mobile: customer.mobile,
+
+    loginAt: currentCustomer.loginAt || new Date().toISOString()
+
+  };
+
+  localStorage.setItem(
+    "TH_CURRENT_CUSTOMER",
+    JSON.stringify(updatedCurrentCustomer)
+  );
+
+
+  // Update matching orders
+  let orders =
+    JSON.parse(localStorage.getItem("TH_ORDERS")) || [];
+
+  orders = orders.map(order => {
+
+    if(!order.customer){
+      return order;
+    }
+
+    const sameCustomer =
+      String(order.customer.mobile || "") ===
+      String(customer.mobile || "");
+
+    if(sameCustomer){
+
+      order.customer.name = customer.name;
+      order.customer.email = customer.email;
+      order.customer.mobile = customer.mobile;
+      order.customer.address = customer.address;
+      order.customer.city = customer.city;
+      order.customer.state = customer.state;
+      order.customer.pincode = customer.pincode;
+
+    }
+
+    return order;
+
+  });
+
+  localStorage.setItem(
+    "TH_ORDERS",
+    JSON.stringify(orders)
+  );
+
+
+  document.getElementById("newPassword").value = "";
+  document.getElementById("confirmPassword").value = "";
+
+  showMessage(
+    "Profile updated successfully!",
+    "success"
+  );
+
+});
+
+
+function showMessage(text,type){
+
+  const message =
+    document.getElementById("message");
+
+  message.textContent = text;
+
+  message.className =
+    "message " + type;
+
+}
+
+
+function logout(){
+
+  localStorage.removeItem("TH_CURRENT_CUSTOMER");
+
+  window.location.href = "login.html";
+
+}
+
+</script>
+
+</body>
+</html>

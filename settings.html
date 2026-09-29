@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings | THE TURBAN HOUSE</title>
+
+<style>
+:root{
+  --black:#090909;
+  --black2:#111111;
+  --gold:#d4af37;
+  --gold2:#f1d477;
+  --cream:#f7f1e3;
+  --muted:#aaa;
+  --border:rgba(212,175,55,.20);
+  --danger:#e05252;
+  --green:#38c172;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#070707;
+  color:#fff;
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+.layout{
+  min-height:100vh;
+  display:flex;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+  width:250px;
+  background:#0d0d0d;
+  border-right:1px solid var(--border);
+  padding:24px 16px;
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  overflow-y:auto;
+}
+
+.logo{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.logo h1{
+  color:var(--gold);
+  font-size:21px;
+  letter-spacing:2px;
+}
+
+.logo p{
+  color:#999;
+  font-size:10px;
+  letter-spacing:2px;
+  margin-top:5px;
+}
+
+.menu-title{
+  color:#777;
+  font-size:10px;
+  letter-spacing:1.5px;
+  margin:22px 12px 8px;
+}
+
+.nav{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+
+.nav a{
+  text-decoration:none;
+  color:#bbb;
+  padding:12px 13px;
+  border-radius:9px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:14px;
+  transition:.2s;
+}
+
+.nav a:hover{
+  background:#171717;
+  color:#fff;
+}
+
+.nav a.active{
+  background:linear-gradient(90deg,#241e0d,#17130a);
+  color:var(--gold2);
+  border:1px solid var(--border);
+}
+
+.logout{
+  margin-top:25px;
+  border-top:1px solid #222;
+  padding-top:18px;
+}
+
+.logout a{
+  color:#e57373;
+}
+
+/* MAIN */
+
+.main{
+  margin-left:250px;
+  width:calc(100% - 250px);
+  padding:28px;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:28px;
+  gap:20px;
+}
+
+.topbar h2{
+  font-size:28px;
+  color:#fff;
+}
+
+.topbar p{
+  color:#999;
+  margin-top:6px;
+  font-size:14px;
+}
+
+.store-badge{
+  border:1px solid var(--border);
+  background:#111;
+  padding:10px 15px;
+  border-radius:30px;
+  color:var(--gold2);
+  font-size:13px;
+}
+
+.store-badge span{
+  display:inline-block;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--green);
+  margin-right:7px;
+}
+
+/* GRID */
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.card{
+  background:linear-gradient(145deg,#121212,#0d0d0d);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:22px;
+  box-shadow:0 15px 40px rgba(0,0,0,.20);
+}
+
+.card.full{
+  grid-column:1 / -1;
+}
+
+.card h3{
+  color:var(--gold2);
+  font-size:18px;
+  margin-bottom:6px;
+}
+
+.card-desc{
+  color:#888;
+  font-size:12px;
+  margin-bottom:20px;
+}
+
+/* FORM */
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.field.full{
+  grid-column:1 / -1;
+}
+
+label{
+  color:#bbb;
+  font-size:12px;
+  font-weight:bold;
+}
+
+input,
+textarea,
+select{
+  width:100%;
+  background:#080808;
+  color:#fff;
+  border:1px solid #292929;
+  border-radius:9px;
+  padding:12px;
+  outline:none;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 2px rgba(212,175,55,.08);
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+select option{
+  background:#111;
+  color:#fff;
+}
+
+/* PASSWORD */
+
+.password-wrap{
+  position:relative;
+}
+
+.password-wrap input{
+  padding-right:65px;
+}
+
+.show-pass{
+  position:absolute;
+  right:8px;
+  top:7px;
+  height:34px;
+  border:0;
+  border-radius:7px;
+  background:#1b1b1b;
+  color:var(--gold2);
+  cursor:pointer;
+  padding:0 10px;
+  font-size:11px;
+}
+
+/* STORE STATUS */
+
+.status-box{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#0a0a0a;
+  border:1px solid #292929;
+  border-radius:12px;
+  padding:16px;
+}
+
+.status-info strong{
+  display:block;
+  color:#fff;
+  font-size:14px;
+  margin-bottom:5px;
+}
+
+.status-info small{
+  color:#777;
+}
+
+.switch{
+  position:relative;
+  width:52px;
+  height:28px;
+}
+
+.switch input{
+  display:none;
+}
+
+.slider{
+  position:absolute;
+  inset:0;
+  cursor:pointer;
+  background:#333;
+  border-radius:30px;
+  transition:.2s;
+}
+
+.slider:before{
+  content:"";
+  position:absolute;
+  width:20px;
+  height:20px;
+  left:4px;
+  top:4px;
+  background:#fff;
+  border-radius:50%;
+  transition:.2s;
+}
+
+.switch input:checked + .slider{
+  background:#19733d;
+}
+
+.switch input:checked + .slider:before{
+  transform:translateX(24px);
+}
+
+/* BUTTONS */
+
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:22px;
+}
+
+.btn{
+  border:0;
+  border-radius:9px;
+  padding:12px 18px;
+  cursor:pointer;
+  font-weight:bold;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,var(--gold),#a98219);
+  color:#080808;
+}
+
+.btn-secondary{
+  background:#222;
+  color:#ddd;
+  border:1px solid #333;
+}
+
+.btn-danger{
+  background:#321414;
+  color:#ff8d8d;
+  border:1px solid #5c2222;
+}
+
+/* INFO */
+
+.info-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.info-item{
+  background:#0a0a0a;
+  border:1px solid #222;
+  border-radius:10px;
+  padding:14px;
+}
+
+.info-item span{
+  display:block;
+  color:#777;
+  font-size:11px;
+  margin-bottom:5px;
+}
+
+.info-item strong{
+  color:#ddd;
+  font-size:13px;
+  word-break:break-word;
+}
+
+/* ANNUAL SERVICE PLAN */
+
+function dateOnly(value){
+  if(!value) return "";
+  const d = new Date(value);
+  if(Number.isNaN(d.getTime())) return "";
+  return d.toISOString().slice(0,10);
+}
+
+function formatServiceDate(value){
+  if(!value) return "—";
+  const d = new Date(value);
+  if(Number.isNaN(d.getTime())) return "—";
+  return d.toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"});
+}
+
+async function loadServicePlan(){
+  try{
+    const r = await fetch('/api/service-status',{cache:'no-store'});
+    const data = await r.json();
+    if(!r.ok || !data.success) throw new Error(data.message || 'Unable to load service plan');
+    const s = data.service;
+    document.getElementById('serviceCharge').value = Number(s.annualCharge || 0);
+    document.getElementById('servicePaymentStatus').value = String(s.paymentStatus || 'unpaid').toLowerCase()==='paid' ? 'paid' : 'unpaid';
+    document.getElementById('serviceStart').value = dateOnly(s.startedAt);
+    document.getElementById('serviceExpiry').value = dateOnly(s.expiresAt);
+    const title = document.getElementById('serviceStatusTitle');
+    const desc = document.getElementById('serviceStatusDescription');
+    const count = document.getElementById('serviceCountdown');
+    const expires = new Date(s.expiresAt);
+    const days = Math.ceil((expires.getTime()-Date.now())/86400000);
+    if(s.active){
+      title.textContent = 'Service Active ✓';
+      title.style.color = '#38c172';
+      desc.textContent = `Valid until ${formatServiceDate(s.expiresAt)} • Payment status: ${s.paymentStatus}`;
+      count.textContent = `${Math.max(days,0)} day(s) left`;
+    }else{
+      title.textContent = 'Service Expired — Orders Blocked';
+      title.style.color = '#e05252';
+      desc.textContent = `Expired on ${formatServiceDate(s.expiresAt)} • Renew to enable checkout/orders.`;
+      count.textContent = 'EXPIRED';
+    }
+  }catch(e){
+    document.getElementById('serviceStatusTitle').textContent = 'Service status unavailable';
+    document.getElementById('serviceStatusDescription').textContent = e.message;
+    document.getElementById('serviceCountdown').textContent = '—';
+  }
+}
+
+async function saveServicePlan(){
+  const password = document.getElementById('serviceAdminPassword').value.trim();
+  if(!password){ showToast('Enter admin password to update service plan.'); return; }
+  const payload = {
+    adminPassword: password,
+    annualCharge: Number(document.getElementById('serviceCharge').value || 0),
+    paymentStatus: document.getElementById('servicePaymentStatus').value,
+    startedAt: document.getElementById('serviceStart').value,
+    expiresAt: document.getElementById('serviceExpiry').value,
+    autoBlockOrders: true
+  };
+  try{
+    const r = await fetch('/api/service-plan',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    const data = await r.json();
+    if(!r.ok || !data.success) throw new Error(data.message || 'Unable to save service plan');
+    document.getElementById('serviceAdminPassword').value='';
+    await loadServicePlan();
+    showToast('1-year service plan saved ✓');
+  }catch(e){ showToast(e.message); }
+}
+
+async function renewServicePlan(){
+  const password = document.getElementById('serviceAdminPassword').value.trim();
+  if(!password){ showToast('Enter admin password to renew service.'); return; }
+  try{
+    const r = await fetch('/api/service-plan/renew',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({adminPassword:password})});
+    const data = await r.json();
+    if(!r.ok || !data.success) throw new Error(data.message || 'Unable to renew service');
+    document.getElementById('serviceAdminPassword').value='';
+    await loadServicePlan();
+    showToast('Service renewed for 1 year ✓');
+  }catch(e){ showToast(e.message); }
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  right:25px;
+  bottom:25px;
+  background:#151515;
+  border:1px solid var(--gold);
+  color:#fff;
+  padding:14px 18px;
+  border-radius:10px;
+  display:none;
+  z-index:9999;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+.toast.show{
+  display:block;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  .sidebar{
+    width:210px;
+  }
+
+  .main{
+    margin-left:210px;
+    width:calc(100% - 210px);
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .card.full{
+    grid-column:auto;
+  }
+}
+
+@media(max-width:700px){
+
+  .layout{
+    display:block;
+  }
+
+  .sidebar{
+    position:relative;
+    width:100%;
+    height:auto;
+    border-right:0;
+    border-bottom:1px solid var(--border);
+  }
+
+  .main{
+    margin-left:0;
+    width:100%;
+    padding:18px;
+  }
+
+  .topbar{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .form-grid,
+  .info-list{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar">
+
+    <div class="logo">
+      <h1>THE TURBAN HOUSE</h1>
+      <p>ADMIN PANEL</p>
+    </div>
+
+    <div class="menu-title">MAIN MENU</div>
+
+    <nav class="nav">
+
+      <a href="./admin.html">📊 Dashboard</a>
+
+      <a href="./products.html">📦 Products</a>
+
+      <a href="./orders.html">🛍️ Orders</a>
+
+      <a href="./customers.html">👥 Customers</a>
+
+      <a href="./reviews.html">⭐ Reviews</a>
+
+      <a href="./coupons.html">🎟️ Coupons</a>
+
+      <a href="./sales-reports.html">📈 Sales Reports</a>
+
+      <a href="./settings.html" class="active">⚙️ Settings</a>
+
+    </nav>
+
+    <div class="logout">
+      <nav class="nav">
+        <a href="./index.html" onclick="logoutAdmin()">🚪 Logout</a>
+      </nav>
+    </div>
+
+  </aside>
+
+
+  <!-- MAIN -->
+
+  <main class="main">
+
+    <div class="topbar">
+
+      <div>
+        <h2>Store Settings</h2>
+        <p>Manage your THE TURBAN HOUSE store settings.</p>
+      </div>
+
+      <div class="store-badge">
+        <span id="statusDot"></span>
+        <span id="statusText">Store Active</span>
+      </div>
+
+    </div>
+
+
+    <div class="grid">
+
+      <!-- ADMIN PROFILE -->
+
+      <section class="card">
+
+        <h3>👤 Admin Profile</h3>
+
+        <p class="card-desc">
+          Update your administrator information.
+        </p>
+
+        <div class="form-grid">
+
+          <div class="field">
+            <label>Admin Name</label>
+            <input id="adminName" type="text" placeholder="Admin">
+          </div>
+
+          <div class="field">
+            <label>Admin Email</label>
+            <input id="adminEmail" type="email" placeholder="admin@example.com">
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PASSWORD -->
+
+      <section class="card">
+
+        <h3>🔐 Change Password</h3>
+
+        <p class="card-desc">
+          Set a new administrator password.
+        </p>
+
+        <div class="field">
+
+          <label>New Password</label>
+
+          <div class="password-wrap">
+
+            <input
+              id="adminPassword"
+              type="password"
+              placeholder="Enter new password"
+            >
+
+            <button
+              class="show-pass"
+              type="button"
+              onclick="togglePassword()"
+            >
+              SHOW
+            </button>
+
+          </div>
+
+        </div>
+
+        <div style="margin-top:12px;color:#777;font-size:11px;">
+          Leave blank if you do not want to change the password.
+        </div>
+
+      </section>
+
+
+      <!-- STORE INFORMATION -->
+
+      <section class="card full">
+
+        <h3>🏪 Store Information</h3>
+
+        <p class="card-desc">
+          This information can be used across your customer-facing store.
+        </p>
+
+        <div class="form-grid">
+
+          <div class="field">
+
+            <label>Store Name</label>
+
+            <input
+              id="storeName"
+              type="text"
+              placeholder="THE TURBAN HOUSE"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label>WhatsApp Number</label>
+
+            <input
+              id="whatsapp"
+              type="text"
+              placeholder="919876543210"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label>Store Email</label>
+
+            <input
+              id="storeEmail"
+              type="email"
+              placeholder="support@example.com"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label>Currency</label>
+
+            <select id="currency">
+
+              <option value="₹">₹ Indian Rupee</option>
+
+              <option value="$">$ US Dollar</option>
+
+              <option value="£">£ British Pound</option>
+
+              <option value="€">€ Euro</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="field full">
+
+            <label>Store Address</label>
+
+            <textarea
+              id="storeAddress"
+              placeholder="Enter your complete store address"
+            ></textarea>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- STORE STATUS -->
+
+      <section class="card">
+
+        <h3>🟢 Store Status</h3>
+
+        <p class="card-desc">
+          Control whether the store is active.
+        </p>
+
+        <div class="status-box">
+
+          <div class="status-info">
+
+            <strong id="storeStatusTitle">
+              Store is Active
+            </strong>
+
+            <small id="storeStatusDescription">
+              Customers can browse and place orders.
+            </small>
+
+          </div>
+
+          <label class="switch">
+
+            <input
+              type="checkbox"
+              id="storeStatus"
+              checked
+              onchange="updateStatusPreview()"
+            >
+
+            <span class="slider"></span>
+
+          </label>
+
+        </div>
+
+      </section>
+
+
+      <!-- CURRENT SETTINGS -->
+
+      <section class="card">
+
+        <h3>📋 Current Settings</h3>
+
+        <p class="card-desc">
+          Quick overview of your saved store information.
+        </p>
+
+        <div class="info-list">
+
+          <div class="info-item">
+            <span>Store</span>
+            <strong id="previewStore">THE TURBAN HOUSE</strong>
+          </div>
+
+          <div class="info-item">
+            <span>Currency</span>
+            <strong id="previewCurrency">₹</strong>
+          </div>
+
+          <div class="info-item">
+            <span>WhatsApp</span>
+            <strong id="previewWhatsApp">Not Set</strong>
+          </div>
+
+          <div class="info-item">
+            <span>Email</span>
+            <strong id="previewEmail">Not Set</strong>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ANNUAL SERVICE PLAN -->
+
+      <section class="card full" id="servicePlanCard">
+
+        <h3>🛡️ 1-Year Service & Renewal</h3>
+
+        <p class="card-desc">
+          Set the annual service charge and renewal period. When the service period expires, new checkout/order sync is automatically blocked until the plan is renewed.
+        </p>
+
+        <div class="form-grid">
+          <div class="field">
+            <label>Annual Service Charge (₹)</label>
+            <input id="serviceCharge" type="number" min="0" step="0.01" placeholder="Enter annual charge">
+          </div>
+          <div class="field">
+            <label>Payment Status</label>
+            <select id="servicePaymentStatus">
+              <option value="paid">Paid / Active</option>
+              <option value="unpaid">Unpaid / Due</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Service Start Date</label>
+            <input id="serviceStart" type="date">
+          </div>
+          <div class="field">
+            <label>Service Expiry Date</label>
+            <input id="serviceExpiry" type="date">
+          </div>
+          <div class="field full">
+            <label>Admin Password (required to update/renew service)</label>
+            <input id="serviceAdminPassword" type="password" autocomplete="current-password" placeholder="Enter admin password">
+          </div>
+        </div>
+
+        <div class="status-box" style="margin-top:18px;">
+          <div class="status-info">
+            <strong id="serviceStatusTitle">Checking service...</strong>
+            <small id="serviceStatusDescription">Loading service plan from database.</small>
+          </div>
+          <div style="text-align:right;color:#d4af37;font-weight:bold;" id="serviceCountdown">—</div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" type="button" onclick="saveServicePlan()">💾 Save Service Plan</button>
+          <button class="btn btn-secondary" type="button" onclick="renewServicePlan()">🔄 Renew 1 Year</button>
+          <button class="btn btn-secondary" type="button" onclick="loadServicePlan()">↻ Refresh Status</button>
+        </div>
+
+      </section>
+
+
+      <!-- ACTIONS -->
+
+      <section class="card full">
+
+        <h3>💾 Save Changes</h3>
+
+        <p class="card-desc">
+          Save all settings to this browser.
+        </p>
+
+        <div class="actions">
+
+          <button
+            class="btn btn-primary"
+            onclick="saveSettings()"
+          >
+            💾 Save Settings
+          </button>
+
+          <button
+            class="btn btn-secondary"
+            onclick="loadSettings()"
+          >
+            ↻ Reload Settings
+          </button>
+
+          <button
+            class="btn btn-danger"
+            onclick="resetSettings()"
+          >
+            Reset Settings
+          </button>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+</div>
+
+
+<div id="toast" class="toast"></div>
+
+
+<script src="/api-sync.js"></script>
+<script>
+
+const SETTINGS_KEY = "TH_STORE_SETTINGS";
+
+
+const defaultSettings = {
+
+  adminName: "Admin",
+
+  adminEmail: "",
+
+  adminPassword: "",
+
+  storeName: "THE TURBAN HOUSE",
+
+  whatsapp: "",
+
+  storeEmail: "",
+
+  storeAddress: "",
+
+  currency: "₹",
+
+  storeStatus: true
+
+};
+
+
+/* GET SETTINGS */
+
+function getSettings(){
+
+  try{
+
+    const data = JSON.parse(
+      localStorage.getItem(SETTINGS_KEY)
+    );
+
+    return {
+      ...defaultSettings,
+      ...(data || {})
+    };
+
+  }catch(error){
+
+    return {
+      ...defaultSettings
+    };
+
+  }
+
+}
+
+
+/* LOAD SETTINGS */
+
+function loadSettings(){
+
+  const settings = getSettings();
+
+  document.getElementById("adminName").value =
+    settings.adminName || "";
+
+  document.getElementById("adminEmail").value =
+    settings.adminEmail || "";
+
+  document.getElementById("adminPassword").value = "";
+
+  document.getElementById("storeName").value =
+    settings.storeName || "THE TURBAN HOUSE";
+
+  document.getElementById("whatsapp").value =
+    settings.whatsapp || "";
+
+  document.getElementById("storeEmail").value =
+    settings.storeEmail || "";
+
+  document.getElementById("storeAddress").value =
+    settings.storeAddress || "";
+
+  document.getElementById("currency").value =
+    settings.currency || "₹";
+
+  document.getElementById("storeStatus").checked =
+    settings.storeStatus !== false;
+
+  updateStatusPreview();
+
+  updatePreview();
+
+}
+
+
+/* SAVE */
+
+function saveSettings(){
+
+  const oldSettings = getSettings();
+
+  const newPassword =
+    document.getElementById("adminPassword").value.trim();
+
+  const settings = {
+
+    adminName:
+      document.getElementById("adminName").value.trim(),
+
+    adminEmail:
+      document.getElementById("adminEmail").value.trim(),
+
+    adminPassword:
+      newPassword || oldSettings.adminPassword || "",
+
+    storeName:
+      document.getElementById("storeName").value.trim(),
+
+    whatsapp:
+      document.getElementById("whatsapp").value.trim(),
+
+    storeEmail:
+      document.getElementById("storeEmail").value.trim(),
+
+    storeAddress:
+      document.getElementById("storeAddress").value.trim(),
+
+    currency:
+      document.getElementById("currency").value,
+
+    storeStatus:
+      document.getElementById("storeStatus").checked
+
+  };
+
+
+  if(!settings.storeName){
+
+    showToast("Store name is required.");
+
+    return;
+
+  }
+
+
+  localStorage.setItem(
+    SETTINGS_KEY,
+    JSON.stringify(settings)
+  );
+
+
+  document.getElementById("adminPassword").value = "";
+
+  updateStatusPreview();
+
+  updatePreview();
+
+  showToast("Settings saved successfully ✓");
+
+}
+
+
+/* RESET */
+
+function resetSettings(){
+
+  const confirmReset =
+    confirm(
+      "Are you sure you want to reset store settings?"
+    );
+
+  if(!confirmReset) return;
+
+  localStorage.removeItem(SETTINGS_KEY);
+
+  loadSettings();
+
+  showToast("Settings reset successfully.");
+
+}
+
+
+/* PASSWORD */
+
+function togglePassword(){
+
+  const input =
+    document.getElementById("adminPassword");
+
+  const button =
+    document.querySelector(".show-pass");
+
+  if(input.type === "password"){
+
+    input.type = "text";
+
+    button.textContent = "HIDE";
+
+  }else{
+
+    input.type = "password";
+
+    button.textContent = "SHOW";
+
+  }
+
+}
+
+
+/* STATUS PREVIEW */
+
+function updateStatusPreview(){
+
+  const active =
+    document.getElementById("storeStatus").checked;
+
+  const title =
+    document.getElementById("storeStatusTitle");
+
+  const description =
+    document.getElementById("storeStatusDescription");
+
+  const statusText =
+    document.getElementById("statusText");
+
+  const dot =
+    document.getElementById("statusDot");
+
+
+  if(active){
+
+    title.textContent = "Store is Active";
+
+    description.textContent =
+      "Customers can browse and place orders.";
+
+    statusText.textContent =
+      "Store Active";
+
+    dot.style.background =
+      "#38c172";
+
+  }else{
+
+    title.textContent = "Store is Offline";
+
+    description.textContent =
+      "Store can be temporarily disabled.";
+
+    statusText.textContent =
+      "Store Offline";
+
+    dot.style.background =
+      "#e05252";
+
+  }
+
+}
+
+
+/* PREVIEW */
+
+function updatePreview(){
+
+  const storeName =
+    document.getElementById("storeName").value.trim();
+
+  const currency =
+    document.getElementById("currency").value;
+
+  const whatsapp =
+    document.getElementById("whatsapp").value.trim();
+
+  const email =
+    document.getElementById("storeEmail").value.trim();
+
+
+  document.getElementById("previewStore").textContent =
+    storeName || "THE TURBAN HOUSE";
+
+  document.getElementById("previewCurrency").textContent =
+    currency || "₹";
+
+  document.getElementById("previewWhatsApp").textContent =
+    whatsapp || "Not Set";
+
+  document.getElementById("previewEmail").textContent =
+    email || "Not Set";
+
+}
+
+
+/* LIVE PREVIEW */
+
+[
+  "storeName",
+  "currency",
+  "whatsapp",
+  "storeEmail"
+].forEach(function(id){
+
+  const element =
+    document.getElementById(id);
+
+  element.addEventListener(
+    "input",
+    updatePreview
+  );
+
+  element.addEventListener(
+    "change",
+    updatePreview
+  );
+
+});
+
+
+/* ANNUAL SERVICE PLAN */
+
+function dateOnly(value){
+  if(!value) return "";
+  const d = new Date(value);
+  if(Number.isNaN(d.getTime())) return "";
+  return d.toISOString().slice(0,10);
+}
+
+function formatServiceDate(value){
+  if(!value) return "—";
+  const d = new Date(value);
+  if(Number.isNaN(d.getTime())) return "—";
+  return d.toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"});
+}
+
+async function loadServicePlan(){
+  try{
+    const r = await fetch('/api/service-status',{cache:'no-store'});
+    const data = await r.json();
+    if(!r.ok || !data.success) throw new Error(data.message || 'Unable to load service plan');
+    const s = data.service;
+    document.getElementById('serviceCharge').value = Number(s.annualCharge || 0);
+    document.getElementById('servicePaymentStatus').value = String(s.paymentStatus || 'unpaid').toLowerCase()==='paid' ? 'paid' : 'unpaid';
+    document.getElementById('serviceStart').value = dateOnly(s.startedAt);
+    document.getElementById('serviceExpiry').value = dateOnly(s.expiresAt);
+    const title = document.getElementById('serviceStatusTitle');
+    const desc = document.getElementById('serviceStatusDescription');
+    const count = document.getElementById('serviceCountdown');
+    const expires = new Date(s.expiresAt);
+    const days = Math.ceil((expires.getTime()-Date.now())/86400000);
+    if(s.active){
+      title.textContent = 'Service Active ✓';
+      title.style.color = '#38c172';
+      desc.textContent = `Valid until ${formatServiceDate(s.expiresAt)} • Payment status: ${s.paymentStatus}`;
+      count.textContent = `${Math.max(days,0)} day(s) left`;
+    }else{
+      title.textContent = 'Service Expired — Orders Blocked';
+      title.style.color = '#e05252';
+      desc.textContent = `Expired on ${formatServiceDate(s.expiresAt)} • Renew to enable checkout/orders.`;
+      count.textContent = 'EXPIRED';
+    }
+  }catch(e){
+    document.getElementById('serviceStatusTitle').textContent = 'Service status unavailable';
+    document.getElementById('serviceStatusDescription').textContent = e.message;
+    document.getElementById('serviceCountdown').textContent = '—';
+  }
+}
+
+async function saveServicePlan(){
+  const password = document.getElementById('serviceAdminPassword').value.trim();
+  if(!password){ showToast('Enter admin password to update service plan.'); return; }
+  const payload = {
+    adminPassword: password,
+    annualCharge: Number(document.getElementById('serviceCharge').value || 0),
+    paymentStatus: document.getElementById('servicePaymentStatus').value,
+    startedAt: document.getElementById('serviceStart').value,
+    expiresAt: document.getElementById('serviceExpiry').value,
+    autoBlockOrders: true
+  };
+  try{
+    const r = await fetch('/api/service-plan',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    const data = await r.json();
+    if(!r.ok || !data.success) throw new Error(data.message || 'Unable to save service plan');
+    document.getElementById('serviceAdminPassword').value='';
+    await loadServicePlan();
+    showToast('1-year service plan saved ✓');
+  }catch(e){ showToast(e.message); }
+}
+
+async function renewServicePlan(){
+  const password = document.getElementById('serviceAdminPassword').value.trim();
+  if(!password){ showToast('Enter admin password to renew service.'); return; }
+  try{
+    const r = await fetch('/api/service-plan/renew',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({adminPassword:password})});
+    const data = await r.json();
+    if(!r.ok || !data.success) throw new Error(data.message || 'Unable to renew service');
+    document.getElementById('serviceAdminPassword').value='';
+    await loadServicePlan();
+    showToast('Service renewed for 1 year ✓');
+  }catch(e){ showToast(e.message); }
+}
+
+/* TOAST */
+
+function showToast(message){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent = message;
+
+  toast.classList.add("show");
+
+  setTimeout(function(){
+
+    toast.classList.remove("show");
+
+  },2500);
+
+}
+
+
+/* LOGOUT */
+
+function logoutAdmin(){
+
+  localStorage.removeItem("TH_ADMIN_LOGGED_IN");
+
+}
+
+
+/* INITIAL */
+
+loadSettings();
+
+</script>
+
+</body>
+</html>

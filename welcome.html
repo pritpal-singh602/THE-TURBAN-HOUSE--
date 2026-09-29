@@ -1,0 +1,1086 @@
+```html
+<!DOCTYPE html>
+<html lang="pa">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>THE TURBAN HOUSE | Welcome</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#080808;
+    color:#f5ead5;
+    font-family:Arial,Helvetica,sans-serif;
+    overflow-x:hidden;
+}
+
+
+/* =========================
+   MAIN BACKGROUND
+========================= */
+
+.welcome{
+    min-height:100vh;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    position:relative;
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 75% 45%,
+            #493719 0%,
+            #18130c 30%,
+            #080808 67%
+        );
+}
+
+
+/* GOLDEN LIGHT */
+
+.welcome::before{
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    right:-180px;
+    top:20%;
+
+    background:#d7ad57;
+
+    opacity:.07;
+
+    filter:blur(100px);
+
+    border-radius:50%;
+
+    animation:glow 5s ease-in-out infinite;
+}
+
+@keyframes glow{
+
+    0%,100%{
+        transform:scale(1);
+        opacity:.06;
+    }
+
+    50%{
+        transform:scale(1.2);
+        opacity:.12;
+    }
+
+}
+
+
+/* =========================
+   TOP BADGE
+========================= */
+
+.collection{
+
+    position:absolute;
+
+    top:28px;
+    right:35px;
+
+    border:1px solid #85662e;
+
+    border-radius:30px;
+
+    padding:10px 18px;
+
+    color:#d7ad57;
+
+    font-size:10px;
+
+    letter-spacing:1.7px;
+
+    z-index:10;
+
+    background:rgba(8,8,8,.35);
+
+    backdrop-filter:blur(8px);
+}
+
+
+/* =========================
+   LEFT CONTENT
+========================= */
+
+.content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    padding:70px 8%;
+
+    position:relative;
+
+    z-index:2;
+
+    animation:contentIn 1s ease forwards;
+}
+
+@keyframes contentIn{
+
+    from{
+        opacity:0;
+        transform:translateX(-30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+
+}
+
+
+/* LOGO */
+
+.logo{
+
+    color:#d7ad57;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    letter-spacing:5px;
+
+    margin-bottom:35px;
+
+}
+
+
+/* SMALL TITLE */
+
+.welcome-small{
+
+    color:#d7ad57;
+
+    font-size:13px;
+
+    letter-spacing:3px;
+
+    margin-bottom:15px;
+
+}
+
+
+/* HEADING */
+
+h1{
+
+    font-family:Georgia,"Times New Roman",serif;
+
+    font-size:clamp(48px,6vw,82px);
+
+    line-height:.95;
+
+    margin-bottom:25px;
+
+    font-weight:700;
+}
+
+h1 span{
+
+    color:#d7ad57;
+
+}
+
+
+/* PUNJABI */
+
+.punjabi{
+
+    font-size:clamp(21px,2.5vw,31px);
+
+    line-height:1.5;
+
+    margin-bottom:20px;
+
+    color:#f5ead5;
+}
+
+
+/* DESCRIPTION */
+
+.description{
+
+    max-width:550px;
+
+    color:#cfc3ad;
+
+    font-size:15px;
+
+    line-height:1.8;
+
+}
+
+
+/* =========================
+   ENTER BUTTON
+========================= */
+
+.shop-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:fit-content;
+
+    margin-top:32px;
+
+    padding:16px 34px;
+
+    background:#d7ad57;
+
+    color:#111;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+    border-radius:5px;
+
+    transition:.3s;
+
+    box-shadow:
+        0 10px 35px rgba(215,173,87,.12);
+}
+
+.shop-btn:hover{
+
+    background:#f0cd7c;
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 15px 45px rgba(215,173,87,.25);
+}
+
+
+/* =========================
+   TRUST STRIP
+========================= */
+
+.trust-strip{
+
+    display:flex;
+
+    gap:25px;
+
+    margin-top:38px;
+
+    flex-wrap:wrap;
+}
+
+.trust-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#9f927d;
+
+    font-size:11px;
+
+    letter-spacing:.5px;
+}
+
+.trust-item strong{
+
+    color:#d7ad57;
+
+    font-size:14px;
+}
+
+
+/* =========================
+   RIGHT HERO
+========================= */
+
+.model-area{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px;
+
+    position:relative;
+
+    z-index:2;
+
+    animation:heroIn 1.2s ease forwards;
+}
+
+@keyframes heroIn{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+/* DECORATIVE CIRCLE */
+
+.model-area::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:520px;
+    height:520px;
+
+    border:1px solid rgba(215,173,87,.16);
+
+    border-radius:50%;
+
+    animation:rotateCircle 25s linear infinite;
+}
+
+@keyframes rotateCircle{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+
+/* HERO CARD */
+
+.model-card{
+
+    width:min(440px,90%);
+
+    height:650px;
+
+    border:1px solid #85662e;
+
+    border-radius:220px 220px 20px 20px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-end;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background:
+        radial-gradient(
+            circle at 50% 25%,
+            #806432 0%,
+            #3e301c 32%,
+            #17130d 72%
+        );
+
+    box-shadow:
+        0 0 70px rgba(215,173,87,.15),
+        inset 0 0 60px rgba(215,173,87,.05);
+
+    z-index:3;
+}
+
+
+/* HERO INNER GLOW */
+
+.model-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+    height:300px;
+
+    top:70px;
+
+    border-radius:50%;
+
+    background:#d7ad57;
+
+    opacity:.08;
+
+    filter:blur(50px);
+}
+
+
+/* HERO DECORATION */
+
+.model-card::after{
+
+    content:"✦";
+
+    position:absolute;
+
+    top:32px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    color:#d7ad57;
+
+    font-size:25px;
+
+    opacity:.7;
+}
+
+
+/* PLACEHOLDER */
+
+.sardar-placeholder{
+
+    text-align:center;
+
+    padding:40px;
+
+    color:#f3dfb2;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+    position:relative;
+
+    z-index:5;
+}
+
+.sardar-placeholder .turban-icon{
+
+    font-size:60px;
+
+    margin-bottom:18px;
+
+    opacity:.9;
+}
+
+.sardar-placeholder small{
+
+    display:block;
+
+    margin-top:15px;
+
+    color:#c8b99d;
+
+    font-size:12px;
+
+    line-height:1.7;
+
+    font-weight:normal;
+
+    letter-spacing:0;
+}
+
+
+/* =========================
+   HERO LABEL
+========================= */
+
+.hero-label{
+
+    position:absolute;
+
+    bottom:30px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    background:rgba(8,8,8,.75);
+
+    border:1px solid #85662e;
+
+    padding:9px 17px;
+
+    border-radius:30px;
+
+    color:#d7ad57;
+
+    font-size:10px;
+
+    letter-spacing:1.5px;
+
+    white-space:nowrap;
+
+    z-index:8;
+
+    backdrop-filter:blur(6px);
+}
+
+
+/* =========================
+   FLOATING BADGE
+========================= */
+
+.floating-badge{
+
+    position:absolute;
+
+    right:4%;
+
+    bottom:15%;
+
+    width:100px;
+    height:100px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    background:#111;
+
+    border:1px solid #85662e;
+
+    color:#d7ad57;
+
+    font-size:10px;
+
+    line-height:1.4;
+
+    letter-spacing:1px;
+
+    z-index:8;
+
+    box-shadow:0 10px 35px rgba(0,0,0,.4);
+}
+
+
+/* =========================
+   BOTTOM LINE
+========================= */
+
+.bottom-line{
+
+    position:absolute;
+
+    bottom:18px;
+
+    left:8%;
+
+    color:#645b4e;
+
+    font-size:10px;
+
+    letter-spacing:1.5px;
+
+    z-index:5;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:850px){
+
+    .welcome{
+
+        grid-template-columns:1fr;
+
+        background:
+            radial-gradient(
+                circle at 50% 70%,
+                #493719 0%,
+                #18130c 30%,
+                #080808 70%
+            );
+    }
+
+
+    .collection{
+
+        top:20px;
+
+        right:20px;
+
+        font-size:9px;
+
+        padding:8px 13px;
+    }
+
+
+    .content{
+
+        padding:95px 28px 45px;
+
+        text-align:center;
+
+        align-items:center;
+    }
+
+
+    .logo{
+
+        font-size:15px;
+
+        letter-spacing:4px;
+
+        margin-bottom:28px;
+    }
+
+
+    .welcome-small{
+
+        font-size:11px;
+
+        letter-spacing:2px;
+    }
+
+
+    h1{
+
+        font-size:clamp(43px,12vw,65px);
+    }
+
+
+    .punjabi{
+
+        font-size:20px;
+    }
+
+
+    .description{
+
+        font-size:14px;
+    }
+
+
+    .trust-strip{
+
+        justify-content:center;
+
+        gap:14px;
+    }
+
+
+    .model-area{
+
+        min-height:560px;
+
+        padding:20px 20px 65px;
+    }
+
+
+    .model-area::before{
+
+        width:390px;
+        height:390px;
+    }
+
+
+    .model-card{
+
+        width:min(360px,90%);
+
+        height:520px;
+    }
+
+
+    .floating-badge{
+
+        right:6%;
+
+        bottom:8%;
+
+        width:80px;
+
+        height:80px;
+
+        font-size:8px;
+    }
+
+
+    .bottom-line{
+
+        display:none;
+    }
+
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media(max-width:500px){
+
+    .collection{
+
+        position:absolute;
+
+        top:15px;
+
+        right:15px;
+    }
+
+
+    .content{
+
+        padding:85px 20px 35px;
+    }
+
+
+    .logo{
+
+        font-size:13px;
+
+        letter-spacing:3px;
+    }
+
+
+    h1{
+
+        font-size:43px;
+    }
+
+
+    .punjabi{
+
+        font-size:18px;
+    }
+
+
+    .description{
+
+        font-size:13px;
+
+        line-height:1.7;
+    }
+
+
+    .shop-btn{
+
+        width:100%;
+
+        max-width:300px;
+
+        padding:15px 25px;
+    }
+
+
+    .trust-strip{
+
+        display:grid;
+
+        grid-template-columns:1fr 1fr;
+
+        width:100%;
+
+        max-width:330px;
+    }
+
+
+    .model-area{
+
+        min-height:500px;
+
+        padding-bottom:50px;
+    }
+
+
+    .model-card{
+
+        height:450px;
+
+        border-radius:180px 180px 18px 18px;
+    }
+
+
+    .sardar-placeholder{
+
+        font-size:17px;
+
+        padding:25px;
+    }
+
+
+    .hero-label{
+
+        bottom:20px;
+
+        font-size:8px;
+    }
+
+
+    .floating-badge{
+
+        width:68px;
+
+        height:68px;
+
+        right:4%;
+
+        bottom:10%;
+
+        font-size:7px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<main class="welcome">
+
+
+    <!-- =========================
+         TOP COLLECTION BADGE
+    ========================== -->
+
+    <div class="collection">
+        MEN'S PREMIUM COLLECTION
+    </div>
+
+
+    <!-- =========================
+         LEFT CONTENT
+    ========================== -->
+
+    <section class="content">
+
+
+        <div class="logo">
+            THE TURBAN HOUSE
+        </div>
+
+
+        <div class="welcome-small">
+            WELCOME TO OUR HOUSE
+        </div>
+
+
+        <h1>
+            Royal Style.<br>
+            <span>Punjabi Heritage.</span>
+        </h1>
+
+
+        <div class="punjabi">
+
+            ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ ਜੀ
+
+            <br>
+
+            THE TURBAN HOUSE ਵਿੱਚ
+            ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ
+
+        </div>
+
+
+        <p class="description">
+
+            Premium men's collection
+            ਤੁਹਾਡੇ royal look ਲਈ।
+
+            Turban, Kalgi, Sehra, Watches,
+            Perfumes, Oud, Sunglasses,
+            Ties ਅਤੇ Accessories —
+            ਸਭ ਕੁਝ ਇੱਕ ਹੀ ਜਗ੍ਹਾ।
+
+        </p>
+
+
+        <a
+            href="index.html"
+            class="shop-btn">
+
+            ENTER SHOP →
+
+        </a>
+
+
+        <!-- TRUST FEATURES -->
+
+        <div class="trust-strip">
+
+
+            <div class="trust-item">
+
+                <strong>✦</strong>
+
+                Premium Quality
+
+            </div>
+
+
+            <div class="trust-item">
+
+                <strong>✓</strong>
+
+                WhatsApp Orders
+
+            </div>
+
+
+            <div class="trust-item">
+
+                <strong>◆</strong>
+
+                Men's Collection
+
+            </div>
+
+
+            <div class="trust-item">
+
+                <strong>★</strong>
+
+                Royal Style
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         HERO AREA
+    ========================== -->
+
+    <section class="model-area">
+
+
+        <div class="model-card">
+
+
+            <div class="sardar-placeholder">
+
+
+                <div class="turban-icon">
+                    👳‍♂️
+                </div>
+
+
+                SARDAR JI
+
+
+                <small>
+
+                    ROYAL PUNJABI
+                    <br>
+                    HERITAGE COLLECTION
+
+                    <br><br>
+
+                    Your premium Sardar Ji
+                    fashion photograph
+                    can be placed here.
+
+                </small>
+
+
+            </div>
+
+
+            <div class="hero-label">
+
+                THE TURBAN HOUSE
+                • EST. ROYAL STYLE
+
+            </div>
+
+
+        </div>
+
+
+        <div class="floating-badge">
+
+            PUNJABI<br>
+            ROYAL<br>
+            STYLE
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         BOTTOM BRAND LINE
+    ========================== -->
+
+    <div class="bottom-line">
+
+        TRADITION • STYLE • HERITAGE • ROYALTY
+
+    </div>
+
+
+</main>
+
+
+</body>
+</html>
+```

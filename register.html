@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Create Account | THE TURBAN HOUSE</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:#f7f1e3;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:25px;
+}
+
+.register-wrapper{
+    width:100%;
+    max-width:480px;
+}
+
+.brand{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.brand h1{
+    color:#111;
+    font-size:28px;
+    letter-spacing:1px;
+}
+
+.brand span{
+    color:#c9a227;
+}
+
+.brand p{
+    color:#777;
+    margin-top:7px;
+}
+
+.card{
+    background:#fff;
+    padding:32px;
+    border-radius:18px;
+    box-shadow:0 10px 35px rgba(0,0,0,.12);
+}
+
+.card h2{
+    text-align:center;
+    color:#111;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#777;
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+.form-group{
+    margin-bottom:17px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    font-size:14px;
+    margin-bottom:7px;
+    color:#222;
+}
+
+input{
+    width:100%;
+    padding:13px 14px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+    outline:none;
+}
+
+input:focus{
+    border-color:#c9a227;
+    box-shadow:0 0 0 2px rgba(201,162,39,.15);
+}
+
+.password-box{
+    position:relative;
+}
+
+.password-box input{
+    padding-right:75px;
+}
+
+.show-password{
+    position:absolute;
+    right:10px;
+    top:50%;
+    transform:translateY(-50%);
+    border:none;
+    background:none;
+    color:#a27d12;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.register-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#c9a227;
+    color:#000;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:5px;
+}
+
+.register-btn:hover{
+    background:#b28c1e;
+}
+
+.message{
+    display:none;
+    padding:11px;
+    margin-bottom:16px;
+    border-radius:7px;
+    text-align:center;
+    font-size:14px;
+}
+
+.success{
+    display:block;
+    background:#e8f7e8;
+    color:#176b17;
+}
+
+.error{
+    display:block;
+    background:#ffe7e7;
+    color:#a00000;
+}
+
+.login-link{
+    text-align:center;
+    margin-top:22px;
+    color:#666;
+    font-size:14px;
+}
+
+.login-link a{
+    color:#a27d12;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.back-shop{
+    display:block;
+    text-align:center;
+    margin-top:15px;
+    color:#111;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.back-shop:hover{
+    color:#b28c1e;
+}
+
+@media(max-width:500px){
+
+    body{
+        padding:15px;
+    }
+
+    .card{
+        padding:23px 18px;
+    }
+
+    .brand h1{
+        font-size:23px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="register-wrapper">
+
+    <div class="brand">
+        <h1>THE <span>TURBAN HOUSE</span></h1>
+        <p>Premium Men's Collection</p>
+    </div>
+
+    <div class="card">
+
+        <h2>Create Account</h2>
+
+        <p class="subtitle">
+            Join THE TURBAN HOUSE and manage your shopping easily.
+        </p>
+
+        <div id="message" class="message"></div>
+
+        <form id="registerForm">
+
+            <div class="form-group">
+                <label>Full Name *</label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your full name"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Email Address *</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Mobile Number *</label>
+
+                <input
+                    type="tel"
+                    id="mobile"
+                    placeholder="10 digit mobile number"
+                    maxlength="10"
+                    inputmode="numeric"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+
+                <label>Password *</label>
+
+                <div class="password-box">
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Minimum 6 characters"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="show-password"
+                        onclick="togglePassword('password',this)"
+                    >
+                        SHOW
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Confirm Password *</label>
+
+                <div class="password-box">
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Enter password again"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="show-password"
+                        onclick="togglePassword('confirmPassword',this)"
+                    >
+                        SHOW
+                    </button>
+
+                </div>
+
+            </div>
+
+            <button
+                type="submit"
+                class="register-btn"
+            >
+                CREATE ACCOUNT
+            </button>
+
+        </form>
+
+        <div class="login-link">
+            Already have an account?
+            <a href="login.html">Login Here</a>
+        </div>
+
+        <a
+            href="shop.html"
+            class="back-shop"
+        >
+            ← Continue Shopping
+        </a>
+
+    </div>
+
+</div>
+
+
+<script src="/api-sync.js"></script>
+<script>
+
+const registerForm =
+    document.getElementById("registerForm");
+
+
+registerForm.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim().toLowerCase();
+
+    const mobile =
+        document.getElementById("mobile").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+    const confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+
+    // Name validation
+    if(name.length < 2){
+
+        showMessage(
+            "Please enter a valid name.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    // Email validation
+    const emailPattern =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(!emailPattern.test(email)){
+
+        showMessage(
+            "Please enter a valid email address.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    // Mobile validation
+    if(!/^\d{10}$/.test(mobile)){
+
+        showMessage(
+            "Mobile number must be exactly 10 digits.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    // Password validation
+    if(password.length < 6){
+
+        showMessage(
+            "Password must contain at least 6 characters.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    // Confirm password
+    if(password !== confirmPassword){
+
+        showMessage(
+            "Passwords do not match.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    // Get existing customers
+    let customers =
+        JSON.parse(
+            localStorage.getItem("TH_CUSTOMERS")
+        ) || [];
+
+
+    // Check duplicate email
+    const emailExists =
+        customers.some(customer =>
+            String(customer.email || "").toLowerCase()
+            === email
+        );
+
+
+    if(emailExists){
+
+        showMessage(
+            "This email is already registered.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    // Check duplicate mobile
+    const mobileExists =
+        customers.some(customer =>
+            String(customer.mobile || "") === mobile
+        );
+
+
+    if(mobileExists){
+
+        showMessage(
+            "This mobile number is already registered.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    // Create customer
+    const customer = {
+
+        id:
+            "CUS-" +
+            Date.now(),
+
+        name:name,
+
+        email:email,
+
+        mobile:mobile,
+
+        password:password,
+
+        address:"",
+
+        city:"",
+
+        state:"",
+
+        pincode:"",
+
+        status:"active",
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    customers.push(customer);
+
+
+    // Save customers
+    localStorage.setItem(
+        "TH_CUSTOMERS",
+        JSON.stringify(customers)
+    );
+
+
+    showMessage(
+        "Account created successfully! Redirecting to login...",
+        "success"
+    );
+
+
+    registerForm.reset();
+
+
+    setTimeout(function(){
+
+        window.location.href =
+            "login.html";
+
+    },1200);
+
+});
+
+
+function togglePassword(inputId,button){
+
+    const input =
+        document.getElementById(inputId);
+
+
+    if(input.type === "password"){
+
+        input.type = "text";
+
+        button.textContent = "HIDE";
+
+    }else{
+
+        input.type = "password";
+
+        button.textContent = "SHOW";
+
+    }
+
+}
+
+
+function showMessage(text,type){
+
+    const message =
+        document.getElementById("message");
+
+    message.textContent = text;
+
+    message.className =
+        "message " + type;
+
+}
+
+</script>
+
+</body>
+</html>

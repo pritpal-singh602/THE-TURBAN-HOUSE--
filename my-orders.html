@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Orders | THE TURBAN HOUSE</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f7f3ea;
+    color:#17130d;
+}
+
+.topbar{
+    background:#0b0b0b;
+    color:#fff;
+    text-align:center;
+    padding:9px;
+    font-size:12px;
+    letter-spacing:.6px;
+}
+
+.header{
+    background:#111;
+    color:#fff;
+    padding:18px 5%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:21px;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.logo span{
+    color:#d5aa45;
+}
+
+.nav{
+    display:flex;
+    gap:18px;
+}
+
+.nav a{
+    color:#fff;
+    text-decoration:none;
+    font-size:13px;
+}
+
+.nav a:hover{
+    color:#d5aa45;
+}
+
+.account-btn{
+    border:1px solid #d5aa45;
+    padding:9px 14px;
+    border-radius:8px;
+    color:#fff;
+    text-decoration:none;
+    font-size:13px;
+}
+
+/* PAGE */
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:40px 5%;
+}
+
+.page-header{
+    margin-bottom:25px;
+}
+
+.page-header h1{
+    font-size:34px;
+}
+
+.page-header p{
+    color:#777;
+    margin-top:7px;
+}
+
+/* CUSTOMER */
+
+.customer-card{
+    background:#111;
+    color:#fff;
+    border-radius:16px;
+    padding:22px;
+    margin-bottom:25px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.customer-info h2{
+    font-size:21px;
+    color:#d5aa45;
+}
+
+.customer-info p{
+    color:#ccc;
+    margin-top:6px;
+    font-size:13px;
+}
+
+.summary{
+    display:flex;
+    gap:25px;
+}
+
+.summary-box{
+    text-align:center;
+}
+
+.summary-box strong{
+    display:block;
+    color:#d5aa45;
+    font-size:24px;
+}
+
+.summary-box span{
+    color:#aaa;
+    font-size:11px;
+}
+
+/* ORDERS */
+
+.orders{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.order-card{
+    background:#fff;
+    border-radius:15px;
+    padding:22px;
+    box-shadow:0 5px 25px rgba(0,0,0,.07);
+}
+
+.order-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    border-bottom:1px solid #eee;
+    padding-bottom:15px;
+}
+
+.order-id{
+    font-weight:900;
+    font-size:16px;
+}
+
+.order-date{
+    color:#888;
+    font-size:12px;
+    margin-top:5px;
+}
+
+.status{
+    padding:7px 12px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:800;
+}
+
+.pending{
+    background:#fff1d5;
+    color:#a66a00;
+}
+
+.confirmed{
+    background:#e5f0ff;
+    color:#2463a6;
+}
+
+.packed{
+    background:#eee6ff;
+    color:#7040a8;
+}
+
+.shipped{
+    background:#e1f5f5;
+    color:#177878;
+}
+
+.delivered{
+    background:#e6f7eb;
+    color:#218c45;
+}
+
+.cancelled{
+    background:#fbe2e2;
+    color:#a52b2b;
+}
+
+/* ITEMS */
+
+.items{
+    padding:18px 0;
+}
+
+.item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px 0;
+    border-bottom:1px solid #f1f1f1;
+}
+
+.item:last-child{
+    border-bottom:0;
+}
+
+.item-image{
+    width:55px;
+    height:55px;
+    border-radius:9px;
+    overflow:hidden;
+    background:#eee;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#999;
+    font-size:10px;
+}
+
+.item-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.item-name{
+    font-weight:700;
+    font-size:14px;
+}
+
+.item-meta{
+    color:#777;
+    font-size:12px;
+    margin-top:4px;
+}
+
+/* BOTTOM */
+
+.order-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    border-top:1px solid #eee;
+    padding-top:16px;
+}
+
+.total{
+    font-size:19px;
+    font-weight:900;
+}
+
+.payment{
+    color:#777;
+    font-size:12px;
+    margin-top:4px;
+}
+
+.actions{
+    display:flex;
+    gap:8px;
+}
+
+.btn{
+    border:0;
+    padding:10px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:800;
+    font-size:12px;
+}
+
+.track{
+    background:#111;
+    color:#fff;
+}
+
+.track:hover{
+    background:#c49a3b;
+}
+
+.shop{
+    background:#eee5d2;
+    color:#72520d;
+}
+
+/* EMPTY */
+
+.empty{
+    background:#fff;
+    border-radius:16px;
+    text-align:center;
+    padding:60px 25px;
+    box-shadow:0 5px 25px rgba(0,0,0,.06);
+}
+
+.empty-icon{
+    font-size:50px;
+    margin-bottom:15px;
+}
+
+.empty h2{
+    margin-bottom:8px;
+}
+
+.empty p{
+    color:#777;
+    margin-bottom:20px;
+}
+
+.shop-btn{
+    display:inline-block;
+    background:#111;
+    color:#fff;
+    text-decoration:none;
+    padding:13px 20px;
+    border-radius:8px;
+    font-weight:800;
+}
+
+/* MOBILE */
+
+@media(max-width:750px){
+
+    .nav{
+        display:none;
+    }
+
+    .customer-card{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .summary{
+        width:100%;
+        justify-content:space-between;
+    }
+
+    .order-top{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .order-bottom{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .actions{
+        width:100%;
+    }
+
+    .actions .btn{
+        flex:1;
+    }
+}
+
+@media(max-width:500px){
+
+    .header{
+        padding:15px;
+    }
+
+    .logo{
+        font-size:16px;
+    }
+
+    .container{
+        padding:25px 15px;
+    }
+
+    .page-header h1{
+        font-size:28px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    FREE SHIPPING • PREMIUM MEN'S COLLECTION • WHATSAPP ORDER SUPPORT
+</div>
+
+
+<header class="header">
+
+    <div class="logo">
+        THE <span>TURBAN</span> HOUSE
+    </div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="cart.html">Cart</a>
+    </nav>
+
+    <a href="account.html" class="account-btn">
+        My Account
+    </a>
+
+</header>
+
+
+<main class="container">
+
+    <div class="page-header">
+
+        <h1>My Orders</h1>
+
+        <p>
+            View and track all your THE TURBAN HOUSE orders.
+        </p>
+
+    </div>
+
+
+    <section class="customer-card">
+
+        <div class="customer-info">
+
+            <h2 id="customerName">
+                Customer
+            </h2>
+
+            <p id="customerContact">
+                —
+            </p>
+
+        </div>
+
+
+        <div class="summary">
+
+            <div class="summary-box">
+
+                <strong id="totalOrders">
+                    0
+                </strong>
+
+                <span>
+                    ORDERS
+                </span>
+
+            </div>
+
+
+            <div class="summary-box">
+
+                <strong id="totalSpent">
+                    ₹0
+                </strong>
+
+                <span>
+                    TOTAL SPENT
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section
+        class="orders"
+        id="ordersContainer">
+
+    </section>
+
+</main>
+
+
+<script src="/api-sync.js"></script>
+<script>
+
+const currentCustomer =
+    JSON.parse(
+        localStorage.getItem("TH_CURRENT_CUSTOMER") || "null"
+    );
+
+
+const allOrders =
+    JSON.parse(
+        localStorage.getItem("TH_ORDERS") || "[]"
+    );
+
+
+/* LOGIN CHECK */
+
+if(!currentCustomer){
+
+    document.getElementById("ordersContainer").innerHTML = `
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                🔐
+            </div>
+
+            <h2>
+                Please Login
+            </h2>
+
+            <p>
+                Login to view your orders.
+            </p>
+
+            <a
+                href="login.html"
+                class="shop-btn">
+
+                Login
+
+            </a>
+
+        </div>
+
+    `;
+
+}else{
+
+    loadCustomerOrders();
+
+}
+
+
+/* CUSTOMER ORDERS */
+
+function loadCustomerOrders(){
+
+    document.getElementById("customerName")
+        .innerText =
+        currentCustomer.name || "Customer";
+
+
+    document.getElementById("customerContact")
+        .innerText =
+        [
+            currentCustomer.email,
+            currentCustomer.mobile
+        ]
+        .filter(Boolean)
+        .join(" • ");
+
+
+    const customerMobile =
+        normalizeMobile(currentCustomer.mobile);
+
+
+    const customerEmail =
+        String(currentCustomer.email || "")
+        .trim()
+        .toLowerCase();
+
+
+    const orders =
+        allOrders.filter(order => {
+
+            const orderMobile =
+                normalizeMobile(
+                    order.customer?.mobile
+                );
+
+            const orderEmail =
+                String(
+                    order.customer?.email || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            return (
+                customerMobile &&
+                orderMobile === customerMobile
+            )
+            ||
+            (
+                customerEmail &&
+                orderEmail === customerEmail
+            );
+
+        });
+
+
+    const totalSpent =
+        orders.reduce(
+            (sum,order) =>
+                sum + Number(
+                    order.total ||
+                    order.grandTotal ||
+                    0
+                ),
+            0
+        );
+
+
+    document.getElementById("totalOrders")
+        .innerText =
+        orders.length;
+
+
+    document.getElementById("totalSpent")
+        .innerText =
+        "₹" +
+        totalSpent.toLocaleString("en-IN");
+
+
+    renderOrders(orders);
+
+}
+
+
+/* NORMALIZE MOBILE */
+
+function normalizeMobile(value){
+
+    return String(value || "")
+        .replace(/\D/g,"")
+        .replace(/^91/,"");
+
+}
+
+
+/* RENDER */
+
+function renderOrders(orders){
+
+    const container =
+        document.getElementById("ordersContainer");
+
+
+    if(orders.length === 0){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    📦
+                </div>
+
+                <h2>
+                    No Orders Yet
+                </h2>
+
+                <p>
+                    You haven't placed any order yet.
+                </p>
+
+                <a
+                    href="shop.html"
+                    class="shop-btn">
+
+                    Start Shopping
+
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    orders.sort((a,b) =>
+        new Date(b.createdAt || 0) -
+        new Date(a.createdAt || 0)
+    );
+
+
+    container.innerHTML =
+        orders.map(order => {
+
+            const status =
+                String(
+                    order.status || "Pending"
+                )
+                .toLowerCase();
+
+
+            const statusClass =
+                status === "confirmed"
+                ? "confirmed"
+                :
+                status === "packed"
+                ? "packed"
+                :
+                status === "shipped"
+                ? "shipped"
+                :
+                status === "delivered"
+                ? "delivered"
+                :
+                status === "cancelled"
+                ? "cancelled"
+                :
+                "pending";
+
+
+            const date =
+                order.createdAt
+                ?
+                new Date(
+                    order.createdAt
+                ).toLocaleString(
+                    "en-IN",
+                    {
+                        day:"2-digit",
+                        month:"short",
+                        year:"numeric",
+                        hour:"2-digit",
+                        minute:"2-digit"
+                    }
+                )
+                :
+                "—";
+
+
+            const products =
+                order.products ||
+                order.items ||
+                [];
+
+
+            const itemsHtml =
+                products.map(item => {
+
+                    const image =
+                        item.image
+                        ?
+                        `<img src="${item.image}"
+                              alt="${escapeHtml(item.name || "Product")}">`
+                        :
+                        "NO IMAGE";
+
+
+                    const quantity =
+                        Number(
+                            item.quantity || 1
+                        );
+
+
+                    return `
+
+                        <div class="item">
+
+                            <div class="item-image">
+                                ${image}
+                            </div>
+
+                            <div>
+
+                                <div class="item-name">
+                                    ${escapeHtml(
+                                        item.name ||
+                                        "Product"
+                                    )}
+                                </div>
+
+                                <div class="item-meta">
+                                    Qty: ${quantity}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }).join("");
+
+
+            const total =
+                Number(
+                    order.total ||
+                    order.grandTotal ||
+                    0
+                );
+
+
+            return `
+
+                <article class="order-card">
+
+                    <div class="order-top">
+
+                        <div>
+
+                            <div class="order-id">
+                                ${escapeHtml(
+                                    order.id ||
+                                    "ORDER"
+                                )}
+                            </div>
+
+                            <div class="order-date">
+                                ${date}
+                            </div>
+
+                        </div>
+
+
+                        <span class="status ${statusClass}">
+                            ${escapeHtml(
+                                order.status ||
+                                "Pending"
+                            )}
+                        </span>
+
+                    </div>
+
+
+                    <div class="items">
+
+                        ${
+                            itemsHtml ||
+                            `<div style="color:#888;">
+                                No product details available.
+                            </div>`
+                        }
+
+                    </div>
+
+
+                    <div class="order-bottom">
+
+                        <div>
+
+                            <div class="total">
+                                ₹${total.toLocaleString("en-IN")}
+                            </div>
+
+                            <div class="payment">
+                                Payment:
+                                ${escapeHtml(
+                                    order.paymentMode ||
+                                    "—"
+                                )}
+                            </div>
+
+                        </div>
+
+
+                        <div class="actions">
+
+                            <button
+                                class="btn track"
+                                onclick="trackOrder('${escapeJs(
+                                    order.id || ""
+                                )}')">
+
+                                🚚 Track Order
+
+                            </button>
+
+
+                            <button
+                                class="btn shop"
+                                onclick="viewOrder('${escapeJs(
+                                    order.id || ""
+                                )}')">
+
+                                View Details
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* TRACK */
+
+function trackOrder(orderId){
+
+    const order =
+        allOrders.find(
+            item =>
+                String(item.id) ===
+                String(orderId)
+        );
+
+
+    if(!order){
+
+        alert("Order not found.");
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "TH_LAST_ORDER",
+        JSON.stringify(order)
+    );
+
+
+    window.location.href =
+        "track-order.html";
+
+}
+
+
+/* VIEW DETAILS */
+
+function viewOrder(orderId){
+
+    const order =
+        allOrders.find(
+            item =>
+                String(item.id) ===
+                String(orderId)
+        );
+
+
+    if(!order){
+
+        alert("Order not found.");
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "TH_LAST_ORDER",
+        JSON.stringify(order)
+    );
+
+
+    window.location.href =
+        "order-success.html";
+
+}
+
+
+/* ESCAPE */
+
+function escapeHtml(text){
+
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeJs(text){
+
+    return String(text)
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/\r/g,"")
+        .replace(/\n/g,"\\n");
+
+}
+
+</script>
+
+</body>
+</html>

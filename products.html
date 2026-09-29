@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Products | THE TURBAN HOUSE</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f7f3ea;
+    color:#17130d;
+}
+
+/* HEADER */
+.header{
+    background:#0b0b0b;
+    color:#fff;
+    padding:18px 30px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:21px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.logo span{
+    color:#d6aa45;
+}
+
+.back{
+    color:#fff;
+    text-decoration:none;
+    border:1px solid #d6aa45;
+    padding:9px 16px;
+    border-radius:8px;
+    font-size:14px;
+}
+
+/* PAGE */
+.container{
+    max-width:1400px;
+    margin:auto;
+    padding:30px;
+}
+
+.page-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    gap:15px;
+}
+
+.page-title h1{
+    font-size:30px;
+}
+
+.page-title p{
+    color:#777;
+    margin-top:6px;
+}
+
+/* BUTTON */
+.btn{
+    border:0;
+    padding:12px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:700;
+}
+
+.btn-gold{
+    background:#c79a38;
+    color:#fff;
+}
+
+.btn-dark{
+    background:#111;
+    color:#fff;
+}
+
+/* FORM CARD */
+.form-card{
+    background:#fff;
+    border-radius:15px;
+    padding:25px;
+    margin-bottom:30px;
+    box-shadow:0 5px 25px rgba(0,0,0,.07);
+}
+
+.form-card h2{
+    margin-bottom:20px;
+    font-size:21px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+}
+
+.field label{
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:7px;
+}
+
+.field input,
+.field select,
+.field textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    outline:none;
+    background:#fff;
+}
+
+.field textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+.image-box{
+    border:2px dashed #d5bd84;
+    border-radius:10px;
+    padding:18px;
+    text-align:center;
+    background:#fffaf0;
+}
+
+.image-box input{
+    border:0;
+    padding:0;
+}
+
+.form-actions{
+    margin-top:20px;
+    display:flex;
+    gap:10px;
+}
+
+/* TOOLBAR */
+.toolbar{
+    background:#fff;
+    padding:18px;
+    border-radius:14px;
+    display:flex;
+    gap:12px;
+    margin-bottom:20px;
+    box-shadow:0 5px 25px rgba(0,0,0,.06);
+}
+
+.search{
+    flex:1;
+}
+
+.search input,
+.toolbar select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+/* TABLE */
+.table-card{
+    background:#fff;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 25px rgba(0,0,0,.07);
+}
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1000px;
+}
+
+th{
+    background:#111;
+    color:#fff;
+    text-align:left;
+    padding:15px;
+    font-size:13px;
+}
+
+td{
+    padding:14px 15px;
+    border-bottom:1px solid #eee;
+    vertical-align:middle;
+}
+
+.product{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.product-img{
+    width:55px;
+    height:55px;
+    border-radius:9px;
+    background:#eee;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    font-size:11px;
+    color:#888;
+}
+
+.product-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.product-name{
+    font-weight:700;
+}
+
+.category{
+    font-size:12px;
+    color:#777;
+    margin-top:4px;
+}
+
+.price{
+    font-weight:700;
+}
+
+.stock{
+    font-weight:700;
+}
+
+.stock.low{
+    color:#c0392b;
+}
+
+.stock.good{
+    color:#218c45;
+}
+
+.badge{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:700;
+}
+
+.active{
+    background:#e8f7ed;
+    color:#218c45;
+}
+
+.inactive{
+    background:#f8e7e7;
+    color:#c0392b;
+}
+
+.actions{
+    display:flex;
+    gap:7px;
+}
+
+.action{
+    border:0;
+    padding:8px 10px;
+    border-radius:7px;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:700;
+}
+
+.edit{
+    background:#eee5d2;
+    color:#72520d;
+}
+
+.delete{
+    background:#f8dddd;
+    color:#a52b2b;
+}
+
+.empty{
+    text-align:center;
+    padding:50px;
+    color:#888;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+    .form-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .page-title{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+
+@media(max-width:600px){
+    .header{
+        padding:15px;
+    }
+
+    .container{
+        padding:15px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .toolbar{
+        flex-direction:column;
+    }
+
+    .logo{
+        font-size:16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">
+        THE <span>TURBAN</span> HOUSE
+    </div>
+
+    <a href="admin.html" class="back">
+        ← Admin Dashboard
+    </a>
+</header>
+
+
+<main class="container">
+
+    <div class="page-title">
+        <div>
+            <h1>Product Management</h1>
+            <p>Add, edit and manage your men's collection.</p>
+        </div>
+
+        <button class="btn btn-gold" onclick="showForm()">
+            + Add Product
+        </button>
+    </div>
+
+
+    <!-- ADD PRODUCT FORM -->
+
+    <section class="form-card" id="productForm">
+
+        <h2 id="formTitle">Add New Product</h2>
+
+        <div class="form-grid">
+
+            <div class="field">
+                <label>Product Name *</label>
+                <input id="productName" type="text"
+                       placeholder="Example: Royal Premium Turban">
+            </div>
+
+            <div class="field">
+                <label>Category *</label>
+
+                <select id="category">
+                    <option value="">Select Category</option>
+                    <option>Turban</option>
+                    <option>Kalgi</option>
+                    <option>Sehra</option>
+                    <option>Watch</option>
+                    <option>Perfume</option>
+                    <option>Oud</option>
+                    <option>Sunglasses</option>
+                    <option>Tie</option>
+                    <option>Accessories</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>SKU</label>
+                <input id="sku" type="text"
+                       placeholder="Example: TH-TUR-001">
+            </div>
+
+            <div class="field">
+                <label>Price (₹) *</label>
+                <input id="price" type="number"
+                       placeholder="999">
+            </div>
+
+            <div class="field">
+                <label>Sale Price (₹)</label>
+                <input id="salePrice" type="number"
+                       placeholder="899">
+            </div>
+
+            <div class="field">
+                <label>Stock *</label>
+                <input id="stock" type="number"
+                       placeholder="10">
+            </div>
+
+            <div class="field">
+                <label>Size</label>
+                <input id="size" type="text"
+                       placeholder="Free Size">
+            </div>
+
+            <div class="field">
+                <label>Colour</label>
+                <input id="colour" type="text"
+                       placeholder="Royal Blue">
+            </div>
+
+            <div class="field">
+                <label>Status</label>
+
+                <select id="status">
+                    <option value="active">Active</option>
+                    <option value="inactive">Disabled</option>
+                </select>
+            </div>
+
+            <div class="field full">
+                <label>Product Image</label>
+
+                <div class="image-box">
+                    <input id="image"
+                           type="file"
+                           accept="image/*"
+                           onchange="previewImage(event)">
+                    <div id="imagePreview">
+                        Select product image
+                    </div>
+                </div>
+            </div>
+
+            <div class="field full">
+                <label>Description</label>
+
+                <textarea id="description"
+                    placeholder="Write product description..."></textarea>
+            </div>
+
+        </div>
+
+        <div class="form-actions">
+
+            <button class="btn btn-gold" onclick="saveProduct()">
+                Save Product
+            </button>
+
+            <button class="btn btn-dark" onclick="clearForm()">
+                Clear
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- SEARCH -->
+
+    <section class="toolbar">
+
+        <div class="search">
+            <input
+                id="search"
+                type="text"
+                placeholder="Search product name or SKU..."
+                oninput="renderProducts()">
+        </div>
+
+        <div style="width:220px;">
+            <select id="filterCategory"
+                    onchange="renderProducts()">
+
+                <option value="">All Categories</option>
+                <option>Turban</option>
+                <option>Kalgi</option>
+                <option>Sehra</option>
+                <option>Watch</option>
+                <option>Perfume</option>
+                <option>Oud</option>
+                <option>Sunglasses</option>
+                <option>Tie</option>
+                <option>Accessories</option>
+
+            </select>
+        </div>
+
+    </section>
+
+
+    <!-- PRODUCT TABLE -->
+
+    <section class="table-card">
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>PRODUCT</th>
+                        <th>CATEGORY</th>
+                        <th>PRICE</th>
+                        <th>STOCK</th>
+                        <th>STATUS</th>
+                        <th>ACTIONS</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="productTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="/api-sync.js"></script>
+<script>
+
+let products = JSON.parse(
+    localStorage.getItem("TH_PRODUCTS") || "[]"
+);
+
+let editingId = null;
+
+const categories = [
+    "Turban",
+    "Kalgi",
+    "Sehra",
+    "Watch",
+    "Perfume",
+    "Oud",
+    "Sunglasses",
+    "Tie",
+    "Accessories"
+];
+
+
+function showForm(){
+
+    document.getElementById("productForm")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+function previewImage(event){
+
+    const file = event.target.files[0];
+
+    if(!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+
+        document.getElementById("imagePreview").innerHTML =
+            `<img src="${e.target.result}"
+                  style="max-width:150px;max-height:120px;border-radius:8px;">`;
+
+    };
+
+    reader.readAsDataURL(file);
+}
+
+
+function saveProduct(){
+
+    const name =
+        document.getElementById("productName").value.trim();
+
+    const category =
+        document.getElementById("category").value;
+
+    const price =
+        Number(document.getElementById("price").value);
+
+    const stock =
+        Number(document.getElementById("stock").value);
+
+    if(!name || !category || !price || stock < 0){
+
+        alert("Please fill Product Name, Category, Price and Stock.");
+
+        return;
+    }
+
+
+    const product = {
+
+        id: editingId || Date.now(),
+
+        name:name,
+
+        category:category,
+
+        sku:document.getElementById("sku").value.trim(),
+
+        price:price,
+
+        salePrice:
+            Number(document.getElementById("salePrice").value) || null,
+
+        stock:stock,
+
+        size:document.getElementById("size").value.trim(),
+
+        colour:document.getElementById("colour").value.trim(),
+
+        status:document.getElementById("status").value,
+
+        description:
+            document.getElementById("description").value.trim(),
+
+        image:
+            document.getElementById("imagePreview")
+            .querySelector("img")?.src || ""
+
+    };
+
+
+    if(editingId){
+
+        const index = products.findIndex(
+            p => p.id === editingId
+        );
+
+        if(index !== -1){
+
+            products[index] = product;
+
+        }
+
+    }else{
+
+        products.push(product);
+
+    }
+
+
+    localStorage.setItem(
+        "TH_PRODUCTS",
+        JSON.stringify(products)
+    );
+
+
+    alert(
+        editingId
+        ? "Product updated successfully!"
+        : "Product added successfully!"
+    );
+
+
+    clearForm();
+
+    renderProducts();
+
+}
+
+
+function editProduct(id){
+
+    const product =
+        products.find(p => p.id === id);
+
+    if(!product) return;
+
+    editingId = id;
+
+    document.getElementById("formTitle").innerText =
+        "Edit Product";
+
+    document.getElementById("productName").value =
+        product.name;
+
+    document.getElementById("category").value =
+        product.category;
+
+    document.getElementById("sku").value =
+        product.sku || "";
+
+    document.getElementById("price").value =
+        product.price;
+
+    document.getElementById("salePrice").value =
+        product.salePrice || "";
+
+    document.getElementById("stock").value =
+        product.stock;
+
+    document.getElementById("size").value =
+        product.size || "";
+
+    document.getElementById("colour").value =
+        product.colour || "";
+
+    document.getElementById("status").value =
+        product.status || "active";
+
+    document.getElementById("description").value =
+        product.description || "";
+
+
+    if(product.image){
+
+        document.getElementById("imagePreview").innerHTML =
+            `<img src="${product.image}"
+                  style="max-width:150px;max-height:120px;border-radius:8px;">`;
+
+    }else{
+
+        document.getElementById("imagePreview").innerText =
+            "Select product image";
+
+    }
+
+
+    showForm();
+
+}
+
+
+function deleteProduct(id){
+
+    const product =
+        products.find(p => p.id === id);
+
+    if(!product) return;
+
+
+    const confirmDelete =
+        confirm(
+            `Delete "${product.name}"?`
+        );
+
+    if(!confirmDelete) return;
+
+
+    products =
+        products.filter(p => p.id !== id);
+
+
+    localStorage.setItem(
+        "TH_PRODUCTS",
+        JSON.stringify(products)
+    );
+
+
+    renderProducts();
+
+}
+
+
+function clearForm(){
+
+    editingId = null;
+
+    document.getElementById("formTitle").innerText =
+        "Add New Product";
+
+    document.getElementById("productName").value = "";
+
+    document.getElementById("category").value = "";
+
+    document.getElementById("sku").value = "";
+
+    document.getElementById("price").value = "";
+
+    document.getElementById("salePrice").value = "";
+
+    document.getElementById("stock").value = "";
+
+    document.getElementById("size").value = "";
+
+    document.getElementById("colour").value = "";
+
+    document.getElementById("status").value = "active";
+
+    document.getElementById("description").value = "";
+
+    document.getElementById("image").value = "";
+
+    document.getElementById("imagePreview").innerText =
+        "Select product image";
+
+}
+
+
+function renderProducts(){
+
+    const table =
+        document.getElementById("productTable");
+
+    const search =
+        document.getElementById("search")
+        .value
+        .toLowerCase();
+
+    const category =
+        document.getElementById("filterCategory")
+        .value;
+
+
+    const filtered =
+        products.filter(product => {
+
+            const matchesSearch =
+                product.name.toLowerCase().includes(search)
+                ||
+                (product.sku || "")
+                .toLowerCase()
+                .includes(search);
+
+            const matchesCategory =
+                !category ||
+                product.category === category;
+
+            return matchesSearch && matchesCategory;
+
+        });
+
+
+    if(filtered.length === 0){
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="6" class="empty">
+                    No products found.
+                </td>
+            </tr>
+        `;
+
+        return;
+
+    }
+
+
+    table.innerHTML =
+        filtered.map(product => {
+
+            const image =
+                product.image
+                ?
+                `<img src="${product.image}">`
+                :
+                "NO IMAGE";
+
+
+            const stockClass =
+                product.stock <= 3
+                ? "low"
+                : "good";
+
+
+            const statusClass =
+                product.status === "active"
+                ? "active"
+                : "inactive";
+
+
+            const statusText =
+                product.status === "active"
+                ? "ACTIVE"
+                : "DISABLED";
+
+
+            return `
+
+                <tr>
+
+                    <td>
+
+                        <div class="product">
+
+                            <div class="product-img">
+                                ${image}
+                            </div>
+
+                            <div>
+
+                                <div class="product-name">
+                                    ${escapeHtml(product.name)}
+                                </div>
+
+                                <div class="category">
+                                    SKU:
+                                    ${escapeHtml(product.sku || "—")}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+
+                    <td>
+                        ${escapeHtml(product.category)}
+                    </td>
+
+
+                    <td>
+
+                        <div class="price">
+                            ₹${product.price.toLocaleString("en-IN")}
+                        </div>
+
+                        ${
+                            product.salePrice
+                            ?
+                            `<small>
+                                Sale:
+                                ₹${product.salePrice.toLocaleString("en-IN")}
+                            </small>`
+                            :
+                            ""
+                        }
+
+                    </td>
+
+
+                    <td>
+
+                        <span class="stock ${stockClass}">
+                            ${product.stock}
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <span class="badge ${statusClass}">
+                            ${statusText}
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <div class="actions">
+
+                            <button
+                                class="action edit"
+                                onclick="editProduct(${product.id})">
+                                Edit
+                            </button>
+
+                            <button
+                                class="action delete"
+                                onclick="deleteProduct(${product.id})">
+                                Delete
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }).join("");
+
+}
+
+
+function escapeHtml(text){
+
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+renderProducts();
+
+</script>
+
+</body>
+</html>

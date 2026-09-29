@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Account | THE TURBAN HOUSE</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f7f1e3;
+    color:#171717;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    background:#0b0b0b;
+    color:#fff;
+    padding:18px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.logo{
+    color:#d4af37;
+    font-size:24px;
+    font-weight:bold;
+    letter-spacing:.5px;
+}
+
+nav{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+nav a{
+    color:#fff;
+    text-decoration:none;
+    padding:9px 13px;
+    border-radius:6px;
+    font-size:14px;
+}
+
+nav a:hover{
+    background:#d4af37;
+    color:#000;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.container{
+    max-width:1100px;
+    margin:35px auto;
+    padding:0 18px;
+}
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome{
+    background:#111;
+    color:#fff;
+    border-radius:18px;
+    padding:35px;
+    margin-bottom:25px;
+    position:relative;
+    overflow:hidden;
+}
+
+.welcome::after{
+    content:"";
+    position:absolute;
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    border:35px solid rgba(212,175,55,.15);
+    right:-70px;
+    top:-80px;
+}
+
+.welcome h1{
+    color:#d4af37;
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.welcome p{
+    color:#ddd;
+}
+
+.customer-info{
+    margin-top:18px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.info-badge{
+    background:#222;
+    border:1px solid #444;
+    padding:9px 13px;
+    border-radius:20px;
+    color:#eee;
+    font-size:13px;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.stat-card{
+    background:#fff;
+    padding:22px;
+    border-radius:14px;
+    box-shadow:0 6px 20px rgba(0,0,0,.08);
+}
+
+.stat-icon{
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+.stat-card h3{
+    font-size:28px;
+    color:#111;
+}
+
+.stat-card p{
+    color:#777;
+    margin-top:5px;
+}
+
+/* =========================
+   ACCOUNT MENU
+========================= */
+
+.section-title{
+    margin-bottom:16px;
+    color:#111;
+}
+
+.menu-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.menu-card{
+    background:#fff;
+    border-radius:14px;
+    padding:24px;
+    text-decoration:none;
+    color:#111;
+    box-shadow:0 6px 20px rgba(0,0,0,.08);
+    transition:.2s;
+    border:1px solid transparent;
+}
+
+.menu-card:hover{
+    transform:translateY(-3px);
+    border-color:#d4af37;
+}
+
+.menu-icon{
+    font-size:30px;
+    margin-bottom:12px;
+}
+
+.menu-card h3{
+    margin-bottom:7px;
+}
+
+.menu-card p{
+    color:#777;
+    font-size:14px;
+    line-height:1.5;
+}
+
+/* =========================
+   RECENT ORDERS
+========================= */
+
+.orders-section{
+    background:#fff;
+    border-radius:15px;
+    padding:25px;
+    margin-top:25px;
+    box-shadow:0 6px 20px rgba(0,0,0,.08);
+}
+
+.order-row{
+    border-bottom:1px solid #eee;
+    padding:15px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.order-row:last-child{
+    border-bottom:none;
+}
+
+.order-id{
+    font-weight:bold;
+}
+
+.order-date{
+    color:#777;
+    font-size:13px;
+    margin-top:4px;
+}
+
+.order-total{
+    font-weight:bold;
+    color:#a27d12;
+}
+
+.status{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+    background:#eee;
+}
+
+.status.Pending{
+    background:#fff1c7;
+    color:#8a6500;
+}
+
+.status.Confirmed{
+    background:#e5f1ff;
+    color:#075ca8;
+}
+
+.status.Packed{
+    background:#eee5ff;
+    color:#6235a0;
+}
+
+.status.Shipped{
+    background:#e5f8ed;
+    color:#08743c;
+}
+
+.status.Delivered{
+    background:#dff7df;
+    color:#147014;
+}
+
+.status.Cancelled{
+    background:#ffe1e1;
+    color:#a00000;
+}
+
+.view-orders{
+    display:inline-block;
+    margin-top:15px;
+    color:#a27d12;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+/* =========================
+   LOGOUT
+========================= */
+
+.logout-area{
+    text-align:center;
+    margin-top:30px;
+}
+
+.logout-btn{
+    background:#111;
+    color:#fff;
+    border:none;
+    padding:13px 28px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:15px;
+}
+
+.logout-btn:hover{
+    background:#333;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    margin-top:45px;
+    background:#0b0b0b;
+    color:#aaa;
+    text-align:center;
+    padding:23px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:750px){
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .menu-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .welcome{
+        padding:25px;
+    }
+
+    .welcome h1{
+        font-size:24px;
+    }
+
+    .order-row{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+}
+
+@media(max-width:500px){
+
+    header{
+        padding:15px;
+    }
+
+    nav{
+        width:100%;
+    }
+
+    nav a{
+        padding:8px 9px;
+    }
+
+    .menu-grid{
+        grid-template-columns:1fr;
+    }
+
+    .container{
+        margin-top:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        THE TURBAN HOUSE
+    </div>
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="shop.html">
+            Shop
+        </a>
+
+        <a href="wishlist.html">
+            ❤️ Wishlist
+        </a>
+
+        <a href="cart.html">
+            🛒 Cart
+        </a>
+
+        <a href="my-orders.html">
+            My Orders
+        </a>
+
+        <a href="profile.html">
+            Profile
+        </a>
+
+    </nav>
+
+</header>
+
+
+<div class="container">
+
+    <!-- =========================
+         WELCOME
+    ========================== -->
+
+    <section class="welcome">
+
+        <h1 id="welcomeName">
+            Welcome Back
+        </h1>
+
+        <p>
+            Manage your orders, profile and shopping
+            experience at THE TURBAN HOUSE.
+        </p>
+
+        <div class="customer-info">
+
+            <div class="info-badge">
+                📧
+                <span id="customerEmail">-</span>
+            </div>
+
+            <div class="info-badge">
+                📱
+                <span id="customerMobile">-</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         STATS
+    ========================== -->
+
+    <div class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📦
+            </div>
+
+            <h3 id="totalOrders">
+                0
+            </h3>
+
+            <p>
+                Total Orders
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                💰
+            </div>
+
+            <h3 id="totalSpent">
+                ₹0
+            </h3>
+
+            <p>
+                Total Spent
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ❤️
+            </div>
+
+            <h3 id="wishlistCount">
+                0
+            </h3>
+
+            <p>
+                Wishlist Items
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ACCOUNT MENU
+    ========================== -->
+
+    <h2 class="section-title">
+        Account
+    </h2>
+
+
+    <div class="menu-grid">
+
+        <!-- MY ORDERS -->
+
+        <a
+            href="my-orders.html"
+            class="menu-card"
+        >
+
+            <div class="menu-icon">
+                📦
+            </div>
+
+            <h3>
+                My Orders
+            </h3>
+
+            <p>
+                View your previous orders,
+                status and order details.
+            </p>
+
+        </a>
+
+
+        <!-- PROFILE -->
+
+        <a
+            href="profile.html"
+            class="menu-card"
+        >
+
+            <div class="menu-icon">
+                👤
+            </div>
+
+            <h3>
+                My Profile
+            </h3>
+
+            <p>
+                Update your name, address,
+                city, state and password.
+            </p>
+
+        </a>
+
+
+        <!-- SHOP -->
+
+        <a
+            href="shop.html"
+            class="menu-card"
+        >
+
+            <div class="menu-icon">
+                🛍️
+            </div>
+
+            <h3>
+                Continue Shopping
+            </h3>
+
+            <p>
+                Explore premium men's
+                products at THE TURBAN HOUSE.
+            </p>
+
+        </a>
+
+
+        <!-- TRACK ORDER -->
+
+        <a
+            href="track-order.html"
+            class="menu-card"
+        >
+
+            <div class="menu-icon">
+                🚚
+            </div>
+
+            <h3>
+                Track Order
+            </h3>
+
+            <p>
+                Check your latest order
+                delivery status.
+            </p>
+
+        </a>
+
+
+        <!-- WISHLIST -->
+
+        <a
+            href="wishlist.html"
+            class="menu-card"
+        >
+
+            <div class="menu-icon">
+                ❤️
+            </div>
+
+            <h3>
+                My Wishlist
+            </h3>
+
+            <p>
+                View and manage products
+                saved for later.
+            </p>
+
+        </a>
+
+
+        <!-- CART -->
+
+        <a
+            href="cart.html"
+            class="menu-card"
+        >
+
+            <div class="menu-icon">
+                🛒
+            </div>
+
+            <h3>
+                My Cart
+            </h3>
+
+            <p>
+                Review your selected products
+                and proceed to checkout.
+            </p>
+
+        </a>
+
+
+        <!-- HOME -->
+
+        <a
+            href="index.html"
+            class="menu-card"
+        >
+
+            <div class="menu-icon">
+                🏠
+            </div>
+
+            <h3>
+                Home
+            </h3>
+
+            <p>
+                Return to THE TURBAN HOUSE
+                homepage.
+            </p>
+
+        </a>
+
+    </div>
+
+
+    <!-- =========================
+         RECENT ORDERS
+    ========================== -->
+
+    <div class="orders-section">
+
+        <h2 class="section-title">
+            Recent Orders
+        </h2>
+
+        <div id="recentOrders">
+
+            <p style="color:#777;">
+                Loading orders...
+            </p>
+
+        </div>
+
+        <a
+            href="my-orders.html"
+            class="view-orders"
+        >
+            View All Orders →
+        </a>
+
+    </div>
+
+
+    <!-- =========================
+         LOGOUT
+    ========================== -->
+
+    <div class="logout-area">
+
+        <button
+            class="logout-btn"
+            onclick="logout()"
+        >
+            🚪 Logout
+        </button>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    © 2026 THE TURBAN HOUSE —
+    Premium Men's Collection
+
+</footer>
+
+
+<script src="/api-sync.js"></script>
+<script>
+
+/* =========================
+   LOGIN CHECK
+========================= */
+
+const currentCustomer =
+    JSON.parse(
+        localStorage.getItem("TH_CURRENT_CUSTOMER")
+    );
+
+
+if(!currentCustomer){
+
+    alert(
+        "Please login to access your account."
+    );
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* =========================
+   CUSTOMER INFORMATION
+========================= */
+
+document.getElementById(
+    "welcomeName"
+).textContent =
+    "Welcome Back, " +
+    (currentCustomer.name || "Customer");
+
+
+document.getElementById(
+    "customerEmail"
+).textContent =
+    currentCustomer.email || "-";
+
+
+document.getElementById(
+    "customerMobile"
+).textContent =
+    currentCustomer.mobile || "-";
+
+
+/* =========================
+   ORDERS
+========================= */
+
+const orders =
+    JSON.parse(
+        localStorage.getItem("TH_ORDERS")
+    ) || [];
+
+
+const customerOrders =
+    orders.filter(order => {
+
+        if(!order.customer){
+            return false;
+        }
+
+
+        const sameMobile =
+            String(
+                order.customer.mobile || ""
+            ) ===
+            String(
+                currentCustomer.mobile || ""
+            );
+
+
+        const sameEmail =
+            String(
+                order.customer.email || ""
+            ).toLowerCase() ===
+            String(
+                currentCustomer.email || ""
+            ).toLowerCase();
+
+
+        return sameMobile || sameEmail;
+
+    });
+
+
+/* =========================
+   TOTAL ORDERS
+========================= */
+
+document.getElementById(
+    "totalOrders"
+).textContent =
+    customerOrders.length;
+
+
+/* =========================
+   TOTAL SPENT
+========================= */
+
+const totalSpent =
+    customerOrders.reduce(
+        (sum,order) =>
+            sum +
+            Number(
+                order.total || 0
+            ),
+        0
+    );
+
+
+document.getElementById(
+    "totalSpent"
+).textContent =
+    "₹" +
+    totalSpent.toLocaleString(
+        "en-IN"
+    );
+
+
+/* =========================
+   WISHLIST COUNT
+========================= */
+
+const wishlist =
+    JSON.parse(
+        localStorage.getItem("TH_WISHLIST")
+    ) || [];
+
+
+document.getElementById(
+    "wishlistCount"
+).textContent =
+    wishlist.length;
+
+
+/* =========================
+   RECENT ORDERS
+========================= */
+
+const recentContainer =
+    document.getElementById(
+        "recentOrders"
+    );
+
+
+if(customerOrders.length === 0){
+
+    recentContainer.innerHTML = `
+
+        <p style="color:#777;">
+            You have not placed any orders yet.
+        </p>
+
+        <a
+            href="shop.html"
+            style="
+                display:inline-block;
+                margin-top:12px;
+                background:#d4af37;
+                color:#000;
+                padding:10px 16px;
+                border-radius:7px;
+                text-decoration:none;
+                font-weight:bold;
+            "
+        >
+            Start Shopping
+        </a>
+
+    `;
+
+}else{
+
+    const recentOrders =
+        [...customerOrders]
+        .sort(
+            (a,b) =>
+            new Date(
+                b.createdAt || 0
+            ) -
+            new Date(
+                a.createdAt || 0
+            )
+        )
+        .slice(0,5);
+
+
+    recentContainer.innerHTML =
+        recentOrders.map(order => {
+
+            const date =
+                order.createdAt
+                ? new Date(
+                    order.createdAt
+                  ).toLocaleDateString(
+                    "en-IN"
+                  )
+                : "-";
+
+
+            const status =
+                order.status ||
+                "Pending";
+
+
+            return `
+
+                <div class="order-row">
+
+                    <div>
+
+                        <div class="order-id">
+                            ${escapeHtml(
+                                order.id ||
+                                "Order"
+                            )}
+                        </div>
+
+                        <div class="order-date">
+                            ${date}
+                        </div>
+
+                    </div>
+
+
+                    <div>
+
+                        <span
+                            class="status ${escapeHtml(status)}"
+                        >
+                            ${escapeHtml(status)}
+                        </span>
+
+                    </div>
+
+
+                    <div class="order-total">
+
+                        ₹${Number(
+                            order.total || 0
+                        ).toLocaleString(
+                            "en-IN"
+                        )}
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logout(){
+
+    localStorage.removeItem(
+        "TH_CURRENT_CUSTOMER"
+    );
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* =========================
+   SECURITY
+========================= */
+
+function escapeHtml(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+</script>
+
+</body>
+</html>

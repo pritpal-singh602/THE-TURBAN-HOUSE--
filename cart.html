@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Checkout | THE TURBAN HOUSE</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#0b0b0b;
+    color:#f5f0e6;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    background:#111;
+    border-bottom:1px solid #c9a227;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.navbar{
+    max-width:1250px;
+    margin:auto;
+    min-height:75px;
+    padding:0 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    font-size:23px;
+    font-weight:900;
+    letter-spacing:2px;
+    color:#d4af37;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:25px;
+    font-size:14px;
+}
+
+.nav-links a{
+    color:#ddd;
+}
+
+.nav-links a:hover{
+    color:#d4af37;
+}
+
+.cart-badge{
+    background:#d4af37;
+    color:#111;
+    padding:3px 8px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.page-title{
+    max-width:1250px;
+    margin:45px auto 25px;
+    padding:0 20px;
+}
+
+.page-title span{
+    color:#d4af37;
+    font-size:13px;
+    letter-spacing:2px;
+    font-weight:bold;
+}
+
+.page-title h1{
+    font-size:38px;
+    margin-top:8px;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.checkout-layout{
+    max-width:1250px;
+    margin:0 auto 70px;
+    padding:0 20px;
+    display:grid;
+    grid-template-columns:1fr 390px;
+    gap:25px;
+}
+
+.box{
+    background:#121212;
+    border:1px solid #292929;
+    border-radius:18px;
+    padding:25px;
+}
+
+.box h2{
+    font-size:22px;
+    margin-bottom:20px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    display:block;
+    color:#ddd;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    padding:13px;
+    background:#0d0d0d;
+    border:1px solid #3a3a3a;
+    border-radius:9px;
+    color:#fff;
+    outline:none;
+    font-size:14px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:#d4af37;
+}
+
+.form-group textarea{
+    min-height:95px;
+    resize:vertical;
+}
+
+.form-group select option{
+    background:#111;
+    color:#fff;
+}
+
+.required{
+    color:#d4af37;
+}
+
+/* =========================
+   PAYMENT
+========================= */
+
+.payment-options{
+    display:grid;
+    gap:10px;
+    margin-top:5px;
+}
+
+.payment-option{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:15px;
+    border:1px solid #383838;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.payment-option:hover{
+    border-color:#d4af37;
+}
+
+.payment-option input{
+    accent-color:#d4af37;
+}
+
+.payment-option strong{
+    font-size:14px;
+}
+
+.payment-option small{
+    display:block;
+    color:#888;
+    margin-top:4px;
+}
+
+/* =========================
+   SUMMARY
+========================= */
+
+.summary-box{
+    height:max-content;
+    position:sticky;
+    top:100px;
+}
+
+.summary-box h2{
+    margin-bottom:18px;
+}
+
+.order-items{
+    max-height:420px;
+    overflow:auto;
+}
+
+.order-item{
+    display:grid;
+    grid-template-columns:65px 1fr auto;
+    gap:12px;
+    align-items:center;
+    padding:13px 0;
+    border-bottom:1px solid #292929;
+}
+
+.order-item:last-child{
+    border-bottom:none;
+}
+
+.order-image{
+    width:65px;
+    height:65px;
+    border-radius:9px;
+    background:#1b1b1b;
+    overflow:hidden;
+}
+
+.order-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.order-name{
+    font-size:13px;
+    font-weight:bold;
+}
+
+.order-qty{
+    color:#888;
+    font-size:11px;
+    margin-top:5px;
+}
+
+.order-price{
+    color:#d4af37;
+    font-size:13px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    padding:12px 0;
+    color:#bbb;
+    border-bottom:1px solid #292929;
+}
+
+.summary-row strong{
+    color:#fff;
+}
+
+.summary-row.total{
+    border-bottom:none;
+    padding-top:18px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.summary-row.total strong{
+    color:#d4af37;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.place-order{
+    width:100%;
+    margin-top:20px;
+    padding:16px;
+    border:0;
+    border-radius:10px;
+    background:#d4af37;
+    color:#111;
+    font-size:15px;
+    font-weight:900;
+    cursor:pointer;
+}
+
+.place-order:hover{
+    background:#f0cf55;
+}
+
+.place-order:disabled{
+    background:#555;
+    color:#aaa;
+    cursor:not-allowed;
+}
+
+.back-cart{
+    display:block;
+    text-align:center;
+    margin-top:12px;
+    padding:12px;
+    border:1px solid #555;
+    border-radius:9px;
+    color:#ddd;
+    font-size:13px;
+}
+
+.whatsapp-btn{
+    width:100%;
+    margin-top:10px;
+    padding:13px;
+    border:0;
+    border-radius:9px;
+    background:#218c45;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.whatsapp-btn:hover{
+    background:#29a653;
+}
+
+/* =========================
+   NOTICE
+========================= */
+
+.notice{
+    background:#18140a;
+    border:1px solid #594b20;
+    color:#d8c986;
+    padding:12px;
+    border-radius:9px;
+    margin-top:15px;
+    font-size:12px;
+    line-height:1.5;
+}
+
+.error{
+    color:#ff7777;
+    font-size:12px;
+    margin-top:5px;
+    display:none;
+}
+
+/* =========================
+   SUCCESS
+========================= */
+
+.success-screen{
+    max-width:700px;
+    margin:70px auto;
+    padding:0 20px;
+    text-align:center;
+}
+
+.success-box{
+    background:#121212;
+    border:1px solid #d4af37;
+    border-radius:20px;
+    padding:45px 25px;
+}
+
+.success-icon{
+    width:75px;
+    height:75px;
+    margin:0 auto 20px;
+    border-radius:50%;
+    background:#218c45;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:40px;
+}
+
+.success-box h1{
+    font-size:32px;
+    margin-bottom:12px;
+}
+
+.success-box p{
+    color:#aaa;
+    line-height:1.7;
+}
+
+.order-id{
+    margin:20px 0;
+    padding:15px;
+    background:#1b1b1b;
+    border-radius:10px;
+    color:#d4af37;
+    font-weight:bold;
+}
+
+.success-buttons{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.success-buttons a,
+.success-buttons button{
+    padding:13px 20px;
+    border-radius:9px;
+    border:1px solid #555;
+    background:#181818;
+    color:#fff;
+    cursor:pointer;
+}
+
+.success-buttons a:first-child{
+    background:#d4af37;
+    color:#111;
+    border-color:#d4af37;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    border-top:1px solid #292929;
+    padding:30px 20px;
+    text-align:center;
+    color:#777;
+    font-size:12px;
+}
+
+footer strong{
+    color:#d4af37;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:850px){
+
+    .checkout-layout{
+        grid-template-columns:1fr;
+    }
+
+    .summary-box{
+        position:static;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .navbar{
+        min-height:65px;
+    }
+
+    .logo{
+        font-size:16px;
+    }
+
+    .nav-links{
+        gap:10px;
+        font-size:12px;
+    }
+
+    .nav-links a:nth-child(1){
+        display:none;
+    }
+
+    .page-title{
+        margin-top:30px;
+    }
+
+    .page-title h1{
+        font-size:30px;
+    }
+
+    .box{
+        padding:17px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .success-box{
+        padding:35px 18px;
+    }
+
+    .success-box h1{
+        font-size:27px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="navbar">
+
+        <a href="index.html" class="logo">
+            THE TURBAN HOUSE
+        </a>
+
+        <nav class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="shop.html">
+                Shop
+            </a>
+
+            <a href="cart.html">
+                Cart
+                <span class="cart-badge" id="cartCount">0</span>
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     CHECKOUT PAGE
+========================= -->
+
+<div id="checkoutPage">
+
+    <section class="page-title">
+
+        <span>
+            SECURE CHECKOUT
+        </span>
+
+        <h1>
+            Complete Your Order
+        </h1>
+
+    </section>
+
+
+    <main class="checkout-layout">
+
+
+        <!-- CUSTOMER DETAILS -->
+
+        <section class="box">
+
+            <h2>
+                Customer Details
+            </h2>
+
+
+            <form id="checkoutForm" onsubmit="placeOrder(event)">
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Full Name <span class="required">*</span>
+                        </label>
+
+                        <input
+                            id="customerName"
+                            type="text"
+                            placeholder="Enter your full name"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Mobile Number <span class="required">*</span>
+                        </label>
+
+                        <input
+                            id="mobile"
+                            type="tel"
+                            inputmode="numeric"
+                            maxlength="10"
+                            placeholder="10 digit mobile number"
+                            required>
+
+                        <div id="mobileError" class="error">
+                            Please enter a valid 10 digit mobile number.
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Email
+                        </label>
+
+                        <input
+                            id="email"
+                            type="email"
+                            placeholder="your@email.com">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Pincode <span class="required">*</span>
+                        </label>
+
+                        <input
+                            id="pincode"
+                            type="text"
+                            inputmode="numeric"
+                            maxlength="6"
+                            placeholder="6 digit pincode"
+                            required>
+
+                        <div id="pincodeError" class="error">
+                            Please enter a valid 6 digit pincode.
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Full Address <span class="required">*</span>
+                        </label>
+
+                        <textarea
+                            id="address"
+                            placeholder="House/Flat No., Street, Area..."
+                            required></textarea>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            City <span class="required">*</span>
+                        </label>
+
+                        <input
+                            id="city"
+                            type="text"
+                            placeholder="City"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            State <span class="required">*</span>
+                        </label>
+
+                        <select id="state" required>
+
+                            <option value="">
+                                Select State
+                            </option>
+
+                            <option>Andhra Pradesh</option>
+                            <option>Arunachal Pradesh</option>
+                            <option>Assam</option>
+                            <option>Bihar</option>
+                            <option>Chandigarh</option>
+                            <option>Chhattisgarh</option>
+                            <option>Delhi</option>
+                            <option>Goa</option>
+                            <option>Gujarat</option>
+                            <option>Haryana</option>
+                            <option>Himachal Pradesh</option>
+                            <option>Jammu and Kashmir</option>
+                            <option>Jharkhand</option>
+                            <option>Karnataka</option>
+                            <option>Kerala</option>
+                            <option>Madhya Pradesh</option>
+                            <option>Maharashtra</option>
+                            <option>Manipur</option>
+                            <option>Meghalaya</option>
+                            <option>Mizoram</option>
+                            <option>Nagaland</option>
+                            <option>Odisha</option>
+                            <option>Punjab</option>
+                            <option>Rajasthan</option>
+                            <option>Sikkim</option>
+                            <option>Tamil Nadu</option>
+                            <option>Telangana</option>
+                            <option>Tripura</option>
+                            <option>Uttar Pradesh</option>
+                            <option>Uttarakhand</option>
+                            <option>West Bengal</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Order Notes
+                        </label>
+
+                        <textarea
+                            id="notes"
+                            placeholder="Any special instructions? (Optional)"></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PAYMENT -->
+
+                <h2 style="margin-top:25px;">
+                    Payment Method
+                </h2>
+
+
+                <div class="payment-options">
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="Cash on Delivery"
+                            checked>
+
+                        <div>
+
+                            <strong>
+                                Cash on Delivery
+                            </strong>
+
+                            <small>
+                                Pay when your order arrives.
+                            </small>
+
+                        </div>
+
+                    </label>
+
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="WhatsApp Order">
+
+                        <div>
+
+                            <strong>
+                                WhatsApp Order
+                            </strong>
+
+                            <small>
+                                Confirm your order through WhatsApp.
+                            </small>
+
+                        </div>
+
+                    </label>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="place-order"
+                    id="placeOrderButton">
+
+                    PLACE ORDER
+
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- ORDER SUMMARY -->
+
+        <aside class="box summary-box">
+
+            <h2>
+                Your Order
+            </h2>
+
+
+            <div
+                class="order-items"
+                id="orderItems">
+
+                Loading...
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Subtotal
+                </span>
+
+                <strong id="subtotal">
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Shipping
+                </span>
+
+                <strong id="shipping">
+                    FREE
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row total">
+
+                <span>
+                    Total
+                </span>
+
+                <strong id="grandTotal">
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <button
+                class="whatsapp-btn"
+                onclick="whatsappCheckout()">
+
+                WhatsApp Order
+
+            </button>
+
+
+            <a
+                href="cart.html"
+                class="back-cart">
+
+                ← Back to Cart
+
+            </a>
+
+
+            <div class="notice">
+
+                🔒 Your order details are stored securely
+                in this browser until the order is submitted.
+
+            </div>
+
+        </aside>
+
+    </main>
+
+</div>
+
+
+<!-- =========================
+     SUCCESS SCREEN
+========================= -->
+
+<div
+    id="successScreen"
+    class="success-screen"
+    style="display:none;">
+
+    <div class="success-box">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h1>
+            Order Placed Successfully!
+        </h1>
+
+        <p>
+            Thank you for shopping with
+            <strong style="color:#d4af37;">
+                THE TURBAN HOUSE
+            </strong>.
+        </p>
+
+        <p style="margin-top:5px;">
+            Your order has been saved successfully.
+        </p>
+
+
+        <div class="order-id">
+
+            Order ID:
+            <span id="successOrderId">
+                —
+            </span>
+
+        </div>
+
+
+        <div class="success-buttons">
+
+            <a href="shop.html">
+                Continue Shopping
+            </a>
+
+            <a href="index.html">
+                Go Home
+            </a>
+
+            <button onclick="openLastOrderWhatsApp()">
+                WhatsApp Order
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    <strong>
+        THE TURBAN HOUSE
+    </strong>
+
+    <p style="margin-top:8px;">
+        Royal Style • Punjabi Heritage • Premium Men's Collection
+    </p>
+
+</footer>
+
+
+<script src="/api-sync.js"></script>
+<script>
+
+/* =========================
+   DATA
+========================= */
+
+let cart =
+    JSON.parse(
+        localStorage.getItem("TH_CART") || "[]"
+    );
+
+let products =
+    JSON.parse(
+        localStorage.getItem("TH_PRODUCTS") || "[]"
+    );
+
+let lastOrder = null;
+
+
+/* =========================
+   MONEY
+========================= */
+
+function money(value){
+
+    return "₹" +
+        Number(value || 0)
+        .toLocaleString("en-IN");
+
+}
+
+
+/* =========================
+   PRICE
+========================= */
+
+function getPrice(item){
+
+    if(
+        item.salePrice !== null &&
+        item.salePrice !== "" &&
+        Number(item.salePrice) > 0
+    ){
+
+        return Number(item.salePrice);
+
+    }
+
+    return Number(item.price || 0);
+
+}
+
+
+/* =========================
+   IMAGE
+========================= */
+
+function getImage(item){
+
+    if(
+        item.image &&
+        String(item.image).trim() !== ""
+    ){
+
+        return item.image;
+
+    }
+
+    return "https://via.placeholder.com/300x300?text=THE+TURBAN+HOUSE";
+
+}
+
+
+/* =========================
+   ESCAPE
+========================= */
+
+function escapeHtml(value){
+
+    return String(value || "")
+
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   CART COUNT
+========================= */
+
+function updateCartCount(){
+
+    const count =
+        cart.reduce(
+            (total,item)=>
+                total +
+                Number(item.quantity || 1),
+            0
+        );
+
+    document.getElementById("cartCount")
+        .textContent = count;
+
+}
+
+
+/* =========================
+   RENDER SUMMARY
+========================= */
+
+function renderSummary(){
+
+    const container =
+        document.getElementById("orderItems");
+
+    if(!cart.length){
+
+        container.innerHTML = `
+
+            <div style="
+                text-align:center;
+                padding:30px 10px;
+                color:#888;
+            ">
+
+                Your cart is empty.
+
+            </div>
+
+        `;
+
+        document.getElementById("placeOrderButton")
+            .disabled = true;
+
+        return;
+
+    }
+
+
+    let subtotal = 0;
+
+
+    container.innerHTML =
+        cart.map(item => {
+
+            const price =
+                getPrice(item);
+
+            const quantity =
+                Number(item.quantity || 1);
+
+            const total =
+                price * quantity;
+
+            subtotal += total;
+
+
+            return `
+
+                <div class="order-item">
+
+                    <div class="order-image">
+
+                        <img
+                            src="${getImage(item)}"
+                            alt="${escapeHtml(item.name)}"
+                            onerror="this.style.display='none'"
+                        >
+
+                    </div>
+
+                    <div>
+
+                        <div class="order-name">
+
+                            ${escapeHtml(
+                                item.name || "Product"
+                            )}
+
+                        </div>
+
+                        <div class="order-qty">
+
+                            Qty: ${quantity}
+
+                        </div>
+
+                    </div>
+
+                    <div class="order-price">
+
+                        ${money(total)}
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+
+    document.getElementById("subtotal")
+        .textContent =
+        money(subtotal);
+
+
+    document.getElementById("grandTotal")
+        .textContent =
+        money(subtotal);
+
+
+    document.getElementById("shipping")
+        .textContent =
+        subtotal > 0 ? "FREE" : "₹0";
+
+
+    updateCartCount();
+
+}
+
+
+/* =========================
+   GET FORM DATA
+========================= */
+
+function getFormData(){
+
+    return {
+
+        name:
+            document.getElementById("customerName")
+            .value.trim(),
+
+        mobile:
+            document.getElementById("mobile")
+            .value.trim(),
+
+        email:
+            document.getElementById("email")
+            .value.trim(),
+
+        pincode:
+            document.getElementById("pincode")
+            .value.trim(),
+
+        address:
+            document.getElementById("address")
+            .value.trim(),
+
+        city:
+            document.getElementById("city")
+            .value.trim(),
+
+        state:
+            document.getElementById("state")
+            .value,
+
+        notes:
+            document.getElementById("notes")
+            .value.trim(),
+
+        payment:
+            document.querySelector(
+                'input[name="payment"]:checked'
+            )?.value || "Cash on Delivery"
+
+    };
+
+}
+
+
+/* =========================
+   VALIDATE
+========================= */
+
+function validateForm(){
+
+    const mobile =
+        document.getElementById("mobile")
+        .value.trim();
+
+    const pincode =
+        document.getElementById("pincode")
+        .value.trim();
+
+
+    const mobileError =
+        document.getElementById("mobileError");
+
+    const pincodeError =
+        document.getElementById("pincodeError");
+
+
+    mobileError.style.display = "none";
+    pincodeError.style.display = "none";
+
+
+    let valid = true;
+
+
+    if(!/^[6-9][0-9]{9}$/.test(mobile)){
+
+        mobileError.style.display =
+            "block";
+
+        valid = false;
+
+    }
+
+
+    if(!/^[0-9]{6}$/.test(pincode)){
+
+        pincodeError.style.display =
+            "block";
+
+        valid = false;
+
+    }
+
+
+    return valid;
+
+}
+
+
+/* =========================
+   STOCK CHECK
+========================= */
+
+function validateStock(){
+
+    products =
+        JSON.parse(
+            localStorage.getItem("TH_PRODUCTS") || "[]"
+        );
+
+
+    for(const item of cart){
+
+        const product =
+            products.find(
+                p => String(p.id) === String(item.id)
+            );
+
+
+        if(product){
+
+            const stock =
+                Number(product.stock || 0);
+
+            const quantity =
+                Number(item.quantity || 1);
+
+
+            if(stock <= 0){
+
+                alert(
+                    `"${product.name}" is out of stock.`
+                );
+
+                return false;
+
+            }
+
+
+            if(quantity > stock){
+
+                alert(
+                    `"${product.name}" has only ${stock} item(s) available.`
+                );
+
+                return false;
+
+            }
+
+        }
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =========================
+   PLACE ORDER
+========================= */
+
+function placeOrder(event){
+
+    event.preventDefault();
+
+
+    if(!cart.length){
+
+        alert(
+            "Your cart is empty."
+        );
+
+        window.location.href =
+            "shop.html";
+
+        return;
+
+    }
+
+
+    if(!validateForm()){
+
+        return;
+
+    }
+
+
+    if(!validateStock()){
+
+        return;
+
+    }
+
+
+    const customer =
+        getFormData();
+
+
+    let subtotal = 0;
+
+
+    const orderItems =
+        cart.map(item => {
+
+            const price =
+                getPrice(item);
+
+            const quantity =
+                Number(item.quantity || 1);
+
+            const total =
+                price * quantity;
+
+            subtotal += total;
+
+
+            return {
+
+                id:item.id,
+
+                name:item.name,
+
+                category:item.category || "",
+
+                sku:item.sku || "",
+
+                price:price,
+
+                quantity:quantity,
+
+                total:total,
+
+                image:item.image || ""
+
+            };
+
+        });
+
+
+    const orderId =
+        "TH-" +
+        new Date()
+        .getFullYear() +
+        "-" +
+        Date.now()
+        .toString()
+        .slice(-6);
+
+
+    const order = {
+
+        id:orderId,
+
+        customerId:
+            localStorage.getItem("TH_CURRENT_CUSTOMER_ID") || "",
+
+        customer:customer,
+
+        items:orderItems,
+
+        subtotal:subtotal,
+
+        shipping:0,
+
+        total:subtotal,
+
+        status:"Pending",
+
+        paymentStatus:
+            customer.payment === "Cash on Delivery"
+            ? "Pending"
+            : "Pending",
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    /* =========================
+       SAVE ORDER
+    ========================= */
+
+    let orders =
+        JSON.parse(
+            localStorage.getItem("TH_ORDERS") || "[]"
+        );
+
+
+    orders.unshift(order);
+
+
+    localStorage.setItem(
+        "TH_ORDERS",
+        JSON.stringify(orders)
+    );
+
+
+    /* =========================
+       REDUCE STOCK
+    ========================= */
+
+    products =
+        JSON.parse(
+            localStorage.getItem("TH_PRODUCTS") || "[]"
+        );
+
+
+    orderItems.forEach(item => {
+
+        const product =
+            products.find(
+                p => String(p.id) === String(item.id)
+            );
+
+
+        if(product){
+
+            const oldStock =
+                Number(product.stock || 0);
+
+
+            product.stock =
+                Math.max(
+                    0,
+                    oldStock -
+                    Number(item.quantity || 0)
+                );
+
+        }
+
+    });
+
+
+    localStorage.setItem(
+        "TH_PRODUCTS",
+        JSON.stringify(products)
+    );
+
+
+    /* =========================
+       SAVE LAST ORDER
+    ========================= */
+
+    lastOrder = order;
+
+
+    localStorage.setItem(
+        "TH_LAST_ORDER",
+        JSON.stringify(order)
+    );
+
+
+    /* =========================
+       CLEAR CART
+    ========================= */
+
+    localStorage.setItem(
+        "TH_CART",
+        JSON.stringify([])
+    );
+
+
+    cart = [];
+
+
+    updateCartCount();
+
+
+    /* =========================
+       SHOW SUCCESS
+    ========================= */
+
+    document.getElementById("checkoutPage")
+        .style.display = "none";
+
+
+    document.getElementById("successScreen")
+        .style.display = "block";
+
+
+    document.getElementById("successOrderId")
+        .textContent = orderId;
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================
+   WHATSAPP CHECKOUT
+========================= */
+
+function whatsappCheckout(){
+
+    if(!cart.length){
+
+        alert(
+            "Your cart is empty."
+        );
+
+        return;
+
+    }
+
+
+    const customer =
+        getFormData();
+
+
+    let message =
+`Hello THE TURBAN HOUSE,
+
+I want to place an order.
+
+CUSTOMER DETAILS
+Name: ${customer.name || "Not provided"}
+Mobile: ${customer.mobile || "Not provided"}
+Email: ${customer.email || "Not provided"}
+
+ADDRESS
+${customer.address || "Not provided"}
+${customer.city || ""}
+${customer.state || ""}
+Pincode: ${customer.pincode || ""}
+
+PRODUCTS
+`;
+
+
+    let subtotal = 0;
+
+
+    cart.forEach((item,index) => {
+
+        const price =
+            getPrice(item);
+
+        const quantity =
+            Number(item.quantity || 1);
+
+        const total =
+            price * quantity;
+
+        subtotal += total;
+
+
+        message +=
+`
+${index + 1}. ${item.name}
+Qty: ${quantity}
+Price: ${money(price)}
+Total: ${money(total)}
+`;
+
+    });
+
+
+    message +=
+`
+SUBTOTAL: ${money(subtotal)}
+SHIPPING: FREE
+TOTAL: ${money(subtotal)}
+
+Payment: ${customer.payment}
+
+Notes: ${customer.notes || "None"}
+
+Please confirm my order.
+`;
+
+
+    const phone =
+        "91XXXXXXXXXX";
+
+
+    window.open(
+        "https://wa.me/" +
+        phone +
+        "?text=" +
+        encodeURIComponent(message),
+        "_blank"
+    );
+
+}
+
+
+/* =========================
+   SUCCESS WHATSAPP
+========================= */
+
+function openLastOrderWhatsApp(){
+
+    const order =
+        lastOrder ||
+        JSON.parse(
+            localStorage.getItem("TH_LAST_ORDER") || "null"
+        );
+
+
+    if(!order){
+
+        alert(
+            "Order information not found."
+        );
+
+        return;
+
+    }
+
+
+    let message =
+`Hello THE TURBAN HOUSE,
+
+Order ID: ${order.id}
+
+Customer:
+${order.customer.name}
+
+Mobile:
+${order.customer.mobile}
+
+Address:
+${order.customer.address}
+${order.customer.city}, ${order.customer.state}
+Pincode: ${order.customer.pincode}
+
+ORDER DETAILS
+`;
+
+
+    order.items.forEach((item,index) => {
+
+        message +=
+`
+${index + 1}. ${item.name}
+Qty: ${item.quantity}
+Total: ${money(item.total)}
+`;
+
+    });
+
+
+    message +=
+`
+TOTAL: ${money(order.total)}
+
+Payment: ${order.customer.payment}
+
+Please confirm my order.
+`;
+
+
+    const phone =
+        "91XXXXXXXXXX";
+
+
+    window.open(
+        "https://wa.me/" +
+        phone +
+        "?text=" +
+        encodeURIComponent(message),
+        "_blank"
+    );
+
+}
+
+
+/* =========================
+   INPUT RESTRICTIONS
+========================= */
+
+document.getElementById("mobile")
+.addEventListener("input",function(){
+
+    this.value =
+        this.value
+        .replace(/\D/g,"")
+        .slice(0,10);
+
+});
+
+
+document.getElementById("pincode")
+.addEventListener("input",function(){
+
+    this.value =
+        this.value
+        .replace(/\D/g,"")
+        .slice(0,6);
+
+});
+
+
+/* =========================
+   START
+========================= */
+
+renderSummary();
+
+updateCartCount();
+
+</script>
+
+</body>
+</html>
